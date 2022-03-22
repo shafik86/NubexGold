@@ -10,6 +10,7 @@ using NubexGold.Client.Areas.Identity;
 using NubexGold.Client.Data;
 using NubexGold.Client.Services;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
