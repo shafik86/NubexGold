@@ -26,4 +26,8 @@
     <ProjectReference Include="..\NubexGold.Shared\NubexGold.Shared\NubexGold.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Repository\" />
+  </ItemGroup>
+
 </Project>

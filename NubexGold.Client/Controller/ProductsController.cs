@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NubexGold.Client.Data;
 using NubexGold.Shared;
 
-namespace NubexGold.API.Controllers
+namespace NubexGold.Client.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly NubexGoldContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ProductsController(NubexGoldContext context)
+        public ProductsController(ApplicationDbContext context)
         {
             _context = context;
         }
