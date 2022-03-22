@@ -1,0 +1,37 @@
+﻿@page "/products/{Metal}/{Id}"
+@page "/products/{Metal}"
+@page "/products"
+
+
+<MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">@PageHeader</MudText>
+<MudDivider/>
+
+<center>
+  <MudContainer Class="mt-2">
+    <MudGrid>
+        
+@if(Loading)
+{
+    <MudProgressLinear Color="Color.Secondary" Indeterminate="true" Class="my-7"/>
+}
+else
+{
+    @foreach(var item in Products)
+    {
+        <MudItem xs="12" sm="4">
+            <MudLink Href="@($"/ItemDetail/{item.ProductId}")">
+            <img src="@item.Image1" class="img-fluid" style="width:250px; height:300px;" alt="@item.SKU">
+            </MudLink>
+            <MudText Class="mt-1">
+                @item.Name @item.Purify - Cond: @item.Condition
+            </MudText>
+            <MudText Typo="Typo.caption" >
+                Price From MYR @item.Price
+            </MudText>
+        </MudItem>
+    }
+}
+</MudGrid>
+    </MudContainer>
+</center>
+@*<Grid />*@
