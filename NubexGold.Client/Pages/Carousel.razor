@@ -1,0 +1,31 @@
+﻿
+<MudCarousel Class="mud-width-full" Style="height:600px;" ShowArrows="@arrows" ShowBullets="@bullets" AutoCycle="@autocycle" TData="object">
+    <MudCarouselItem Transition="transition" Color="@Color.Default">
+        <div class="d-flex justify-content-center" style="height:100%">
+            <img src="Image/1.jpg" class="img-fluid" alt="...">
+        </div>
+    </MudCarouselItem>
+    <MudCarouselItem Transition="transition" Color="@Color.Default">
+        <div class="d-flex justify-content-center" style="height:100%">
+            <img src="Image/2.jpg" class="img-fluid" alt="...">
+        </div>
+    </MudCarouselItem>
+    <MudCarouselItem Transition="transition" Color="@Color.Default">
+        <div class="d-flex justify-content-center" style="height:100%">
+            <img src="Image/3.jpg" class="img-fluid" alt="...">
+        </div>
+    </MudCarouselItem>
+    <MudCarouselItem Transition="transition" Color="@Color.Default">
+        <div class="d-flex justify-content-center" style="height:100%">
+            <img src="Image/4.jpg" class="img-fluid" alt="...">
+        </div>
+    </MudCarouselItem>
+</MudCarousel>
+
+@code{ 
+    private bool arrows = true;
+    private bool bullets = true;
+    private bool autocycle = true;
+    private Transition transition = Transition.Slide;
+
+}

@@ -1,0 +1,144 @@
+﻿@page "/"
+
+
+<Carousel/>
+<hr style="width:0%;text-align:left;margin-left:0">
+<center>
+    <h5 style="font-family:sans-serif;">PRODUCT HIGHLIGHT</h5>
+    <hr style="width:70%; height:2px">
+</center>
+<Grid/>
+<hr style="width:0%;text-align:left;margin-left:0">
+<hr style="width:0%;text-align:left;margin-left:0">
+<center>
+    <h5 style="font-family:sans-serif;">NEWS / MARKET HIGHLIGHTS</h5>
+    <hr style="width:70%; height:2px">
+</center>
+<center>
+    <MudGrid Class="justify-content-lg-center">
+        <MudItem xs="12" sm="3">
+            <MudItem xs="6">
+                <MudText Typo="Typo.inherit" Align="Align.Left">GOLD/USD (Oz)</MudText>
+                <MudText Typo="Typo.caption" Class="align-content-end"  Inline="true">1938.30</MudText>
+            </MudItem>
+        </MudItem>
+        <MudItem xs="12" sm="3">
+            <MudText Typo="Typo.caption" Align="Align.Start">GOLD/MYR (G)</MudText>
+        </MudItem>
+        <MudItem xs="12" sm="3">
+            <MudText Typo="Typo.caption" Align="Align.Start">SILVER/USD (Oz)</MudText>
+        </MudItem>
+        <MudItem xs="12" sm="3">
+            <MudText Typo="Typo.caption" Align="Align.Start">SILVER/MYR (G)</MudText>
+        </MudItem>
+        <MudItem xs="12" sm="3">
+            <MudText Typo="Typo.caption" Align="Align.Start">USD to MYR </MudText>
+        </MudItem>
+    </MudGrid>
+        @*<h3>
+            <MudPaper Class="pa-5 ma-2" Elevation="3">Gold Price</MudPaper>
+        </h3>*@
+</center>
+<hr style="width:0%;text-align:left;margin-left:0">
+<hr style="width:0%;text-align:left;margin-left:0">
+<MudGrid>
+    <MudItem xs="4">
+        <center>
+            <h3>
+                Featured
+            </h3>
+        </center>
+        <MudLink Href="#">
+            <h3>
+                <MudPaper Class="d-flex align-center justify-center mud-width-full py-15">Test1</MudPaper>
+            </h3>
+        </MudLink>
+    </MudItem>
+    <MudItem xs="4">
+        <center>
+            <h3>
+                Latest
+            </h3>
+        </center>
+        <MudLink Href="#">
+            <h3>
+                <MudPaper Class="d-flex align-center justify-center mud-width-full py-15">Test2</MudPaper>
+            </h3>
+        </MudLink>
+    </MudItem>
+    <MudItem xs="4">
+        <center>
+            <h3>
+                Popular
+            </h3>
+        </center>
+        <MudLink Href="#">
+            <h3>
+                <MudPaper Class="d-flex align-center justify-center mud-width-full py-15">Test3</MudPaper>
+            </h3>
+        </MudLink>
+    </MudItem>
+</MudGrid>
+<hr style="width:0%;text-align:left;margin-left:0">
+<hr style="width:0%;text-align:left;margin-left:0">
+<center>
+    <h5 style="font-family:sans-serif;">LATEST ADDITIONS</h5>
+    <hr style="width:70%; height:2px">
+</center>
+<center>
+    <MudContainer>
+    <MudGrid>
+    <MudItem xs="12" sm="4">
+        <MudLink Href="#">
+        @*<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">xs=12 sm=4</MudPaper>*@
+        <img src="Image/11.jpg" class="img-fluid" alt="...">
+        </MudLink>
+        <MudText>
+            3 Qul 1/8 Dinar (0.53g 999 gold) + 1 Dirham 999.0 - Cond: A
+        </MudText>
+    </MudItem>
+    <MudItem xs="12" sm="4">
+        <MudLink Href="#">
+        @*<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">xs=12 sm=4</MudPaper>*@
+        <img src="Image/22.png" class="img-fluid" alt="...">
+        </MudLink>
+        <MudText>
+            1 Dirham Silver 999.0 - Al Quds Palestine (2020) - Cond: A+
+        </MudText>
+    </MudItem>
+    <MudItem xs="12" sm="4">
+        <MudLink Href="#">
+        @*<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">xs=12 sm=4</MudPaper>*@
+        <img src="Image/33.jpg" class="img-fluid" alt="...">
+        </MudLink>
+        <MudText>
+            Istanbul Gold Refinery 100g Gold 995.0 Cond: A
+        </MudText>
+    </MudItem>
+    <MudItem xs="12" sm="6">
+        <MudLink Href="#">
+        @*<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">xs=12 sm=4</MudPaper>*@
+        <img src="Image/44.png" class="img-fluid" alt="...">
+        </MudLink>
+        <MudText>
+            AUGoldBar 1g 999 Gold Bar Cond: A+
+        </MudText>
+    </MudItem>
+    <MudItem xs="12" sm="6">
+        <MudLink Href="#">
+        @*<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">xs=12 sm=4</MudPaper>*@
+        <img src="Image/55.png" class="img-fluid" alt="...">
+        </MudLink>
+        <MudText>
+            The Hajj 1442H (Rukun Haji - Wukuf)1 Dirham Silver Coin 999.0 Cond A+
+        </MudText>
+    </MudItem>
+</MudGrid>
+</MudContainer>
+</center>
+<center>
+    <MudImage src="Image/step12345.jpg" Width="1800" Height="1000" Alt="..." Elevation="25" class="rounded-lg ma-4"/>
+</center>
+
+@*Class="img-fluid"*@
+@*rounded-lg ma-4*@

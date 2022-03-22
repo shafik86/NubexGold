@@ -1,0 +1,92 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+<MudLayout>
+    <MudAppBar Elevation="2" Color="Color.Dark" Class="bg-light">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Dark" Edge="Edge.Start" OnClick="@ToggleStartDrawer" StartIcon="@(Rtl ? Icons.Filled.East : Icons.Filled.West)" />
+            <div Class="align-content-md-center">
+            <MudLink Href="/" >
+                <MudImage Src="image/nubex.png" Width="100" Height="30">
+                </MudImage>
+            </MudLink>
+            </div>
+        <MudSpacer />
+        <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.ShoppingCart" OnClick="@ToggleEndDrawer"   Size="Size.Small" />
+        <div id="menuLogin" class="m-2" style="font-display:inherit;">
+            <LoginDisplay />
+        </div>
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+    </MudAppBar>  
+        <MudDrawer @bind-Open="@openStart" Anchor="Anchor.Start" Elevation="2" Variant="@DrawerVariant.Persistent">
+            <NavMenu />
+        </MudDrawer>
+        <MudDrawer @bind-Open="@openEnd" Anchor="Anchor.End" Elevation="2" Width="350px" Variant="@DrawerVariant.Persistent">
+            <MudDrawerHeader>
+                <MudText Typo="Typo.h6">Current Carts</MudText>
+            </MudDrawerHeader>
+            <ShoppingCart />
+        </MudDrawer>
+    <MudMainContent>
+        @if(topbar)
+        {
+            <TopBar/>
+            @Body
+        }
+        @if(!topbar)
+        {
+            @Body
+            
+        }
+        <FooterBar/>
+    </MudMainContent>
+</MudLayout>
+
+@code
+{
+    [CascadingParameter]
+    public bool Rtl { get; set; }
+
+    bool openStart = false;
+    bool openEnd = false;
+    bool topbar = true;
+
+    void ToggleStartDrawer()
+    {
+        openStart = !openStart;
+        if (openStart)
+            topbar = false;
+        else
+            topbar = true;
+    }
+
+    void ToggleEndDrawer()
+    {
+        openEnd = !openEnd;
+    }
+}
+
+
+
+@*@inherits LayoutComponentBase
+
+<PageTitle>NubexGold.Client</PageTitle>
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4 auth">
+            <LoginDisplay />
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+*@
