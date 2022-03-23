@@ -78,10 +78,7 @@ namespace NubexGold.Client.Controller
                 if (product.ProductId == 0)
                     return BadRequest("Employee ID mismatch");
 
-                var productToUpdate = await productRepository.GetProduct(product.ProductId);
-
-                if (productToUpdate == null)
-                    return NotFound($"Employee with Id = {product.ProductId} not found");
+            _context.Entry(product).State = EntityState.Modified;
 
                 return await productRepository.UpdateProduct(product);
             }
