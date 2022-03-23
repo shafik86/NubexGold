@@ -15,6 +15,7 @@ using NubexGold.Client.Areas.Identity;
 
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -34,6 +35,7 @@ builder.Services.AddHttpClient<IConditionService, ConditionService>(Client =>
 {
     Client.BaseAddress = new Uri("https://localhost:7155/");
 });
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
