@@ -1,4 +1,7 @@
 global using NubexGold.Shared;
+global using NubexGold.Client.Data;
+global using NubexGold.Client.Models.Repository;
+global using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
@@ -11,6 +14,7 @@ using NubexGold.Client.Data;
 using NubexGold.Client.Services;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -18,16 +22,19 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IConditionRepository, ConditionRepository>();
 builder.Services.AddHttpClient<IProductService, ProductService>(Client =>
 {
-    Client.BaseAddress = new Uri("https://localhost:7276/");
+    Client.BaseAddress = new Uri("https://localhost:7155/");
 });
 builder.Services.AddHttpClient<IConditionService, ConditionService>(Client =>
 {
-    Client.BaseAddress = new Uri("https://localhost:7276/");
+    Client.BaseAddress = new Uri("https://localhost:7155/");
 });
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
