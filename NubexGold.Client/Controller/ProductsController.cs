@@ -1,5 +1,6 @@
-﻿
+﻿using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ using NubexGold.Shared;
 
 namespace NubexGold.Client.Controller
 {
-    [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
+    [Microsoft.AspNetCore.Components.Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
@@ -78,7 +79,10 @@ namespace NubexGold.Client.Controller
                 if (product.ProductId == 0)
                     return BadRequest("Employee ID mismatch");
 
-            _context.Entry(product).State = EntityState.Modified;
+                var productToUpdate = await productRepository.GetProduct(product.ProductId);
+
+                if (productToUpdate == null)
+                    return NotFound($"Employee with Id = {product.ProductId} not found");
 
                 return await productRepository.UpdateProduct(product);
             }

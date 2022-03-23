@@ -7,11 +7,12 @@ global using NubexGold.Shared;
 global using NubexGold.Client.Data;
 global using NubexGold.Client.Models.Repository;
 global using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Components;
+
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using MudBlazor.Services;
 using NubexGold.Client.Areas.Identity;
+
 
 
 
@@ -34,6 +35,7 @@ builder.Services.AddHttpClient<IConditionService, ConditionService>(Client =>
 {
     Client.BaseAddress = new Uri("https://localhost:7155/");
 });
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
