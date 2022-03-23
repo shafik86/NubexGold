@@ -1,0 +1,93 @@
+﻿@page "/Auction"
+
+<hr style="width:0%;text-align:left;margin-left:0">
+<MudContainer Class="mt-16" MaxWidth="MaxWidth.Medium">
+    <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Auction</MudText>
+    <MudGrid Spacing="6" Class="mt-16">
+        <MudItem xs="7">
+            <MudText Typo="Typo.h5" GutterBottom="true">
+                Royal Canadian Mint of Maple Leaf (2013) 1oz Gold 999.9 - Cond: A
+            </MudText>
+            <MudGrid>
+                <MudItem xs="12">
+                    <img src="Image/Auction1.jpg" alt="..."style="height:500px; width:500px;">
+                </MudItem>
+                <MudItem xs="12" Class="d-flex">
+                    <MudLink Href="#">
+                    <MudButton Class="justify-start">
+                        <img src="Image/Auction1.jpg" alt="..."style="height:150px; width:150px;">
+                    </MudButton>
+                    </MudLink>
+                    <MudLink Href="#">
+                    <MudButton Class="justify-center">
+                        <img src="Image/Auction1.jpg" alt="..."style="height:150px; width:150px;">
+                    </MudButton>
+                    </MudLink>
+                    <MudLink Href="#">
+                    <MudButton Class="justify-end">
+                        <img src="Image/Auction1.jpg" alt="..."style="height:150px; width:150px;">
+                    </MudButton>
+                    </MudLink>
+                </MudItem>
+            </MudGrid>
+        </MudItem>
+        <MudItem xs="5">
+            <MudText Typo="Typo.h5" GutterBottom="true" Color="Color.Warning">@TimeRemaining Remaining</MudText>
+            <MudPaper Class="d-flex flex-column" Style="height:100%;" Outlined="true">
+                <MudList Clickable="true">
+                    <MudListItem Class="ms-1">
+                        <div class="d-flex">
+                            <MudText>Royal Canadian Mint of Maple Leaf (2013) 1oz Gold 999.9 - Cond: A</MudText>
+                            @*<MudText Inline="true" Class="ml-auto">$5</MudText>*@
+                        </div>
+                    </MudListItem>
+                    <MudListItem Class="ms-1">
+                        <div class="d-flex">
+                            <MudText>Current Price</MudText>
+                            <MudText Class="ml-auto">@currentprice</MudText>
+                        </div>
+                    </MudListItem>
+                    <MudListItem Class="ms-1">
+                        <div class="d-flex">
+                            <MudText>Bid Increment (RM)</MudText>
+                            <MudText Class="ml-auto">@BidTotal</MudText>
+                        </div>
+                    </MudListItem>
+                    <MudListItem Class="ms-1">
+                        <div class="d-flex">
+                            <MudTextField @bind-Value="@userbid" Label="RM"></MudTextField>
+                        </div>   
+                            <MudItem xs="12" Class="d-flex justify-center">
+                                <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Small" Class="mt-8" OnClick="Bid">Bid Now</MudButton>
+                            </MudItem>
+                    </MudListItem>
+                </MudList>
+                <div class="mt-auto">
+                    <MudDivider />
+                    <div class="d-flex pa-4">
+                        <MudText>Total:</MudText>
+                        <MudText Class="ml-auto"><b>@grandtotal</b></MudText>
+                    </div>
+                </div>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+@code {
+    public string TimeRemaining { get; set; } = "12h 10m 59s";
+    public int spacing { get; set; } = 2;
+    public string TextValue { get; set; }
+    public double currentprice { get; set; } = 2000;
+    public double BidTotal { get; set; } = 0;
+    public double grandtotal { get; set; } = 0;
+    public double userbid { get; set; }
+
+    void Bid()
+    {
+        BidTotal = BidTotal + userbid;
+        grandtotal = BidTotal + currentprice;
+        userbid = 0;
+
+    }
+}

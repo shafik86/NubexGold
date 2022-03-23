@@ -1,0 +1,80 @@
+﻿@page "/cart"
+
+<MudContainer>
+@*<MudPaper Width="100%" Height="100%" Elevation="2" Class="py-6 my-2">*@
+    
+    <MudGrid Spacing="12" Class="mt-2">
+        <MudItem xs="12">
+            <MudText Typo="Typo.h5" GutterBottom="true">Items</MudText>
+            <MudPaper Class="d-flex flex-column" Style="height:100%;" Outlined="true">
+                <MudList Clickable="true">
+                    <MudListItem Icon="@Icons.Material.Filled.CurrencyBitcoin">
+                        <div class="d-flex">
+                            <MudText>@PampLady</MudText>
+                            <MudText Inline="true" Class="ml-auto">MYR @PampLadyPrice</MudText>
+                        </div>
+                    </MudListItem>
+                    <MudListItem Icon="Image/e.jpeg">
+                        <div class="d-flex">
+                            <MudText>@PampCast</MudText>
+                            <MudText Class="ml-auto">MYR @PampCastPrice</MudText>
+                        </div>
+                    </MudListItem>
+                    <MudListItem Icon="@Icons.Material.Filled.CurrencyBitcoin">
+                        <div class="d-flex">
+                            <MudText>@KelantanGold</MudText>
+                            <MudText Class="ml-auto">MYR @KelantanGoldPrice</MudText>
+                        </div>
+                    </MudListItem>
+                    <MudListItem Icon="@Icons.Material.Filled.CurrencyBitcoin">
+                        <div class="d-flex">
+                            <MudText>@NubexGold</MudText>
+                            <MudText Class="ml-auto">MYR @NubexGoldPrice</MudText>
+                        </div>
+                    </MudListItem>
+                </MudList>
+                <div class="mt-auto">
+                    <MudDivider />
+                    <div class="d-flex pa-4">
+                        <MudText>Total:</MudText>
+                        <MudText Class="ml-auto"><b>MYR @Total</b></MudText>
+                    </div>
+                </div>                
+            </MudPaper>
+            
+        </MudItem>
+     </MudGrid>
+@*</MudPaper>*@
+</MudContainer>
+
+@code {
+    public string PampLady { get; set; } = "PAMP SUISSE OF LADY FORTUNA- VERISCAN 10G GOLD 999.9 - COND: A";
+    public double PampLadyPrice { get; set; } = 2959.67;
+
+    public string PampCast { get; set; } = "PAMP SUISSE CAST BAR 50G GOLD 999.9 - COND: A+";
+    public double PampCastPrice { get; set; } = 13914;
+
+    public string KelantanGold { get; set; } = "KELANTAN GOLD TRADE 20 DIRHAM SILVER 999.0 - COND: A";
+    public double KelantanGoldPrice { get; set; } = 366.8;
+
+    public string NubexGold { get; set; } = "NUBEX X IGR 10G GOLD 999.9 - COND: A+";
+    public double NubexGoldPrice { get; set; } = 2955.4;
+
+    public double Total { get; set; }
+    protected override void OnInitialized()
+    {
+        Total = Sum();
+        base.OnInitialized();
+    }
+
+    public double Sum()
+    {
+        return
+        PampCastPrice +
+        PampLadyPrice +
+        KelantanGoldPrice +
+        NubexGoldPrice;
+    }
+
+
+}

@@ -1,0 +1,122 @@
+﻿@page "/checkout"
+
+<MudContainer Class="mt-12">
+    <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Checkout</MudText>
+    <MudGrid Spacing="6" Class="mt-16">
+        <MudItem xs="6">
+            <MudText Typo="Typo.h5" GutterBottom="true">Billing address</MudText>
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudTextField T="string" Label="Email" />
+                </MudItem>
+                <MudItem xs="12">
+                    <MudTextField T="string" Label="Mobile number" />
+                </MudItem>
+                <MudItem xs="12">
+                    <MudTextField T="string" Label="Personal number" />
+                </MudItem>
+                <MudItem xs="6">
+                    <MudTextField T="string" Label="First name" />
+                </MudItem>
+                <MudItem xs="6">
+                    <MudTextField T="string" Label="Last name" />
+                </MudItem>
+                <MudItem xs="12">
+                    <MudTextField T="string" Label="Address" />
+                </MudItem>
+                <MudItem xs="6">
+                    <MudTextField T="string" Label="Postal code" />
+                </MudItem>
+                <MudItem xs="6">
+                    <MudTextField T="string" Label="Postal Area" />
+                </MudItem>
+                <MudItem xs="12" Class="d-flex justify-center">
+                    <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8">Continue to Payment</MudButton>
+                </MudItem>
+            </MudGrid>
+        </MudItem>
+
+        <MudItem xs="6">
+            <MudText Typo="Typo.h5" GutterBottom="true" Color="Color.Warning" Align="Align.End" Inline="false" Class="float-end" >@minutes.ToString()m @Timer.ToString()s remaining</MudText>
+            
+               <Cart/>
+               
+           
+        </MudItem>
+                   
+            
+    </MudGrid>
+</MudContainer>
+
+
+@code{
+
+    public int Timer { get; set; }
+    public int minutes { get; set; } = 5;
+    public bool IsRunning { get; set; } = true;
+    public bool IsStop { get; set; } = false;
+
+    protected override void OnInitialized()
+    {
+
+    
+        InitialValue();
+        LoadTimer();
+        //base.OnInitialized();
+
+    }
+    void InitialValue()
+    {
+        Timer = 0;
+        minutes = 5;
+    }
+
+
+    public async void LoadTimer()
+    {
+        while(IsRunning)
+        {
+            await Task.Delay(1000);
+            if (Timer == 0)
+            {
+                Timer = 59;
+                minutes -= 1;
+            }
+            else
+            {
+
+                Timer -= 1;
+
+            }
+
+            CheckTimer();
+            StateHasChanged();
+        }
+        Stoptime();
+    }
+     void Stoptime()
+    {
+        Timer = 0;
+        minutes = 0;
+        IsRunning = false;
+        IsStop = true;
+    }
+
+    public void CheckTimer()
+    {
+        if (Timer == 0)
+        {
+            
+            if (minutes == 0)
+            {
+                Stoptime();
+            }
+            
+            //Task.Delay(1000);
+            //Timer = 00;
+        }
+
+
+        StateHasChanged();
+    }
+}

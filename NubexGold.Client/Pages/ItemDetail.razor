@@ -1,0 +1,147 @@
+﻿@page "/ItemDetail/{Id}"
+
+
+<hr style="width:0%;text-align:left;margin-left:0"> 
+@if(loading)
+{
+
+    <MudProgressLinear Color="Color.Secondary" Indeterminate="true" Class="my-7"/>
+}
+else
+{
+    
+    <MudContainer Class="mt-16 mb-3" MaxWidth="MaxWidth.Medium">
+        <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Gold Detail</MudText>
+        <MudGrid Spacing="6" Class="mt-16">
+            <MudItem xs="7">
+                <MudText Typo="Typo.h5">
+                    @product.Name.ToString() @product.Purify.ToString() Cond : @product.Condition.ToString()
+                </MudText>
+               <MudItem>
+                    <MudText Typo="Typo.subtitle2">#SKU : @product.SKU.ToString()</MudText>
+               </MudItem>
+                <MudGrid>
+                    <MudItem xs="12">
+                        <img src="@ImageHead" alt="..."style="height:500px; width:500px;">
+                    </MudItem>
+                
+                    <MudItem xs="12" Class="d-flex">
+                        @if (product.Image1 != null)
+                        {
+                                <MudButton Class="justify-start" OnClick="@(() => ImageHead = product.Image1)"> 
+                                    <img src="@product.Image1" alt="..."style="height:150px; width:150px;">
+                                </MudButton>
+                        }
+                        @if(product.Image2 != null)
+                        {
+                                <MudButton Class="justify-center" OnClick="@(() => ImageHead = product.Image2)">
+                                    <img src="@product.Image2" alt="..."style="height:150px; width:150px;">
+                                </MudButton>
+                        }
+                        @if(product.Image3 != null)
+                        {
+                                <MudButton Class="justify-end" OnClick="@(() => ImageHead = product.Image3)">
+                                    <img src="@product.Image3" alt="..."style="height:150px; width:150px;">
+                                </MudButton>
+                        }
+                    </MudItem>
+                </MudGrid>
+            </MudItem>
+            <MudItem xs="5">
+                <MudPaper Class="d-flex flex-column md-2" Style="height:100%;" Elevation="0" >
+                    <MudText>Price From </MudText><MudText Typo="Typo.h4">MYR @product.Price</MudText>
+                            <MudText Class="ml-auto" Typo="Typo.body1"></MudText>
+                            <MudDivider/>
+                            <MudPaper Class="pa-16 ma-2" Outlined="true" Width="400" >
+                                Variation in here <br/>
+                                Variation in here <br/>
+                                Variation in here <br/>
+                                <br/>
+                                Variation in here <br/>
+                                Variation in here <br/>
+                                Variation in here <br/>
+                                <br/>
+                                Variation in here <br/>
+                                Variation in here <br/>
+                                Variation in here <br/>
+                                <br/>
+                                Variation in here <br/>
+                                Variation in here <br/>
+                                Variation in here <br/>
+                                
+                            </MudPaper>
+                   @* <MudList Clickable="true">
+                        <hr style="width:0%;text-align:left;margin-left:0">
+                        <hr style="width:0%;text-align:left;margin-left:0">
+                        <div class="mt-auto">
+                                <MudText>Price From </MudText><MudText Typo="Typo.h4">MYR @product.Price</MudText>
+                            <MudText Class="ml-auto" Typo="Typo.body1"></MudText>
+                            <MudDivider/>
+                        </div>
+                        <hr style="width:0%;text-align:left;margin-left:0">
+                        <hr style="width:0%;text-align:left;margin-left:0">
+                        <MudDivider />
+                        <MudListItem Class="ms-1">
+                            <div class="d-flex">
+                                <MudText>Condition A+</MudText> 
+                            </div>
+                        </MudListItem>
+                        <MudDivider />
+                        <MudListItem Class="ms-1">
+                            <div class="d-flex">
+                                <MudText>Condition A</MudText>
+                            </div>
+                        </MudListItem>
+                        <MudDivider />
+                        <MudListItem Class="ms-1">
+                            <div class="d-flex">
+                                <MudText>Condition B</MudText>
+                            </div>
+                        </MudListItem>
+                        <MudDivider />
+                        <MudListItem Class="ms-1">
+                            <div class="d-flex">
+                                <MudText>Condition B+</MudText> 
+                            </div>
+                        </MudListItem>
+                        <MudDivider />
+                        <MudListItem Class="ms-1">
+                            <div class="d-flex">
+                                <MudText>Condition C+</MudText> 
+                            </div>
+                        </MudListItem>
+                        <MudDivider />
+                        <MudListItem Class="ms-1">
+                            <div class="d-flex">
+                                <MudText>Condition C</MudText> 
+                            </div>
+                        </MudListItem>
+                        <MudDivider />
+                        <hr style="width:0%;text-align:left;margin-left:0">
+                        <MudButton Variant="Variant.Filled">Add to Cart</MudButton>
+                    </MudList>*@
+                </MudPaper>
+            </MudItem>
+            <hr style="width:0%;text-align:left;margin-left:0">
+            <hr style="width:0%;text-align:left;margin-left:0">
+            <MudExpansionPanels MultiExpansion="true" Class="mb-3">
+                <MudExpansionPanel Text="Details">
+                    <MudText GutterBottom="true">
+                        @product.Description
+                    </MudText>
+                </MudExpansionPanel>
+                <MudExpansionPanel Text="Product Review">
+                    Review Place Here
+                </MudExpansionPanel>
+                <MudExpansionPanel Text="Seller Info">
+                    <MudList>
+                        <MudListItem>Seller 1</MudListItem>
+                        <MudListItem>Seller 2</MudListItem>
+                        <MudListItem>Seller 3</MudListItem>
+                    </MudList>
+                </MudExpansionPanel>
+            </MudExpansionPanels>
+        </MudGrid>
+    </MudContainer>
+
+}

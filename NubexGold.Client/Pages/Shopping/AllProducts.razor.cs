@@ -25,32 +25,21 @@ namespace NubexGold.Client.Pages.Shopping
         public bool Loading { get; set; } = true;
         public string PageHeader { get; set; }
 
-        protected override async Task OnInitializedAsync()
-        {
-            var auth = await authenticationState;
-
-            if (!auth.User.Identity.IsAuthenticated)
-            {
-                navigation.NavigateTo("authentication/login");
-            }
-            //Products = await ProductServices.GetProducts();
-            //Loading = false;
-
-            //return base.OnInitializedAsync();
-        }
+       
 
         protected override async Task OnParametersSetAsync()
         {
             Loading = true;
             Products = new List<Product>();
-            var auth = await authenticationState;
-            if (!auth.User.Identity.IsAuthenticated)
-            {
-                navigation.NavigateTo("authentication/login");
-            }
-            else
-            {
-                int[] m = new int[] { 0, 1, 3 };
+            //var auth = await authenticationState;
+            //if (!auth.User.Identity.IsAuthenticated)
+            //{
+            //    navigation.NavigateTo("authentication/login");
+            //}
+            //else
+            
+            
+                
                 if (Metal != string.Empty || Metal != "")
                 {
 
@@ -72,7 +61,7 @@ namespace NubexGold.Client.Pages.Shopping
                     Loading = false;
                     StateHasChanged();
                 }
-            }
+            
 
         }
     }
