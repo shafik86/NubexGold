@@ -9,6 +9,7 @@ using MudBlazor.Services;
 using NubexGold.Client.Areas.Identity;
 using NubexGold.Client.Data;
 using NubexGold.Client.Services;
+>>>>>>>>> Temporary merge branch 2
 
 
 var builder = WebApplication.CreateBuilder(args);
