@@ -1,5 +1,7 @@
 ﻿
 
+using Microsoft.EntityFrameworkCore;
+
 namespace NubexGold.Client.Models.Repository
 {
     public class ProductRepository : IProductRepository
