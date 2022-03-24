@@ -13,9 +13,9 @@ using NubexGold.Client.Areas.Identity;
 
 
 
-
+//var ports = ":7155/";
 var builder = WebApplication.CreateBuilder(args);
-var baseAddress = "https://localhost:7155/";
+var baseAddress = "https://localhost/";
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -24,14 +24,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddHttpClient<IProductService, ProductService>(Client =>
+
+baseAddress = builder.Configuration.GetValue<string>("BaseUrl");
+//baseAddress = 
+builder.Services.AddSingleton(new HttpClient
 {
-    Client.BaseAddress = new Uri(baseAddress);
-});
-builder.Services.AddHttpClient<IConditionService, ConditionService>(Client =>
-{
-    Client.BaseAddress = new Uri(baseAddress);
-});
+    BaseAddress = new Uri(baseAddress)
+}
+);
+builder.Services.AddScoped<IProductService, ProductService>();
+
+builder.Services.AddScoped<IConditionService, ConditionService>();
 
 
 
@@ -57,7 +60,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NubexGold.Client v1"));
 }
 else
 {
@@ -66,8 +69,8 @@ else
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-
+//app.UseHttpsRedirection();
+app.UseHttpLogging();
 app.UseStaticFiles();
 
 app.UseRouting();
