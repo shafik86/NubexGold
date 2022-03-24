@@ -60,7 +60,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NubexGold.Client v1"));
+    //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NubexGold.Client v1"));
 }
 else
 {
@@ -72,7 +72,7 @@ else
 //app.UseHttpsRedirection();
 app.UseHttpLogging();
 app.UseStaticFiles();
-
+app.UseSwaggerUI();
 app.UseRouting();
 
 app.UseAuthentication();
