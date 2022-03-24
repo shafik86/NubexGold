@@ -24,11 +24,11 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IConditionRepository, ConditionRepository>();
 builder.Services.AddHttpClient<IProductService, ProductService>(Client =>
 {
-    Client.BaseAddress = new Uri("https://localhost/");
+    Client.BaseAddress = new Uri("https://localhost:7155/");
 });
 builder.Services.AddHttpClient<IConditionService, ConditionService>(Client =>
 {
-    Client.BaseAddress = new Uri("https://localhost/");
+    Client.BaseAddress = new Uri("https://localhost:7155/");
 });
 
 
