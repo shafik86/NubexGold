@@ -6,8 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
+
+using Microsoft.AspNetCore.Hosting;
 using MudBlazor.Services;
 using NubexGold.Client.Areas.Identity;
+
 
 
 
@@ -20,16 +23,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IConditionRepository, ConditionRepository>();
-builder.Services.AddHttpClient<IProductService, ProductService>(Client =>
-{
-    Client.BaseAddress = new Uri("https://localhost/");
-});
-builder.Services.AddHttpClient<IConditionService, ConditionService>(Client =>
-{
-    Client.BaseAddress = new Uri("https://localhost/");
-});
+builder.Services.AddHttpClient();
+builder.Services.AddTransient<ApiService>();
+//builder.Services.AddHttpClient<IProductService, ProductService>(Client =>
+//{
+//    Client.BaseAddress = new Uri("https://localhost:7155/");
+//});
+//builder.Services.AddHttpClient<IConditionService, ConditionService>(Client =>
+//{
+//    Client.BaseAddress = new Uri("https://localhost:7155/");
+//});
+
 
 
 builder.Services.AddControllers();
@@ -42,7 +46,10 @@ builder.Services.AddMudServices();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 builder.Services.AddSingleton<WeatherForecastService>();
-
+//builder.Services.AddScoped<IProductRepository, ProductRepository>();
+//builder.Services.AddScoped<IConditionRepository, ConditionRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IConditionService, IConditionService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
