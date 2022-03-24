@@ -4,21 +4,52 @@
 <MudDialogProvider/>
 <MudSnackbarProvider/>
 <MudLayout>
-    <MudAppBar Elevation="2" Color="Color.Dark" Class="bg-light">
+    <MudAppBar Elevation="0" Class="bg-light">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Dark" Edge="Edge.Start" OnClick="@ToggleStartDrawer" StartIcon="@(Rtl ? Icons.Filled.East : Icons.Filled.West)" />
-            <div Class="align-content-md-center">
-            <MudLink Href="/" >
-                <MudImage Src="image/nubex.png" Width="100" Height="30">
-                </MudImage>
-            </MudLink>
+            <div>
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">   
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <MudLink Href="/">
+                        <MudImage Src="image/nubex.png" Width="181" Height="39">
+                        </MudImage>
+                    </MudLink>
+                <div class="collapse navbar-collapse jus" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page"  href="/products/Silver">Silver</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="/products/Gold">Gold</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="/products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="/Articles">News</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="/Auction">Auction</a>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </nav>
             </div>
         <MudSpacer />
-        <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.ShoppingCart" OnClick="@ToggleEndDrawer"   Size="Size.Small" />
+            <div class="input-group" style="width:15%">
+              <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+              <button type="button" class="btn btn-dark">search</button>
+            </div>
+        <MudFab Color="Color.Dark" StartIcon="@Icons.Material.Filled.ShoppingCart" OnClick="@ToggleEndDrawer"   Size="Size.Small" />
         <div id="menuLogin" class="m-2" style="font-display:inherit;">
             <LoginDisplay />
         </div>
         <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
-    </MudAppBar>  
+        </MudAppBar>  
         <MudDrawer @bind-Open="@openStart" Anchor="Anchor.Start" Elevation="2" Variant="@DrawerVariant.Persistent">
             <NavMenu />
         </MudDrawer>
@@ -45,6 +76,8 @@
 
 @code
 {
+    public string Metal { get; set; }
+    public string Id { get; set; }
     [CascadingParameter]
     public bool Rtl { get; set; }
 

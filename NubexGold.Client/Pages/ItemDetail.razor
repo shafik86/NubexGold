@@ -48,29 +48,96 @@ else
                 </MudGrid>
             </MudItem>
             <MudItem xs="5">
-                <MudPaper Class="d-flex flex-column md-2" Style="height:100%;" Elevation="0" >
+                <MudPaper Class="d-flex flex-column md-2" Style="height:100%; width:max-content;" Elevation="0" >
                     <MudText>Price From </MudText><MudText Typo="Typo.h4">MYR @product.Price</MudText>
                             <MudText Class="ml-auto" Typo="Typo.body1"></MudText>
                             <MudDivider/>
                             <MudPaper Class="pa-16 ma-2" Outlined="true" Width="400" >
-                                Variation in here <br/>
-                                Variation in here <br/>
-                                Variation in here <br/>
-                                <br/>
-                                Variation in here <br/>
-                                Variation in here <br/>
-                                Variation in here <br/>
-                                <br/>
-                                Variation in here <br/>
-                                Variation in here <br/>
-                                Variation in here <br/>
-                                <br/>
-                                Variation in here <br/>
-                                Variation in here <br/>
-                                Variation in here <br/>
+                                <MudText>Conditions</MudText>
+                                    <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
+                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">A+</MudButton>
+                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">A</MudButton>
+                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">B+</MudButton>
+                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">B</MudButton>
+                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">C+</MudButton>
+                                    </MudButtonGroup>
+                                <hr style="width:0%;text-align:left;margin-left:0">
+                                <MudText>Weight</MudText>
+                                    <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
+                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">1g</MudButton>
+                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">5g</MudButton>
+                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">10g</MudButton>
+                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">50g</MudButton>
+                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">1kg</MudButton>
+                                    </MudButtonGroup>
+                                <hr style="width:0%;text-align:left;margin-left:0">
+                                <MudText>Seller</MudText>
+                                    <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
+                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">Seller A</MudButton>
+                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">Seller B</MudButton>
+                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">Seller C</MudButton>
+                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">Seller D</MudButton>
+                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">Seller D</MudButton>
+                                    </MudButtonGroup>
+                                <hr style="width:0%;text-align:left;margin-left:0">
+                                <MudChip Icon="@Icons.Material.Outlined.ShoppingCart" Color="Color.Dark">Add To Cart</MudChip>
+                                <MudChip Icon= Color="Color.Dark">Buy Now</MudChip>
+                                @*<MudText>Type</MudText>
+                                <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
+                                    <MudButton Color="Color.Dark" Variant="Variant.Outlined">Minted Bar</MudButton>
+                                </MudButtonGroup>
+                                 <MudText>Metal</MudText>
+                                <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
+                                    <MudButton Color="Color.Dark" Variant="Variant.Outlined">Gold</MudButton>
+                                </MudButtonGroup>
+                                 <MudText>Weight</MudText>
+                                <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
+                                    <MudButton Color="Color.Dark" Variant="Variant.Outlined">1g</MudButton>
+                                </MudButtonGroup>
+                                 <MudText>Purity</MudText>
+                                <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
+                                    <MudButton Color="Color.Dark" Variant="Variant.Outlined">0.9999</MudButton>
+                                </MudButtonGroup>
+                                 <MudText>Manufacturer</MudText>
+                                <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
+                                    <MudButton Color="Color.Dark" Variant="Variant.Outlined">PAMP (Produits Artistiques Métaux Précieux)</MudButton>
+                                </MudButtonGroup>
+                                <MudText>Certificate</MudText>
+                                <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
+                                    <MudButton Color="Color.Dark" Variant="Variant.Outlined">Yes</MudButton>
+                                </MudButtonGroup>
+                                <MudText>Is Taxable?</MudText>
+                                <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
+                                    <MudButton Color="Color.Dark" Variant="Variant.Outlined">No</MudButton>
+                                </MudButtonGroup>
+                                <MudText>Featured</MudText>
+                                <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
+                                    <MudButton Color="Color.Dark" Variant="Variant.Outlined">No</MudButton>
+                                </MudButtonGroup>
+                                <MudText>Metal Brand <br/> (Leave Empty If Unknown)</MudText>
+                                <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
+                                    <MudButton Color="Color.Dark" Variant="Variant.Outlined">N/A</MudButton>
+                                </MudButtonGroup>*@
+
+
+
                                 
                             </MudPaper>
-                   @* <MudList Clickable="true">
+                        
+                                @*<br/>
+                                Variation in here <br/>
+                                Variation in here <br/>
+                                Variation in here <br/>
+                                <br/>
+                                Variation in here <br/>
+                                Variation in here <br/>
+                                Variation in here <br/>
+                                <br/>
+                                Variation in here <br/>
+                                Variation in here <br/>
+                                Variation in here <br/>*@
+
+                      @* <MudList Clickable="true">
                         <hr style="width:0%;text-align:left;margin-left:0">
                         <hr style="width:0%;text-align:left;margin-left:0">
                         <div class="mt-auto">

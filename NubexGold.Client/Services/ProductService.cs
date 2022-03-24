@@ -29,9 +29,9 @@ namespace NubexGold.Client.Services
             return result;
         }
 
-        public async Task<IEnumerable<Product>> SearcProduct(string? metal, string? types)
+        public async Task<IEnumerable<Product>> SearcProduct(string? metal)
         {
-            var result = await httpClient.GetFromJsonAsync<IEnumerable<Product>>($"api/products/search?metal={metal}&types={types}");
+            var result = await httpClient.GetFromJsonAsync<IEnumerable<Product>>($"api/products/search?metal={metal}");
             return result;
         }
 

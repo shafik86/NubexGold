@@ -1,10 +1,6 @@
-﻿
+﻿@*
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <MudLink Href="/">
-            <MudImage Src="image/nubex.png" Width="100" Height="30">
-            </MudImage>
-        </MudLink>
+  <div class="container-fluid">   
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -20,12 +16,14 @@
           <a class="nav-link active" aria-current="page" href="/products">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">News</a>
+          <a class="nav-link active" aria-current="page" href="/Articles">News</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/Auction">Auction</a>
         </li>
       </ul>
+
+      
 
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -34,8 +32,7 @@
     </div>
   </div>
 </nav>
-
 @code{
     public string Metal { get; set; }
     public string Id { get; set; }
-}
+}*@
