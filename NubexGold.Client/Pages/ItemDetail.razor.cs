@@ -38,8 +38,7 @@ namespace NubexGold.Client.Pages
                 //navigation.NavigateTo("Identity/Account/Login");
                 message = "Not Login";
             }
-            else
-            {
+            
                 int.TryParse(Id, out int productId);
                 try
                 {
@@ -56,7 +55,7 @@ namespace NubexGold.Client.Pages
 
                     string message = "Tiada product id : " + Id;
                 }
-            }
+            
             StateHasChanged();
         }
     }

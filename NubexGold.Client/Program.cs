@@ -2,7 +2,7 @@ global using NubexGold.Client.Data;
 global using NubexGold.Client.Models.Repository;
 global using NubexGold.Client.Services;
 global using NubexGold.Shared;
-using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -33,6 +33,7 @@ builder.Services.AddTransient<ApiService>();
 //{
 //    Client.BaseAddress = new Uri("https://localhost:7155/");
 //});
+
 
 
 
