@@ -44,7 +44,7 @@ namespace NubexGold.Client.Pages.Shopping
                 {
 
                     PageHeader = "Products " + Metal;
-                    Products = await ProductServices.SearcProduct(Metal, type);
+                    Products = await ProductServices.SearcProduct(Metal);
                     StateHasChanged();
                     Loading = false;
 

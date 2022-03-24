@@ -24,6 +24,7 @@ namespace NubexGold.Client.Pages
         public string TimeRemaining { get; set; } = "12h 10m 59s";
         public string ImageHead { get; set; } = string.Empty;
         public int spacing { get; set; } = 2;
+        public string message { get; set; }= string.Empty;
         //public string TextValue { get; set; }
         //public double currentprice { get; set; } = 2000;
         //public double BidTotal { get; set; } = 0;
@@ -34,10 +35,10 @@ namespace NubexGold.Client.Pages
             var auth = await authenticationStateTask;
             if (!auth.User.Identity.IsAuthenticated)
             {
-                navigation.NavigateTo("Identity//login");
+                //navigation.NavigateTo("Identity/Account/Login");
+                message = "Not Login";
             }
-            else
-            {
+            
                 int.TryParse(Id, out int productId);
                 try
                 {
@@ -54,7 +55,7 @@ namespace NubexGold.Client.Pages
 
                     string message = "Tiada product id : " + Id;
                 }
-            }
+            
             StateHasChanged();
         }
     }

@@ -2,12 +2,13 @@ global using NubexGold.Client.Data;
 global using NubexGold.Client.Models.Repository;
 global using NubexGold.Client.Services;
 global using NubexGold.Shared;
-using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using MudBlazor.Services;
 using NubexGold.Client.Areas.Identity;
+
 
 
 
@@ -20,16 +21,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IConditionRepository, ConditionRepository>();
+//builder.Services.AddHttpClient();
+var baseAddress = "https://localhost:7155/";
+
 builder.Services.AddHttpClient<IProductService, ProductService>(Client =>
 {
-    Client.BaseAddress = new Uri("https://localhost/");
+    Client.BaseAddress = new Uri(baseAddress);
 });
 builder.Services.AddHttpClient<IConditionService, ConditionService>(Client =>
 {
-    Client.BaseAddress = new Uri("https://localhost/");
+    Client.BaseAddress = new Uri(baseAddress);
 });
+
 
 
 builder.Services.AddControllers();
@@ -42,7 +45,10 @@ builder.Services.AddMudServices();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 builder.Services.AddSingleton<WeatherForecastService>();
-
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IConditionRepository, ConditionRepository>();
+//builder.Services.AddScoped<IProductService, ProductService>();
+//builder.Services.AddScoped<IConditionService, IConditionService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

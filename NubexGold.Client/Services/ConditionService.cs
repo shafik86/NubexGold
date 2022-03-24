@@ -9,12 +9,14 @@
         }
         public async Task<Condition> GetConditionById(int Id)
         {
-            return await httpClient.GetFromJsonAsync<Condition>($"api/Condition/{Id}");
+            var result = await httpClient.GetFromJsonAsync<Condition>($"api/Condition/{Id}");
+            return result;
         }
 
         public async Task<IEnumerable<Condition>> GetConditions()
         {
-            return await httpClient.GetFromJsonAsync<Condition[]>("api/Condition");
+            var result = await httpClient.GetFromJsonAsync<Condition[]>("api/Condition");
+            return result;
         }
     }
 }

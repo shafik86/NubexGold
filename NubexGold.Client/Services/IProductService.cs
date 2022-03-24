@@ -9,7 +9,7 @@ namespace NubexGold.Client.Services
         Task<IEnumerable<Product>> GetProducts();
         Task CreateProduct(Product NewProduct);
         Task UpdateProduct(Product UpdateProduct);
-        Task<IEnumerable<Product>> SearcProduct(string? metal, string? types);
+        Task<IEnumerable<Product>> SearcProduct(string? metal);
         Task DeleteProduct(int id);
         Task<Product> GetProduct(int id);
     }
