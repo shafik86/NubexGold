@@ -15,6 +15,7 @@ using NubexGold.Client.Areas.Identity;
 
 
 var builder = WebApplication.CreateBuilder(args);
+var baseAddress = "https://localhost:7155/";
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -23,16 +24,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddHttpClient();
-builder.Services.AddTransient<ApiService>();
-//builder.Services.AddHttpClient<IProductService, ProductService>(Client =>
-//{
-//    Client.BaseAddress = new Uri("https://localhost:7155/");
-//});
-//builder.Services.AddHttpClient<IConditionService, ConditionService>(Client =>
-//{
-//    Client.BaseAddress = new Uri("https://localhost:7155/");
-//});
+builder.Services.AddHttpClient<IProductService, ProductService>(Client =>
+{
+    Client.BaseAddress = new Uri(baseAddress);
+});
+builder.Services.AddHttpClient<IConditionService, ConditionService>(Client =>
+{
+    Client.BaseAddress = new Uri(baseAddress);
+});
 
 
 
@@ -47,10 +46,10 @@ builder.Services.AddMudServices();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 builder.Services.AddSingleton<WeatherForecastService>();
-//builder.Services.AddScoped<IProductRepository, ProductRepository>();
-//builder.Services.AddScoped<IConditionRepository, ConditionRepository>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IConditionService, IConditionService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IConditionRepository, ConditionRepository>();
+//builder.Services.AddScoped<IProductService, ProductService>();
+//builder.Services.AddScoped<IConditionService, IConditionService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
