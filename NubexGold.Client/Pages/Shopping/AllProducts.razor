@@ -16,22 +16,39 @@
 }
 else
 {
-    @foreach(var item in Products)
-    {
-        <MudItem xs="12" sm="4">
-            <MudLink Href="@($"/ItemDetail/{item.ProductId}")">
-            <img src="@item.Image1" class="img-fluid" style="width:250px; height:300px;" alt="@item.SKU">
-            </MudLink>
-            <MudText Class="mt-1">
-                @item.Name @item.Purify - Cond: @item.Condition
-            </MudText>
-            <MudText Typo="Typo.caption" >
-                Price From MYR @item.Price
-            </MudText>
-        </MudItem>
-    }
+    @if(Products == null)
+                {
+                    <MudImage Src="images/mony.jpg" Alt="Mony the dog" Elevation="25" Class="rounded-lg"/>
+                    
+                }
+                else
+                {
+                    
+                    @foreach(var item in Products)
+                    {
+                        <MudItem xs="12" sm="4">
+                            <MudLink Href="@($"/ItemDetail/{item.ProductId}")">
+                            <img src="@item.Image1" class="img-fluid" style="width:250px; height:300px;" alt="@item.SKU">
+                            </MudLink>
+                            <MudText Class="mt-1">
+                                @item.Name @item.Purify - Cond: @item.Condition
+                            </MudText>
+                            <MudText Typo="Typo.caption" >
+                                Price From MYR @item.Price
+                            </MudText>
+                        </MudItem>
+                    }
+                    @if(message != string.Empty)
+                    {
+                        <MudText Typo="Typo.body2">@message</MudText>
+                    }
+                }
 }
 </MudGrid>
+
     </MudContainer>
 </center>
+<hr style="width:0%;text-align:left;margin-left:0">
+<MudPagination Class="offset-2" Size="Size.Small" Variant="Variant.Filled" Color="Color.Dark" Count="6"/>
+<hr style="width:0%;text-align:left;margin-left:0">
 @*<Grid />*@

@@ -1,13 +1,14 @@
 ﻿@inject NavigationManager Navigation
-
+<MudHidden>
 <AuthorizeView>
     <Authorized>
         <MudLink Href="Identity/Account/Manage"><MudChip Icon="@Icons.Material.Filled.Person" Color="Color.Dark" > @context.User.Identity?.Name</MudChip></MudLink>
         <MudLink Href="Identity/Account/LogOut"><MudChip Icon="@Icons.Material.Filled.Logout" Color="Color.Dark">Log Out</MudChip></MudLink>
     </Authorized>
     <NotAuthorized>
-        <MudLink Href="Identity/Account/Register" ><MudChip Icon="@Icons.Material.Filled.AppRegistration" Color="Color.Info">Register</MudChip></MudLink>
-        <MudLink Href="Identity/Account/Login"><MudChip Icon="@Icons.Material.Filled.Login" Color="Color.Success" >Login</MudChip></MudLink>
+        <MudLink Href="Identity/Account/Register" ><MudChip Icon="@Icons.Material.Filled.AppRegistration" Color="Color.Dark">Register</MudChip></MudLink>
+        <MudLink Href="Identity/Account/Login"><MudChip Icon="@Icons.Material.Filled.Login" Color="Color.Dark" >Login</MudChip></MudLink>
      
     </NotAuthorized>
 </AuthorizeView>
+</MudHidden>

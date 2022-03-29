@@ -1,32 +1,60 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
 
-
-
 @inject NavigationManager Navigation
-
 
 <MudPaper Width="250px" Elevation="0" Class="py-3">
     <MudNavMenu Color="Color.Info">
         <AuthorizeView>
-            <Authorized>  
-                <MudNavLink Href="/" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">Home</MudNavLink>
-                <MudNavLink Href="/products" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storage">Products</MudNavLink>
+            <Authorized>
+                <MudNavLink Href="/" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">HOME</MudNavLink>
+                <MudNavGroup Title="SILVER" Expanded="false">
+                    <MudNavLink Href="/products/Silver" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">SILVER COIN</MudNavLink>
+                    <MudNavLink Href="/products/Silver" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">SILVER BAR</MudNavLink>
+                    <MudNavLink Href="/products/Silver" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">SILVER DIRHAM</MudNavLink>
+                    <MudNavLink Href="/products/Silver" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">SILVER CARD</MudNavLink>
+                </MudNavGroup>
+                <MudNavGroup Title="GOLD" Expanded="false">
+                    <MudNavLink Href="/products/Gold" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">GOLD COIN</MudNavLink>
+                    <MudNavLink Href="/products/Gold" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">GOLD JEWELRY</MudNavLink>
+                    <MudNavLink Href="/products/Gold" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">GOLD BAR</MudNavLink>
+                    <MudNavLink Href="/products/Gold" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">GOLD CARD</MudNavLink>
+                    <MudNavLink Href="/products/Gold" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">GOLD DINAR</MudNavLink>
+                </MudNavGroup>
+                <MudNavGroup Title="ALL PRODUCTS" Expanded="false">
+                    <MudNavGroup Title="SILVER" Expanded="false">
+                    <MudNavLink Href="/products/Silver" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">SILVER COIN</MudNavLink>
+                    <MudNavLink Href="/products/Silver" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">SILVER BAR</MudNavLink>
+                    <MudNavLink Href="/products/Silver" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">SILVER DIRHAM</MudNavLink>
+                    <MudNavLink Href="/products/Silver" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">SILVER CARD</MudNavLink>
+                </MudNavGroup>
+                <MudNavGroup Title="GOLD" Expanded="false">
+                    <MudNavLink Href="/products/Gold" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">GOLD COIN</MudNavLink>
+                    <MudNavLink Href="/products/Gold" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">GOLD JEWELRY</MudNavLink>
+                    <MudNavLink Href="/products/Gold" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">GOLD BAR</MudNavLink>
+                    <MudNavLink Href="/products/Gold" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">GOLD CARD</MudNavLink>
+                    <MudNavLink Href="/products/Gold" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">GOLD DINAR</MudNavLink>
+                </MudNavGroup>
+                </MudNavGroup>
+                <MudNavLink Href="/News" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">NEWS</MudNavLink>
+                <MudNavLink Href="#" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">SELLER CENTER</MudNavLink>
+                <MudNavLink Href="/Auction" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">AUCTION</MudNavLink>
+                <MudNavLink Href="/products" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storage">PRODUCTS</MudNavLink>
+                @*<MudNavLink Href="/dashboard" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">DASHBOARD</MudNavLink>
+                <MudNavLink Href="/Checkout" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCartCheckout">CHECKOUT</MudNavLink>
+                <MudNavLink Href="/shoppingcart" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCart" Disabled="false">CART</MudNavLink>*@
+                <MudNavLink Href="/Seller" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storefront" Disabled="false">SELLER</MudNavLink>
                 <MudNavLink Href="/about">About</MudNavLink>
-                <MudNavLink Href="/dashboard" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">Dashboard</MudNavLink>
-                <MudNavLink Href="/Checkout" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCartCheckout">Checkout</MudNavLink>
-                <MudNavLink Href="/shoppingcart" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCart" Disabled="false">Cart</MudNavLink>
-                <MudNavLink Href="/Seller" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storefront" Disabled="false">Seller</MudNavLink>
-                <MudNavGroup Title="Settings" Expanded="false">
-                    <MudNavLink Href="authentication/profile">Users</MudNavLink>
-                    <MudNavLink Href="/security">Security</MudNavLink>
+                <MudNavGroup Title="SETTINGS" Expanded="false">
+                    <MudNavLink Href="authentication/profile">USERS</MudNavLink>
+                    <MudNavLink Href="/security">SECURITY</MudNavLink>
                 </MudNavGroup>
             </Authorized>
             <NotAuthorized>
-                    <MudNavLink Href="/" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">Home</MudNavLink>
-                    <MudNavLink Href="/products" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storage">Products</MudNavLink>
-                    <MudNavLink Href="/about">About</MudNavLink>
-                    <MudNavLink Href="/authentication/login">Login</MudNavLink>
-                    <MudNavLink Href="/swagger/index.html" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Outlined.LiveHelp" Target="_blank"> Swagger</MudNavLink>
+                    <MudNavLink Href="/" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">HOME</MudNavLink>
+                    <MudNavLink Href="/products" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storage">PRODUCTS</MudNavLink>
+                    <MudNavLink Href="/about">ABOUT</MudNavLink>
+                    <MudNavLink Href="/authentication/login">LOGIN</MudNavLink>
+                    <MudNavLink Href="/swagger/index.html" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Outlined.LiveHelp" Target="_blank">SWAGGER</MudNavLink>
                 </NotAuthorized>
         </AuthorizeView>
     </MudNavMenu>
