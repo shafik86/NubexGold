@@ -16,20 +16,33 @@
 }
 else
 {
-    @foreach(var item in Products)
-    {
-        <MudItem xs="12" sm="4">
-            <MudLink Href="@($"/ItemDetail/{item.ProductId}")">
-            <img src="@item.Image1" class="img-fluid" style="width:250px; height:300px;" alt="@item.SKU">
-            </MudLink>
-            <MudText Class="mt-1">
-                @item.Name @item.Purify - Cond: @item.Condition
-            </MudText>
-            <MudText Typo="Typo.caption" >
-                Price From MYR @item.Price
-            </MudText>
-        </MudItem>
-    }
+    @if(Products == null)
+                {
+                    <MudImage Src="images/mony.jpg" Alt="Mony the dog" Elevation="25" Class="rounded-lg"/>
+                    
+                }
+                else
+                {
+                    
+                    @foreach(var item in Products)
+                    {
+                        <MudItem xs="12" sm="4">
+                            <MudLink Href="@($"/ItemDetail/{item.ProductId}")">
+                            <img src="@item.Image1" class="img-fluid" style="width:250px; height:300px;" alt="@item.SKU">
+                            </MudLink>
+                            <MudText Class="mt-1">
+                                @item.Name @item.Purify - Cond: @item.Condition
+                            </MudText>
+                            <MudText Typo="Typo.caption" >
+                                Price From MYR @item.Price
+                            </MudText>
+                        </MudItem>
+                    }
+                    @if(message != string.Empty)
+                    {
+                        <MudText Typo="Typo.body2">@message</MudText>
+                    }
+                }
 }
 </MudGrid>
     </MudContainer>
