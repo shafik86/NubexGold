@@ -29,6 +29,8 @@ namespace NubexGold.Client.Pages
         public double Weight { get; set; } = 0;
         public string From { get; set; } = "Nubex";
         public int Qty { get; set; } = 0;
+        public string btncheck { get; set; } = "Disabled";
+        public string x { get; set; } = string.Empty;
         //public string TextValue { get; set; }
         //public double currentprice { get; set; } = 2000;
         //public double BidTotal { get; set; } = 0;
@@ -63,9 +65,13 @@ namespace NubexGold.Client.Pages
             StateHasChanged();
         }
 
-        void changeConds()
+        void SelectionChanged(ChangeEventArgs args)
         {
-            Conds= this.Conds;
+            x = args.Value.ToString();
+            if (!string.IsNullOrEmpty(x))
+            {
+                btncheck = string.Empty;
+            }
         }
     }
 }

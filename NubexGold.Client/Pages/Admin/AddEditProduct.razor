@@ -1,0 +1,94 @@
+﻿@page "/Product/{Id}"
+@page "/Product"
+
+
+<PageTitle>@Pagetitle</PageTitle>
+
+<h2>@PageHeader</h2>
+
+
+<MudContainer class="container-fluid d-flex justify-content-center">
+    <EditForm Model="@ProductModel" OnValidSubmit="@HandleValidSubmit">
+        <MudGrid>
+            <MudItem xs="12" md="6">
+                <MudTextField @bind-Value="ProductModel.Name"  Label="Name" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudTextField @bind-Value="ProductModel.SKU"  Label="SKU" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudTextField @bind-Value="ProductModel.Description"  Label="Description" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudTextField @bind-Value="ProductModel.Detail"  Label="Detail" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudSelect T="Metal"  Label="Metal" @bind-Value="ProductModel.Metal" Variant="Variant.Filled" AnchorOrigin="Origin.BottomCenter">
+                    <MudSelectItem T="Metal" Value="Metal.Gold" />
+                    <MudSelectItem T="Metal" Value="Metal.Jewel" />
+                    <MudSelectItem T="Metal" Value="Metal.Silver" />
+                </MudSelect>
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudSelect T="Types"  Label="Type" @bind-Value="ProductModel.Type" Variant="Variant.Filled" AnchorOrigin="Origin.BottomCenter">
+                    <MudSelectItem T="Types" Value="Types.Bar" />
+                    <MudSelectItem T="Types" Value="Types.CastBar" />
+                    <MudSelectItem T="Types" Value="Types.Coin" />
+                    <MudSelectItem T="Types" Value="Types.Jewelry" />
+                    <MudSelectItem T="Types" Value="Types.MintedBar" />
+                </MudSelect>
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudTextField @bind-Value="ProductModel.Condition"  Label="Condition" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudTextField @bind-Value="ProductModel.Purify"  Label="Purify" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudTextField @bind-Value="ProductModel.MetalWeight"  Label="Metal Weight" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudTextField @bind-Value="ProductModel.MetalBrand"  Label="Brand" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudTextField @bind-Value="ProductModel.Weight"  Label="Weight" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudTextField @bind-Value="ProductModel.Manufacture"  Label="Manufacture" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudTextField @bind-Value="ProductModel.Certificate"  Label="Certificate" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                @*<MudRadioGroup @bind-SelectedOption="@ProductModel.IsTax">
+                    
+                </MudRadioGroup>*@
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudTextField @bind-Value="ProductModel.Price"  Label="Base Price" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudTextField @bind-Value="ProductModel.Featured"  Label="Featured" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudTextField @bind-Value="ProductModel.Color"  Label="Color" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudTextField @bind-Value="ProductModel.Size"  Label="Size" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudTextField @bind-Value="ProductModel.ProductTag"  Label="Tagging" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudTextField @bind-Value="ProductModel.Image1"  Label="Color" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudTextField @bind-Value="ProductModel.Size"  Label="Size" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudTextField @bind-Value="ProductModel.ProductTag"  Label="Tagging" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            </MudItem>
+        </MudGrid>
+    </EditForm>
+</MudContainer>
+
