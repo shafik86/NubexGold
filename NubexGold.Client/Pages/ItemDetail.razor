@@ -14,8 +14,10 @@ else
         <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Gold Detail</MudText>
         <MudGrid Spacing="6" Class="mt-16">
             <MudItem xs="7">
-                <MudText Typo="Typo.h5">
-                    @product.Name.ToString() @product.Purify.ToString() Cond : @product.Condition.ToString()
+                <MudText  Typo="Typo.h5">
+                    @product.Name.ToString() @product.Purify.ToString() <br/> 
+                    
+                    Cond : @Conds | Weight : @Weight.ToString()g | Seller : @From
                 </MudText>
                <MudItem>
                     <MudText Typo="Typo.subtitle2">#SKU : @product.SKU.ToString()</MudText>
@@ -53,32 +55,41 @@ else
                             <MudText Class="ml-auto" Typo="Typo.body1"></MudText>
                             <MudDivider/>
                             <MudPaper Class="pa-16 ma-2" Outlined="true" Width="400" >
-                                <MudText>Conditions</MudText>
-                                    <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
-                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">A+</MudButton>
-                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">A</MudButton>
-                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">B+</MudButton>
-                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">B</MudButton>
-                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">C+</MudButton>
-                                    </MudButtonGroup>
+                                <MudText>Conditions :</MudText>
+                                    <input type="radio" class="btn-check" name="Condition" id="btn-A+" autocomplete="off" value="A+" @onclick="@(() => Conds = "A+")" >
+                                        <label class="btn btn-outline-secondary" for="btn-A+">A+</label>
+                                    <input type="radio" class="btn-check" name="Condition" id="btn-A" autocomplete="off" value="A" @onclick="@(() => Conds = "A")">
+                                        <label class="btn btn-outline-secondary" for="btn-A">A</label>
+                                    <input type="radio" class="btn-check" name="Condition" id="btn-B+" autocomplete="off" value="B+" @onclick="@(() => Conds = "B+")">
+                                        <label class="btn btn-outline-secondary" for="btn-B+">B+</label>
+                                    <input type="radio" class="btn-check" name="Condition" id="btn-B" autocomplete="off" value="B" @onclick="@(() => Conds = "B")">
+                                        <label class="btn btn-outline-secondary" for="btn-B">B</label>
+                                    <input type="radio" class="btn-check" name="Condition" id="btn-C" autocomplete="off" value="C" @onclick="@(() => Conds = "C")">
+                                        <label class="btn btn-outline-secondary" for="btn-C">C</label>
                                 <hr style="width:0%;text-align:left;margin-left:0">
-                                <MudText>Weight</MudText>
-                                    <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
-                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">1g</MudButton>
-                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">5g</MudButton>
-                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">10g</MudButton>
-                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">50g</MudButton>
-                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">1kg</MudButton>
-                                    </MudButtonGroup>
+                                <MudText>Weight :</MudText>
+                                    <input type="radio" class="btn-check" name="Weight" id="btn-1g" autocomplete="off" value="1g" @onclick="@(() => Weight = 1)" >
+                                        <label class="btn btn-outline-secondary" for="btn-A+">1g</label>
+                                    <input type="radio" class="btn-check" name="Weight" id="btn-5g" autocomplete="off" value="5g" @onclick="@(() => Weight = 5)">
+                                        <label class="btn btn-outline-secondary" for="btn-5g">5g</label>
+                                    <input type="radio" class="btn-check" name="Weight" id="btn-10g" autocomplete="off" value="10g" @onclick="@(() => Weight = 10)">
+                                        <label class="btn btn-outline-secondary" for="btn-10g">10g</label>
+                                    <input type="radio" class="btn-check" name="Weight" id="btn-50g" autocomplete="off" value="50g" @onclick="@(() => Weight = 50)">
+                                        <label class="btn btn-outline-secondary" for="btn-50g">50g</label>
+                                    <input type="radio" class="btn-check" name="Weight" id="btn-100g" autocomplete="off" value="100g" @onclick="@(() => Weight = 100)">
+                                        <label class="btn btn-outline-secondary" for="btn-100g">100g</label>
                                 <hr style="width:0%;text-align:left;margin-left:0">
-                                <MudText>Seller</MudText>
-                                    <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
-                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">Seller A</MudButton>
-                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">Seller B</MudButton>
-                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">Seller C</MudButton>
-                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">Seller D</MudButton>
-                                        <MudButton Color="Color.Dark" Variant="Variant.Outlined">Seller D</MudButton>
-                                    </MudButtonGroup>
+                                <MudText>Seller :</MudText>
+                                    <input type="radio" class="btn-check" name="seller" id="btn-Nubex" autocomplete="off" value="1g" @onclick="@(() => From = "Nubex")" >
+                                        <label class="btn btn-outline-secondary" for="btn-Nubex">Nubex</label>
+                                    <input type="radio" class="btn-check" name="seller" id="btn-PohKong" autocomplete="off" value="5g" @onclick="@(() => From = "PohKong")">
+                                        <label class="btn btn-outline-secondary" for="btn-PohKong">Poh Kong</label>
+                                    <input type="radio" class="btn-check" name="seller" id="Habib" autocomplete="off" value="10g" @onclick="@(() => From = "Habib")">
+                                        <label class="btn btn-outline-secondary" for="btn-Habib">Habib</label>
+                                <hr style="width:0%;text-align:left;margin-left:0">
+                                <MudText>Quantity :</MudText> 
+                                    <MudNumericField @bind-Value="Qty" Label="Enter Qty" Variant="Variant.Outlined" />
+                                    <MudText Class="d-inline-block">205 In Stock</MudText>
                                 <hr style="width:0%;text-align:left;margin-left:0">
                                 <MudChip Icon="@Icons.Material.Outlined.ShoppingCart" Color="Color.Dark">Add To Cart</MudChip>
                                 <MudChip Icon= Color="Color.Dark">Buy Now</MudChip>

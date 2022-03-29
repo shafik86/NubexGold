@@ -25,6 +25,10 @@ namespace NubexGold.Client.Pages
         public string ImageHead { get; set; } = string.Empty;
         public int spacing { get; set; } = 2;
         public string message { get; set; }= string.Empty;
+        public string Conds { get; set; } = string.Empty ;
+        public double Weight { get; set; } = 0;
+        public string From { get; set; } = "Nubex";
+        public int Qty { get; set; } = 0;
         //public string TextValue { get; set; }
         //public double currentprice { get; set; } = 2000;
         //public double BidTotal { get; set; } = 0;
@@ -57,6 +61,11 @@ namespace NubexGold.Client.Pages
                 }
             
             StateHasChanged();
+        }
+
+        void changeConds()
+        {
+            Conds= this.Conds;
         }
     }
 }
