@@ -5,13 +5,16 @@
 @if(loading)
 {
 
-    <MudProgressLinear Color="Color.Secondary" Indeterminate="true" Class="my-7"/>
+   @* <MudProgressLinear Color="Color.Secondary" Indeterminate="true" Class="my-7"/>*@
+   <MudSkeleton />
+        <MudSkeleton SkeletonType="SkeletonType.Circle" Width="50px" Height="50px" />
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Width="200px" Height="110px" />
 }
 else
 {
     
     <MudContainer Class="mt-16 mb-3" MaxWidth="MaxWidth.Medium">
-        <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Gold Detail</MudText>
+        <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true" Class="mud-width-full">Gold Detail</MudText>
         <MudGrid Spacing="6" Class="mt-16">
             <MudItem xs="7">
                 <MudText  Typo="Typo.h5">
@@ -54,17 +57,19 @@ else
                     <MudText>Price From </MudText><MudText Typo="Typo.h4">MYR @product.Price</MudText>
                             <MudText Class="ml-auto" Typo="Typo.body1"></MudText>
                             <MudDivider/>
+                            <MudText Typo="Typo.subtitle1" Color="Color.Inherit"></MudText>
+                            <MudRating SelectedValue="4" Class="d-sm-inline-flex" />
                             <MudPaper Class="pa-16 ma-2" Outlined="true" Width="400" >
                                 <MudText>Conditions :</MudText>
-                                    <input type="radio" class="btn-check" name="Condition" id="btn-A+" autocomplete="off" value="A+" @onclick="@(() => Conds = "A+")" >
+                                    <input type="radio" class="btn-check" name="Condition" id="btn-A+" autocomplete="off" value="A+" @onclick="@(() => Conds = "A+")" @onchange="SelectionChanged" >
                                         <label class="btn btn-outline-secondary" for="btn-A+">A+</label>
-                                    <input type="radio" class="btn-check" name="Condition" id="btn-A" autocomplete="off" value="A" @onclick="@(() => Conds = "A")">
+                                    <input type="radio" class="btn-check" name="Condition" id="btn-A" autocomplete="off" value="A" @onclick="@(() => Conds = "A")" @onchange="SelectionChanged">
                                         <label class="btn btn-outline-secondary" for="btn-A">A</label>
-                                    <input type="radio" class="btn-check" name="Condition" id="btn-B+" autocomplete="off" value="B+" @onclick="@(() => Conds = "B+")">
+                                    <input type="radio" class="btn-check" name="Condition" id="btn-B+" autocomplete="off" value="B+" @onclick="@(() => Conds = "B+")" @onchange="SelectionChanged">
                                         <label class="btn btn-outline-secondary" for="btn-B+">B+</label>
-                                    <input type="radio" class="btn-check" name="Condition" id="btn-B" autocomplete="off" value="B" @onclick="@(() => Conds = "B")">
+                                    <input type="radio" class="btn-check" name="Condition" id="btn-B" autocomplete="off" value="B" @onclick="@(() => Conds = "B")" @onchange="SelectionChanged">
                                         <label class="btn btn-outline-secondary" for="btn-B">B</label>
-                                    <input type="radio" class="btn-check" name="Condition" id="btn-C" autocomplete="off" value="C" @onclick="@(() => Conds = "C")">
+                                    <input type="radio" class="btn-check" name="Condition" id="btn-C" autocomplete="off" value="C" @onclick="@(() => Conds = "C")" @onchange="SelectionChanged">
                                         <label class="btn btn-outline-secondary" for="btn-C">C</label>
                                 <hr style="width:0%;text-align:left;margin-left:0">
                                 <MudText>Weight :</MudText>
@@ -88,11 +93,23 @@ else
                                         <label class="btn btn-outline-secondary" for="btn-Habib">Habib</label>
                                 <hr style="width:0%;text-align:left;margin-left:0">
                                 <MudText>Quantity :</MudText> 
-                                    <MudNumericField @bind-Value="Qty" Label="Enter Qty" Variant="Variant.Outlined" />
+                                @if(!string.IsNullOrEmpty(Conds) && !string.IsNullOrEmpty(From) && Weight!=0)
+                                {
+                                    <MudNumericField @bind-Value="Qty" Label="Enter Qty" Variant="Variant.Outlined"  />
                                     <MudText Class="d-inline-block">205 In Stock</MudText>
-                                <hr style="width:0%;text-align:left;margin-left:0">
-                                <MudChip Icon="@Icons.Material.Outlined.ShoppingCart" Color="Color.Dark">Add To Cart</MudChip>
-                                <MudChip Icon= Color="Color.Dark">Buy Now</MudChip>
+                                    <hr style="width:0%;text-align:left;margin-left:0">
+                                    <MudChip Icon="@Icons.Material.Outlined.ShoppingCart" Color="Color.Dark" >Add To Cart</MudChip>
+                                    <MudChip Icon= Color="Color.Dark" >Buy Now</MudChip>
+                                }
+                                else
+                                {
+                                    <MudNumericField @bind-Value="Qty" Label="Enter Qty" Variant="Variant.Outlined" Disabled />
+                                    <MudText Class="d-inline-block">205 In Stock</MudText>
+                                    <hr style="width:0%;text-align:left;margin-left:0">
+                                    <MudChip Icon="@Icons.Material.Outlined.ShoppingCart" Color="Color.Dark" Disabled>Add To Cart</MudChip>
+                                    <MudChip Icon= Color="Color.Dark" Disabled>Buy Now</MudChip>
+                                    
+                                }
                                 @*<MudText>Type</MudText>
                                 <MudButtonGroup Color="Color.Dark" Variant="Variant.Outlined">
                                     <MudButton Color="Color.Dark" Variant="Variant.Outlined">Minted Bar</MudButton>

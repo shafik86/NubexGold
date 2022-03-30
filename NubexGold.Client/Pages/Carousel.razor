@@ -1,26 +1,27 @@
 ﻿
-<MudCarousel Class="mud-width-full; d-flex" Style="height:600px; width:100%" ShowArrows="@arrows" ShowBullets="@bullets" AutoCycle="@autocycle" TData="object">
+<MudCarousel Style="height:675px; width:100%" ShowArrows="@arrows" ShowBullets="@bullets" AutoCycle="@autocycle" TData="object">
     <MudCarouselItem Transition="transition" Color="@Color.Default">
-        <div class="d-flex justify-content-center" style="height:100%">
+        <div class="d-flex justify-content-center">
             <img src="Image/1.jpg" class="img-fluid" alt="...">
         </div>
     </MudCarouselItem>
-    <MudCarouselItem Transition="transition" Color="@Color.Default" Class="test1">
-        <div class="d-flex justify-content-center" style="height:100%">
-            <img src="Image/2.jpg" class="img-fluid" alt="...">
+    <MudCarouselItem Transition="transition" Color="@Color.Default">
+        <div class="d-flex justify-content-center">
+            <img src="Image/2.jpg" class="img-fluid" style="height:100%; width:100%" alt="...">
         </div>
     </MudCarouselItem>
     <MudCarouselItem Transition="transition" Color="@Color.Default">
-        <div class="d-flex justify-content-center" style="height:100%">
-            <img src="Image/3.jpg" class="img-fluid" alt="...">
+        <div class="d-flex justify-content-center">
+            <img src="Image/3.jpg" class="img-fluid" style="height:100%; width:100%" alt="...">
         </div>
     </MudCarouselItem>
     <MudCarouselItem Transition="transition" Color="@Color.Default">
-        <div class="d-flex justify-content-center" style="height:100%">
-            <img src="Image/4.jpg" class="img-fluid" alt="...">
+        <div class="d-flex justify-content-center">
+            <img src="Image/4.jpg" class="img-fluid" style="height:100%; width:100%" alt="...">
         </div>
     </MudCarouselItem>
 </MudCarousel>
+@*Class="mud-width-full d-flex"*@
 
 @*<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -75,7 +76,7 @@
 
 @code{ 
     private bool arrows = true;
-    private bool bullets = true;
+    private bool bullets = false;
     private bool autocycle = true;
     private Transition transition = Transition.Slide;
 
