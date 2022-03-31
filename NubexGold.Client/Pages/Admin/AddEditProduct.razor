@@ -79,7 +79,7 @@
             <MudItem xs="12" sm="6">
                 <MudTextField @bind-Value="ProductModel.ProductTag"  Label="Tagging" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
             </MudItem>
-            <InputFile id="fileInput" OnChange="UploadFiles" hidden multiple />
+            <InputFile id="fileInput" OnChange="UploadFilesAsync" hidden multiple />
             <MudItem xs="6" sm="2">
                 <MudIconButton HtmlTag="label"
                    Color="Color.Info"
@@ -91,9 +91,15 @@
                 </MudIconButton>
             </MudItem>
             <MudItem xs="6" sm="2">
-                <MudIconButton HtmlTag="label" for="fileInput" Icon="@Icons.Material.Outlined.Add" Variant="Variant.Outlined" Color="Color.Info" Size="Size.Medium" Style="height:150px; width:150px; border:dotted" aria-label="Add">
-                   
-                </MudIconButton>
+                @if(pic1 == string.Empty)
+                {
+                    <MudImage Src="@pic1" Style="border:groove; backdrop-filter:grayscale(); width:150px; height:150px"></MudImage>
+                }
+                else
+                {
+                    <MudIconButton HtmlTag="label" for="fileInput" Icon="@Icons.Material.Outlined.Add" Variant="Variant.Outlined" Color="Color.Info" Size="Size.Medium" Style="height:150px; width:150px; border:dotted" aria-label="Add">
+                    </MudIconButton>
+                }
             </MudItem>
             <MudItem xs="6" sm="2">
                 <MudIconButton Icon="@Icons.Material.Outlined.Add"  Color="Color.Info" Size="Size.Medium" Style="height:150px; width:150px; border:dotted" aria-label="Add">
@@ -103,10 +109,11 @@
             <MudItem xs="6" sm="2">
                 @if (files != null)
                 {
-                    <MudText Typo="@Typo.h6">@files.Count() File@(files.Count() == 1 ? "" : "s"):</MudText>
+                    <MudText Typo="@Typo.h6">@files.Count() File@(files.Count() == 1 && files.Count() < 4 ? "" : "s"):</MudText>
                     <MudList>
                     @foreach (var file in files)
                     {
+                       
                      <MudListItem Icon="@Icons.Filled.AttachFile" @key="@file">
                          @file.Name <code>@file.Size bytes</code>
                      </MudListItem>
