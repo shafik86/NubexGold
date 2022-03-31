@@ -17,7 +17,7 @@ namespace NubexGold.Shared
 
         public CurrentGold Price { get; set; }
 
-        private async void GetPrice()
+        private  void GetPrice()
         {
             var result = new CurrentGold();
 

@@ -24,6 +24,7 @@
             </MudItem>
             <MudItem xs="12" sm="6">
                 <MudSelect T="Metal"  Label="Metal" @bind-Value="ProductModel.Metal" Variant="Variant.Filled" AnchorOrigin="Origin.BottomCenter">
+                   
                     <MudSelectItem T="Metal" Value="Metal.Gold" />
                     <MudSelectItem T="Metal" Value="Metal.Jewel" />
                     <MudSelectItem T="Metal" Value="Metal.Silver" />
@@ -39,19 +40,28 @@
                 </MudSelect>
             </MudItem>
             <MudItem xs="12" sm="6">
-                <MudTextField @bind-Value="ProductModel.Condition"  Label="Condition" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                <MudSelect   Label="Condition" @bind-Value="ProductModel.ConditionId"  Variant="Variant.Filled" AnchorOrigin="Origin.BottomCenter">
+                    @foreach (var item in Conditions)
+                    {
+                        <MudSelectItem Value="@item.ConditionId" >@item.ConditionName</MudSelectItem>
+                    }
+                    @*<MudSelectItem T="Condition" Value="Condition.CastBar" />
+                    <MudSelectItem T="Condition" Value="Condition.Coin" />
+                    <MudSelectItem T="Condition" Value="Condition.Jewelry" />
+                    <MudSelectItem T="Condition" Value="Condition.MintedBar" />*@
+                </MudSelect>
             </MudItem>
             <MudItem xs="12" sm="6">
                 <MudTextField @bind-Value="ProductModel.Purify"  Label="Purify" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
             </MudItem>
             <MudItem xs="12" sm="6">
-                <MudTextField @bind-Value="ProductModel.MetalWeight"  Label="Metal Weight" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                <MudTextField @bind-Value="ProductModel.MetalWeight"  Label="Metal Weight (Total Weight)" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
             </MudItem>
             <MudItem xs="12" sm="6">
                 <MudTextField @bind-Value="ProductModel.MetalBrand"  Label="Brand" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
             </MudItem>
             <MudItem xs="12" sm="6">
-                <MudTextField @bind-Value="ProductModel.Weight"  Label="Weight" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                <MudTextField @bind-Value="ProductModel.Weight"  Label="Weight in Gram(g)" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
             </MudItem>
             <MudItem xs="12" sm="6">
                 <MudTextField @bind-Value="ProductModel.Manufacture"  Label="Manufacture" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
@@ -59,10 +69,11 @@
             <MudItem xs="12" sm="6">
                 <MudTextField @bind-Value="ProductModel.Certificate"  Label="Certificate" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
             </MudItem>
-            @*<MudItem xs="12" sm="6">
-                <MudRadioGroup @bind-SelectedOption="@ProductModel.IsTax">
-                    
-                </MudRadioGroup>
+            <MudItem xs="12" sm="4" >
+               <MudSwitch @bind-Checked="customstr" Color="Color.Error" Converter="@(new CustomStringToBoolConverter())"> "@(customstr)"</MudSwitch>
+            </MudItem>
+           @* <MudItem xs="12" sm="4" >
+                <MudTextField Label="Switch state" Variant="Variant.Outlined" Converter="@converter" @bind-Value="@tax" Immediate="true"/>
             </MudItem>*@
             <MudItem xs="12" sm="6">
                 <MudTextField @bind-Value="ProductModel.Price"  Label="Base Price" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
@@ -79,7 +90,7 @@
             <MudItem xs="12" sm="6">
                 <MudTextField @bind-Value="ProductModel.ProductTag"  Label="Tagging" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
             </MudItem>
-            <InputFile id="fileInput" OnChange="UploadFiles" hidden multiple />
+            <InputFile id="fileInput" OnChange="UploadFilesAsync"  hidden multiple />
             <MudItem xs="6" sm="2">
                 <MudIconButton HtmlTag="label"
                    Color="Color.Info"
@@ -87,34 +98,45 @@
                    Variant="Variant.Outlined"
                    Size="Size.Medium" 
                    Style="height:150px; width:150px; border:dotted"
-                   for="fileInput">
+                   for="fileInput"
+                   disabled="@(MyCondition ? true : false)">
                 </MudIconButton>
             </MudItem>
-            <MudItem xs="6" sm="2">
-                <MudIconButton HtmlTag="label" for="fileInput" Icon="@Icons.Material.Outlined.Add" Variant="Variant.Outlined" Color="Color.Info" Size="Size.Medium" Style="height:150px; width:150px; border:dotted" aria-label="Add">
-                   
-                </MudIconButton>
-            </MudItem>
-            <MudItem xs="6" sm="2">
-                <MudIconButton Icon="@Icons.Material.Outlined.Add"  Color="Color.Info" Size="Size.Medium" Style="height:150px; width:150px; border:dotted" aria-label="Add">
-                </MudIconButton>
-                    
-            </MudItem>
+            
             <MudItem xs="6" sm="2">
                 @if (files != null)
                 {
-                    <MudText Typo="@Typo.h6">@files.Count() File@(files.Count() == 1 ? "" : "s"):</MudText>
+                    <MudText Typo="@Typo.h6">@files.Count() File@(files.Count() == 1 && files.Count() < 4 ? "" : "s"):</MudText>
                     <MudList>
-                    @foreach (var file in files)
+                    @foreach (var file in filebase64)
                     {
+                       
                      <MudListItem Icon="@Icons.Filled.AttachFile" @key="@file">
-                         @file.Name <code>@file.Size bytes</code>
+                         @file.fileName
                      </MudListItem>
+                         <MudImage Src="@("data:"+@file.contentType+";base64,"+@file.base64data)" Style="border:groove; backdrop-filter:grayscale(); width:200px; height:200px"></MudImage>
+
                     }
                     </MudList>
                 }
                     
             </MudItem>
+            @*<MudItem xs="6" sm="2">
+                @if (filebase64 != null)
+                {
+                    <MudText Typo="@Typo.h6"> Image Preview</MudText>
+                    <MudList>
+                    @foreach (var file in filebase64)
+                    {
+                       
+                     <MudListItem Icon="@Icons.Filled.AttachFile" @key="@file">
+                       <MudImage Src="@filebase64" ObjectFit="true"></MudImage>  
+                     </MudListItem>
+                    }
+                    </MudList>
+                }
+                    
+            </MudItem>*@
         </MudGrid>
     </EditForm>
 </MudContainer>
