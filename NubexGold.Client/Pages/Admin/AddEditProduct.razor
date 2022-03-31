@@ -7,7 +7,7 @@
 <h2>@PageHeader</h2>
 
 
-<MudContainer class="container-fluid d-flex justify-content-center">
+<MudContainer class="container-fluid d-flex justify-content-center mb-3">
     <EditForm Model="@ProductModel" OnValidSubmit="@HandleValidSubmit">
         <MudGrid>
             <MudItem xs="12" md="6">
@@ -59,11 +59,11 @@
             <MudItem xs="12" sm="6">
                 <MudTextField @bind-Value="ProductModel.Certificate"  Label="Certificate" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
             </MudItem>
-            <MudItem xs="12" sm="6">
-                @*<MudRadioGroup @bind-SelectedOption="@ProductModel.IsTax">
+            @*<MudItem xs="12" sm="6">
+                <MudRadioGroup @bind-SelectedOption="@ProductModel.IsTax">
                     
-                </MudRadioGroup>*@
-            </MudItem>
+                </MudRadioGroup>
+            </MudItem>*@
             <MudItem xs="12" sm="6">
                 <MudTextField @bind-Value="ProductModel.Price"  Label="Base Price" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
             </MudItem>
@@ -79,14 +79,41 @@
             <MudItem xs="12" sm="6">
                 <MudTextField @bind-Value="ProductModel.ProductTag"  Label="Tagging" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
             </MudItem>
-            <MudItem xs="12" sm="6">
-                <MudTextField @bind-Value="ProductModel.Image1"  Label="Color" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            <InputFile id="fileInput" OnChange="UploadFiles" hidden multiple />
+            <MudItem xs="6" sm="2">
+                <MudIconButton HtmlTag="label"
+                   Color="Color.Info"
+                   Icon="@Icons.Filled.CloudUpload"
+                   Variant="Variant.Outlined"
+                   Size="Size.Medium" 
+                   Style="height:150px; width:150px; border:dotted"
+                   for="fileInput">
+                </MudIconButton>
             </MudItem>
-            <MudItem xs="12" sm="6">
-                <MudTextField @bind-Value="ProductModel.Size"  Label="Size" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            <MudItem xs="6" sm="2">
+                <MudIconButton HtmlTag="label" for="fileInput" Icon="@Icons.Material.Outlined.Add" Variant="Variant.Outlined" Color="Color.Info" Size="Size.Medium" Style="height:150px; width:150px; border:dotted" aria-label="Add">
+                   
+                </MudIconButton>
             </MudItem>
-            <MudItem xs="12" sm="6">
-                <MudTextField @bind-Value="ProductModel.ProductTag"  Label="Tagging" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+            <MudItem xs="6" sm="2">
+                <MudIconButton Icon="@Icons.Material.Outlined.Add"  Color="Color.Info" Size="Size.Medium" Style="height:150px; width:150px; border:dotted" aria-label="Add">
+                </MudIconButton>
+                    
+            </MudItem>
+            <MudItem xs="6" sm="2">
+                @if (files != null)
+                {
+                    <MudText Typo="@Typo.h6">@files.Count() File@(files.Count() == 1 ? "" : "s"):</MudText>
+                    <MudList>
+                    @foreach (var file in files)
+                    {
+                     <MudListItem Icon="@Icons.Filled.AttachFile" @key="@file">
+                         @file.Name <code>@file.Size bytes</code>
+                     </MudListItem>
+                    }
+                    </MudList>
+                }
+                    
             </MudItem>
         </MudGrid>
     </EditForm>
