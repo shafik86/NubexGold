@@ -12,7 +12,8 @@
         public double MetalWeight { get; set; }
         public string? MetalBrand { get; set; }
         public double Weight { get; set; }
-        public string Condition { get; set; }
+        public Condition Condition { get; set; }
+        public int ConditionId { get; set; }
         public double Purify { get; set; }
         public string Manufacture { get; set; }
         public string? Certificate { get; set; }
