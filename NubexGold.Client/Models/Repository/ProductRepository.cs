@@ -1,13 +1,17 @@
 ﻿
 
+using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace NubexGold.Client.Models.Repository
 {
     public class ProductRepository : IProductRepository
     {
         private readonly ApplicationDbContext appDbContext;
-
+        public IEnumerable<Product> Product { get; set; } = new List<Product>();
+        [Inject]
+        public Mapper mapper { get; set; }
         public ProductRepository(ApplicationDbContext applicationDbContext)
         {
             this.appDbContext = applicationDbContext;
@@ -15,7 +19,7 @@ namespace NubexGold.Client.Models.Repository
         public async Task<Product> AddProduct(Product product)
         {
             var result = await appDbContext.Products
-
+                
                 .AddAsync(product);
             await appDbContext.SaveChangesAsync();
             return result.Entity;
@@ -37,10 +41,14 @@ namespace NubexGold.Client.Models.Repository
 
         public async Task<Product> GetProduct(int productId)
         {
-            return await appDbContext.Products
-                 //.Include(e => e.Condition)
+            var result = await appDbContext.Products
+                 .Include(e => e.Condition)
                  //.Include(e => e.Metal)
                  .FirstOrDefaultAsync(e => e.ProductId == productId);
+            if (result != null || result.ProductId != 0)
+                return result;
+
+            return null;
         }
 
 
@@ -72,9 +80,41 @@ namespace NubexGold.Client.Models.Repository
             return await query.ToListAsync();
         }
 
-        public Task<Product> UpdateProduct(Product product)
+        public async Task<Product> UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            var result = await appDbContext.Products.FirstOrDefaultAsync(e => e.ProductId == product.ProductId);
+
+            if(result != null)
+            {
+                result.SKU = product.SKU;
+                result.Name = product.Name;
+                result.Description = product.Description;
+                result.Detail = product.Detail;
+                result.Type = product.Type;
+                result.Metal = product.Metal;
+                result.MetalWeight = product.MetalWeight;
+                result.MetalBrand = product.MetalBrand;
+                result.Weight = product.Weight;
+                result.Condition = product.Condition;
+                result.ConditionId = product.ConditionId;
+                result.Purify = product.Purify;
+                result.Manufacture = product.Manufacture;
+                result.Certificate = product.Certificate;
+                result.IsTax = product.IsTax;
+                result.Featured = product.Featured;
+                result.Price = product.Price;
+                result.Color = product.Color;  
+                result.ProductTag = product.ProductTag;
+                result.Image1 = product.Image1;
+                result.Image2 = product.Image2;
+                result.Image3 = product.Image3;
+                result.ModifiedBy = product.ModifiedBy;
+                result.ModifiedOn = product.ModifiedOn;
+
+                await appDbContext.SaveChangesAsync();
+                return result;
+            }
+            return null;
         }
 
         //async Task<IEnumerable<Product>> IProductRepository.GetProductByMetal(string metal)

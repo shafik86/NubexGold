@@ -14,11 +14,15 @@ namespace NubexGold.Client.Pages.Admin
         public IProductService productService { get; set; }
         [Inject]
         public IMapper Mapper { get; set; }
+        [Inject]
+        public NavigationManager navigation { get; set; }
         public Product product { get; set; } = new Product();
         public IEnumerable<Condition> Conditions { get; set; } = new List<Condition>();
         public string Pagetitle { get; set; } = string.Empty;
         public string PageHeader { get; set; } = string.Empty;
-        public List<Metal> metal { get; set; }
+        [Inject]
+        public ISnackbar Snackbar{ get; set; }
+
         public AddEditModel ProductModel { get; set; } = new AddEditModel();
         [Parameter]
         public string Id { get; set; }
@@ -29,6 +33,7 @@ namespace NubexGold.Client.Pages.Admin
         public bool tax { get; set; } = false;
         public string customstr { get; set; } = "NO";
         public bool MyCondition { get; set; } = false;
+        public string message { get; set; } = string.Empty;
         private async Task UploadFilesAsync(InputFileChangeEventArgs e)
         {
             foreach (var file in e.GetMultipleFiles())
@@ -79,8 +84,20 @@ namespace NubexGold.Client.Pages.Admin
             {
                 PageHeader = "Edit Product";
                 Pagetitle = "Product Edit";
-                product = await productService.GetProduct(int.Parse(Id));
-     
+                try
+                {
+                    product = await productService.GetProduct(int.Parse(Id));
+                    if (product == null)
+                    {
+                        navigation.NavigateTo("product");
+                    }
+                }
+                catch (Exception)
+                {
+                    message = $"Prduct with id {ProductId} is not found";
+                    
+                }
+                
             }
             else
             {
@@ -88,7 +105,7 @@ namespace NubexGold.Client.Pages.Admin
                 Pagetitle = "Product Create";
                 ProductModel = new AddEditModel
                 {
-                    ProductId = 1,
+                    ProductId = 0,
                     ModifiedBy = "Admin",
                     ModifiedOn = DateTime.Now
                 };
@@ -98,9 +115,32 @@ namespace NubexGold.Client.Pages.Admin
             Mapper.Map( product, ProductModel);
         }
 
-        public Task HandleValidSubmit()
+        public async void  HandleValidSubmit()
         {
-            return Task.CompletedTask;
+            product = new Product();
+                Mapper.Map(ProductModel, product);
+            Product result = product;
+            if (product.ProductId != 0)
+            {
+                 await productService.UpdateProduct(product);
+                message = $"Product {product.Name} Updated";
+                navigation.NavigateTo($"/product/{product.ProductId}");
+                
+                Snackbar.Add(message, Severity.Info);
+                return;
+            }
+            else
+            {
+                 await productService.CreateProduct(product);
+                message = $"Product {product.Name} Added";
+                //navigation.NavigateTo($"/itemdetail/{product.ProductId}");
+                Snackbar.Add(message, Severity.Info);
+                return;
+            }
+            //message = "Product with Id : " + Id + " Is updated";
+            //Snackbar.Add(message,Severity.Normal);
+            StateHasChanged();
+            //return Task.CompletedTask;
         }
 
     }
@@ -149,7 +189,8 @@ namespace NubexGold.Client.Pages.Admin
                 return null;
             }
         }
-
+        
     }
     
+
 }

@@ -1,4 +1,6 @@
 ﻿using NubexGold.Shared;
+using System.Net.Http.Json;
+using System.Net.Http;
 
 namespace NubexGold.Client.Services
 {
@@ -15,7 +17,8 @@ namespace NubexGold.Client.Services
 
         public async Task CreateProduct(Product NewProduct)
         {
-            var result = await httpClient.PostAsJsonAsync("api/products", NewProduct);
+             await httpClient.PostAsJsonAsync("api/products", NewProduct);
+            
         }
 
         public async Task DeleteProduct(int id)
@@ -52,7 +55,10 @@ namespace NubexGold.Client.Services
 
         public async Task UpdateProduct(Product UpdateProduct)
         {
-            await httpClient.PutAsJsonAsync("api/products", UpdateProduct);
+              await httpClient.PostAsJsonAsync("api/products", UpdateProduct);
+            
+            
+
         }
     }
 }
