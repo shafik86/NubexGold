@@ -10,6 +10,7 @@
 <MudContainer class="container-fluid d-flex justify-content-center mb-3">
     <EditForm Model="@ProductModel" OnValidSubmit="@HandleValidSubmit">
         <MudGrid>
+           
             <MudItem xs="12" md="6">
                 <MudTextField @bind-Value="ProductModel.Name"  Label="Name" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
             </MudItem>
@@ -137,6 +138,18 @@
                 }
                     
             </MudItem>*@
+             @if(ProductModel.ProductId != 0)
+            {
+                <MudItem xs="12" sm="12" md="6">
+                    <MudGrid>
+                        <MudItem xs="12" sm="12">
+                            <MudImage Src="@ProductModel.Image1" Style="border:groove; backdrop-filter:grayscale(); width:200px; height:200px"></MudImage>
+                            <MudImage Src="@ProductModel.Image2" Style="border:groove; backdrop-filter:grayscale(); width:200px; height:200px"></MudImage>
+                            <MudImage Src="@ProductModel.Image3" Style="border:groove; backdrop-filter:grayscale(); width:200px; height:200px"></MudImage>
+                        </MudItem>
+                    </MudGrid>
+                </MudItem>
+            }
         </MudGrid>
     </EditForm>
 </MudContainer>

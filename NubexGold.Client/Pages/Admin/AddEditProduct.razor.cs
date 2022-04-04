@@ -80,6 +80,7 @@ namespace NubexGold.Client.Pages.Admin
                 PageHeader = "Edit Product";
                 Pagetitle = "Product Edit";
                 product = await productService.GetProduct(int.Parse(Id));
+     
             }
             else
             {
