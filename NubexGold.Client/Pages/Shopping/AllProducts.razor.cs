@@ -104,7 +104,7 @@ namespace NubexGold.Client.Pages.Shopping
                 MetalWeight = 4.2500,
                 MetalBrand = "N/A",
                 Weight = 4.25,
-                Condition = "A",
+                ConditionId = 1,
                 Purify = 0.9999,
                 Manufacture = "YesRufus Goldsmith Sdn Bhd",
                 Certificate = "Yes",

@@ -2,7 +2,6 @@ global using NubexGold.Client.Data;
 global using NubexGold.Client.Models.Repository;
 global using NubexGold.Client.Services;
 global using NubexGold.Shared;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -10,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using MudBlazor.Services;
 using NubexGold.Client.Areas.Identity;
+using NubexGold.Client.Models.Profiles;
 
 
 
@@ -35,7 +35,7 @@ builder.Services.AddSingleton(new HttpClient
 builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddScoped<IConditionService, ConditionService>();
-
+builder.Services.AddAutoMapper(typeof(ProductProfile));
 
 
 

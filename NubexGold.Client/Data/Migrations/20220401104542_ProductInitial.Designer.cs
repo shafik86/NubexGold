@@ -12,14 +12,14 @@ using NubexGold.Client.Data;
 namespace NubexGold.Client.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220323052322_productInitial")]
-    partial class productInitial
+    [Migration("20220401104542_ProductInitial")]
+    partial class ProductInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.2")
+                .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -303,9 +303,8 @@ namespace NubexGold.Client.Data.Migrations
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Condition")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ConditionId")
+                        .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -384,6 +383,8 @@ namespace NubexGold.Client.Data.Migrations
 
                     b.HasKey("ProductId");
 
+                    b.HasIndex("ConditionId");
+
                     b.ToTable("Products");
 
                     b.HasData(
@@ -392,9 +393,9 @@ namespace NubexGold.Client.Data.Migrations
                             ProductId = 1,
                             Certificate = "Yes",
                             Color = "N/A",
-                            Condition = "A",
+                            ConditionId = 2,
                             CreatedBy = "Administrators",
-                            CreatedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1612),
+                            CreatedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8580),
                             Description = "Onwards to success with this 1 Dinar coin by YesRufus Goldsmith. Minted from 24k gold, the coin serves as a perfect medium to preserve your hard earned wealth. It can also be used to pay for one's Zakat or Mahr.\n\n The obverse features an intricate Keris design at its centre, Onwards to success with this 1 Dinar coin by YesRufus Goldsmith.Minted from 24k gold, the coin serves as a perfect medium to preserve your hard earned wealth.It can also be used to pay for one's Zakat or Mahr. The obverse features an intricate Keris design at its centre, accompanied by the coin's tech specs. The reverse features a stunning Kufi inscription for 'Hayya Alal Falah / Hayya Alal Solah', roughly translated to English as the Islamic call to success/call to prayer respectively.accompanied by the coin's tech specs. The reverse features a stunning Kufi inscription for 'Hayya Alal Falah / Hayya Alal Solah', roughly translated to English as the Islamic call to success/call to prayer respectively.",
                             Detail = "",
                             Featured = "No",
@@ -407,7 +408,7 @@ namespace NubexGold.Client.Data.Migrations
                             MetalBrand = "N/A",
                             MetalWeight = 4.25,
                             ModifiedBy = "",
-                            ModifiedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1613),
+                            ModifiedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8581),
                             Name = "YESRUFUS GOLDSMITH 1 DINAR",
                             Price = 1502.5799999999999,
                             ProductTag = "GoldCoin",
@@ -422,9 +423,9 @@ namespace NubexGold.Client.Data.Migrations
                             ProductId = 2,
                             Certificate = "Yes",
                             Color = "N/A",
-                            Condition = "A",
+                            ConditionId = 1,
                             CreatedBy = "Administrators",
-                            CreatedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1628),
+                            CreatedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8593),
                             Description = "ONE NABAWI GOLD DINAR V3 The One Nabawi Gold Dinar is minted by 24 Qirats according to the standard weight and purity of the Byzantine Gold Solidus circulating in Makkah and Madinah during the lifetime of Prophet Muhammad (pbuh). It is also a favourite among couples who use it as their Mahar and for collectors who treasure the beauty of Arabic calligraphy in Thuluth script. Product Specifications Weight: 4.5 grams Purity: .999 fine gold (made from 99.99% pure PAMP Suisse / Perth Mint gold) Diameter: 22mm The One Nabawi Gold Dinar comes complete in a scratch-proof clear acrylic capsule with a Certificate of Authenticity in its own hard card box. Inscribed Message on Obverse of Dinar: Muhammad Rahmatal lil ‘alamiin “Muhammad, Mercy to the Worlds” (Surah al-Anbiya 21:107) Inscribed Message on Reverse of Dinar: Allahu wahdahu la sharikalah, Muhammad ‘abduhu warasuluh “Allah is One, without partner, Muhammad is His Servant and Messenger” (Declaration of Faith)",
                             Detail = "ONE NABAWI GOLD DINAR V3 The One Nabawi Gold Dinar is minted by 24 Qirats according to the standard weight and purity of the Byzantine Gold Solidus circulating in Makkah and Madinah during the lifetime of Prophet Muhammad (pbuh). It is also a favourite among couples who use it as their Mahar and for collectors who treasure the beauty of Arabic calligraphy in Thuluth script. Product Specifications Weight: 4.5 grams Purity: .999 fine gold (made from 99.99% pure PAMP Suisse / Perth Mint gold) Diameter: 22mm The One Nabawi Gold Dinar comes complete in a scratch-proof clear acrylic capsule with a Certificate of Authenticity in its own hard card box. Inscribed Message on Obverse of Dinar: Muhammad Rahmatal lil ‘alamiin “Muhammad, Mercy to the Worlds” (Surah al-Anbiya 21:107) Inscribed Message on Reverse of Dinar: Allahu wahdahu la sharikalah, Muhammad ‘abduhu warasuluh “Allah is One, without partner, Muhammad is His Servant and Messenger” (Declaration of Faith)",
                             Featured = "No",
@@ -437,7 +438,7 @@ namespace NubexGold.Client.Data.Migrations
                             MetalBrand = "N/A",
                             MetalWeight = 4.5,
                             ModifiedBy = "",
-                            ModifiedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1628),
+                            ModifiedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8594),
                             Name = "ONE NABAWI GOLD DINAR V3 4.5G GOLD COIN .999",
                             Price = 1595.0899999999999,
                             ProductTag = "GoldCoin",
@@ -452,9 +453,9 @@ namespace NubexGold.Client.Data.Migrations
                             ProductId = 3,
                             Certificate = "Yes",
                             Color = "N/A",
-                            Condition = "A",
+                            ConditionId = 2,
                             CreatedBy = "Administrators",
-                            CreatedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1637),
+                            CreatedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8602),
                             Description = "REPLIKA SYILING DINAR-KHALIFAH 4.44g\n\n\nMuka replika syiling tersebut menyerupai motif yang telah direka dan dicetak pada waktu EMPAYAR KHALIFAH UTHMANIAH(Nota 1)(abad 1900an) dengan sedikit pengubah suaian.\n\nReplika syiling seberat 4.44gram(Nota 2),\n\nini merupakan versi yang berkadar dengan berat syiling KUPANG(Nota 2) di antara 0.55 ~0.60 gram.(Nota 2)\n\nReplika syiling DINAR - KHALIFAH adalah keluaran edisi yang istimewa disulami dengan SIJIL PENGESAHAN(Nota 3) speksifikasi yang dikhususkan oleh Pengeluar dan dijamin oleh KL ASSAY OFFICE(M) SDN BHD dan disahkan oleh En.Abdul Shukor Anuar sebagai ASSAYER(Nota 4). \n\nKAD PENGESAHAN yang tercetak nombor siri yang sama seperti cetakan pada replika syiling DINAR - KHALIFAH.Kad pengesahan tersebut mengilustrasikan sebuah tema yang menyilangkan PEDANG TURKI KILIJ dan PEDANG MELAYU MAKARA untuk memperlihatkan kesenambungan Surah Al Hadid(Nota 5)(Surah Zat Besi)  Teknologi Besi yang telah dikuasai oleh Alam Melayu sejak 500BC\n\nNota 1 Chisholm,\n\nHugh,ed. (1911),\nThe Encyclopædia Britannica,7,\nConstantinople,\n\nthe capital of the Turkish Empire \n\nNota 2 Unit Muzium Matawang dan Arkib 2003,\nBNM \n\nNota 3.Hallmarking No  HN B 9237   Cert No. 3041 \n\nNota 4  http://klassay.com/home \n\nNota 5 Muhammmad bin Abd Razak,KEDAH Tua Tamadun Terawal Asia Tenggara 2021",
                             Detail = "",
                             Featured = "No",
@@ -467,7 +468,7 @@ namespace NubexGold.Client.Data.Migrations
                             MetalBrand = "N/A",
                             MetalWeight = 4.4400000000000004,
                             ModifiedBy = "",
-                            ModifiedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1637),
+                            ModifiedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8603),
                             Name = "1 DINAR KHALIFAH (2020) 4.44G GOLD 999.0",
                             Price = 1333.8199999999999,
                             ProductTag = "GoldCoin",
@@ -482,9 +483,9 @@ namespace NubexGold.Client.Data.Migrations
                             ProductId = 4,
                             Certificate = "Yes",
                             Color = "N/A",
-                            Condition = "A",
+                            ConditionId = 1,
                             CreatedBy = "Administrators",
-                            CreatedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1645),
+                            CreatedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8610),
                             Description = "Onwards to success with this 1 Dinar coin by YesRufus Goldsmith. Minted from 24k gold, the coin serves as a perfect medium to preserve your hard earned wealth. It can also be used to pay for one's Zakat or Mahr.\n\n The obverse features an intricate Keris design at its centre, Onwards to success with this 1 Dinar coin by YesRufus Goldsmith.Minted from 24k gold, the coin serves as a perfect medium to preserve your hard earned wealth.It can also be used to pay for one's Zakat or Mahr. The obverse features an intricate Keris design at its centre, accompanied by the coin's tech specs. The reverse features a stunning Kufi inscription for 'Hayya Alal Falah / Hayya Alal Solah', roughly translated to English as the Islamic call to success/call to prayer respectively.accompanied by the coin's tech specs. The reverse features a stunning Kufi inscription for 'Hayya Alal Falah / Hayya Alal Solah', roughly translated to English as the Islamic call to success/call to prayer respectively.",
                             Detail = "",
                             Featured = "No",
@@ -497,7 +498,7 @@ namespace NubexGold.Client.Data.Migrations
                             MetalBrand = "N/A",
                             MetalWeight = 4.25,
                             ModifiedBy = "",
-                            ModifiedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1645),
+                            ModifiedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8610),
                             Name = "HARIMAU MINT GOLD KUALA LUMPUR 2017 29TH SEA GAMES 1 GRAM 999.9 GOLD COIN",
                             Price = 1502.5799999999999,
                             ProductTag = "GoldCoin",
@@ -512,9 +513,9 @@ namespace NubexGold.Client.Data.Migrations
                             ProductId = 5,
                             Certificate = "Yes",
                             Color = "",
-                            Condition = "A+",
+                            ConditionId = 1,
                             CreatedBy = "Administrators",
-                            CreatedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1653),
+                            CreatedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8643),
                             Description = "This button-sized gold coin, which is the iconic Australian gold coin issued by the Australian government. The 2014 Mini Kook coin is housed in a protective acrylic capsule and presented in a colourful wallet-sized card. ",
                             Detail = "",
                             Featured = "No",
@@ -527,7 +528,7 @@ namespace NubexGold.Client.Data.Migrations
                             MetalBrand = "",
                             MetalWeight = 0.0,
                             ModifiedBy = "",
-                            ModifiedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1654),
+                            ModifiedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8644),
                             Name = "AUSTRALIAN MINI KOOKABURRA (2014) 0.5G GOLD COIN 999.9",
                             Price = 1687.03,
                             ProductTag = "MintedBar",
@@ -542,9 +543,9 @@ namespace NubexGold.Client.Data.Migrations
                             ProductId = 6,
                             Certificate = "No",
                             Color = "N/A",
-                            Condition = "A",
+                            ConditionId = 1,
                             CreatedBy = "Administrators",
-                            CreatedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1664),
+                            CreatedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8655),
                             Description = "The first $100 gold coin of Malaysia was issued on 30th August 1971 by Bank Negara Malaysia to commemorate the 13 years in office of Prime Minister Tunku Abdul Rahman Putra Al-Haj.",
                             Detail = "The first $100 gold coin of Malaysia was issued on 30th August 1971 by Bank Negara Malaysia to commemorate the 13 years in office of Prime Minister Tunku Abdul Rahman Putra Al-Haj. \n\nThe obverse of this coin has a portrait of Tunku,\nthe words \"TUNKU ABDUL RAHMAN PUTRA AL-HAJ BAPA MALAYSIA\" and the year 1971.\n\nThe reverse shows the Parliament House building,\nthe crescent and star,\n\nand the denomination of 100 Ringgit.\n\nIt was minted at the Perth Mint Australia.",
                             Featured = "No",
@@ -557,7 +558,7 @@ namespace NubexGold.Client.Data.Migrations
                             MetalBrand = "N/A",
                             MetalWeight = 18.66,
                             ModifiedBy = "",
-                            ModifiedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1664),
+                            ModifiedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8655),
                             Name = "1971 TUNKU ABDUL RAHMAN GOLD COIN BY BANK NEGARA MALAYSIA",
                             Price = 7058.5500000000002,
                             ProductTag = "GoldCoin",
@@ -572,9 +573,9 @@ namespace NubexGold.Client.Data.Migrations
                             ProductId = 11,
                             Certificate = "Yes",
                             Color = "Blue",
-                            Condition = "A+",
+                            ConditionId = 1,
                             CreatedBy = "Administrators",
-                            CreatedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1672),
+                            CreatedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8662),
                             Description = "The third year in the Lunar Calendar Series at PAMP Suisse features the image of the powerful tiger. The tiger is the worlds largest living wild cat and has a long, muscular frame with shorter legs than other members of the Panthera genus. Today, 5 Gram PAMP Suisse Lunar Tiger Gold Bars are available to you online at Nubex.",
                             Detail = "",
                             Featured = "No",
@@ -587,7 +588,7 @@ namespace NubexGold.Client.Data.Migrations
                             MetalBrand = "",
                             MetalWeight = 5.0,
                             ModifiedBy = "",
-                            ModifiedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1673),
+                            ModifiedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8662),
                             Name = "PAMP SUISSE LUNAR 2022 YEAR OF THE TIGER 5G GOLD 999.9",
                             Price = 1687.03,
                             ProductTag = "MintedBar",
@@ -602,9 +603,9 @@ namespace NubexGold.Client.Data.Migrations
                             ProductId = 12,
                             Certificate = "Yes",
                             Color = "Blue",
-                            Condition = "A",
+                            ConditionId = 1,
                             CreatedBy = "Administrators",
-                            CreatedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1712),
+                            CreatedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8671),
                             Description = "This renowned brand offers an astounding range of purity, shapes and designs of multiple precious metals (gold, silver, platinum and palladium) to match the requirements of the industry.This Swiss-made PAMP gold bar is made from 10 grams of 999.9 fine gold and is shipped with an assay certificate signed by a certified assayer. ",
                             Detail = "",
                             Featured = "No",
@@ -617,7 +618,7 @@ namespace NubexGold.Client.Data.Migrations
                             MetalBrand = "",
                             MetalWeight = 10.0,
                             ModifiedBy = "",
-                            ModifiedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1712),
+                            ModifiedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8671),
                             Name = "PAMP SUISSE OF LADY FORTUNA- VERISCAN 10G GOLD 999.9",
                             Price = 2958.79,
                             ProductTag = "MintedBar",
@@ -632,9 +633,9 @@ namespace NubexGold.Client.Data.Migrations
                             ProductId = 13,
                             Certificate = "Yes",
                             Color = "Blue",
-                            Condition = "A+",
+                            ConditionId = 1,
                             CreatedBy = "Administrators",
-                            CreatedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1722),
+                            CreatedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8679),
                             Description = "Perfect for a medium and large scale investor, this brand new 50g of 999.9 gold cast bar is refined to perfection by PAMP. it is shipped with an assay certificate signed by a certified assayer. ",
                             Detail = "",
                             Featured = "No",
@@ -647,7 +648,7 @@ namespace NubexGold.Client.Data.Migrations
                             MetalBrand = "",
                             MetalWeight = 50.0,
                             ModifiedBy = "",
-                            ModifiedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1723),
+                            ModifiedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8680),
                             Name = "PAMP SUISSE CAST BAR 50G GOLD 999.9",
                             Price = 2958.79,
                             ProductTag = "Bar",
@@ -662,9 +663,9 @@ namespace NubexGold.Client.Data.Migrations
                             ProductId = 21,
                             Certificate = "No",
                             Color = "Silver",
-                            Condition = "B",
+                            ConditionId = 2,
                             CreatedBy = "Administrators",
-                            CreatedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1732),
+                            CreatedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8688),
                             Description = "SLS Hari Perayaan Traditional Malaysia 1/2oz 999.9 Silver Coin \n\n Silver Lot Shop has minted this silver coin to celebrate all the major traditional celebration days in Malaysia. \n\nthis coin displays the company logo,\nthe company name,the serial number of the coin and the company website address.The reverse face displays the words “HARI PERAYAAN TRADISIONAL MALAYSIA ANNIVERSARY 2011” with drawings of an exposed kerosene lamp representing Hari Raya Celebration,a paper lantern representing Chinese New Year Celebration and betel leaves representing Deepavali Celebration. \n\nThis 1 / 2oz silver coin is placed in a beautiful maroon red presentation box with writings and design compositions in silver.Included in the box is the specification of the coin on a signed card by the CEO of the company.\n\nEach box is very suitable to be given as a gift for Hari Raya or Chinese New Year or Deepavali celebrations.",
                             Detail = "Features: \nName:-HARI PERAYAAN TRADISIONAL MALAYSIA ANNIVERSARY 2011 \nMinter:-SILVER LOT SHOP(M) SDN.BHD. \nMetal:-Silver. \nType:-Coin. \nPurity:-999.9 \nDiameter:-36.02mm. \nThickness:-2mm. \nWeight:-15.55g.",
                             Featured = "No",
@@ -677,7 +678,7 @@ namespace NubexGold.Client.Data.Migrations
                             MetalBrand = "",
                             MetalWeight = 15.550000000000001,
                             ModifiedBy = "",
-                            ModifiedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1733),
+                            ModifiedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8689),
                             Name = "SLS HARI PERAYAAN TRADISIONAL MALAYSIA 1/2OZ 999.0 SILVER COIN",
                             Price = 86.670000000000002,
                             ProductTag = "SilverCoin",
@@ -692,9 +693,9 @@ namespace NubexGold.Client.Data.Migrations
                             ProductId = 22,
                             Certificate = "No",
                             Color = "Silver",
-                            Condition = "B",
+                            ConditionId = 3,
                             CreatedBy = "Administrators",
-                            CreatedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1740),
+                            CreatedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8697),
                             Description = "SLS Hari Perayaan Traditional Malaysia 1/2oz 999.9 Silver Coin \n\n Silver Lot Shop has minted this silver coin to celebrate all the major traditional celebration days in Malaysia. \n\nthis coin displays the company logo,\nthe company name,the serial number of the coin and the company website address.The reverse face displays the words “HARI PERAYAAN TRADISIONAL MALAYSIA ANNIVERSARY 2011” with drawings of an exposed kerosene lamp representing Hari Raya Celebration,a paper lantern representing Chinese New Year Celebration and betel leaves representing Deepavali Celebration. \n\nThis 1 / 2oz silver coin is placed in a beautiful maroon red presentation box with writings and design compositions in silver.Included in the box is the specification of the coin on a signed card by the CEO of the company.\n\nEach box is very suitable to be given as a gift for Hari Raya or Chinese New Year or Deepavali celebrations.",
                             Detail = "Features: \nName:-HARI PERAYAAN TRADISIONAL MALAYSIA ANNIVERSARY 2011 \nMinter:-SILVER LOT SHOP(M) SDN.BHD. \nMetal:-Silver. \nType:-Coin. \nPurity:-999.9 \nDiameter:-36.02mm. \nThickness:-2mm. \nWeight:-15.55g.",
                             Featured = "No",
@@ -707,7 +708,7 @@ namespace NubexGold.Client.Data.Migrations
                             MetalBrand = "",
                             MetalWeight = 15.550000000000001,
                             ModifiedBy = "",
-                            ModifiedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1741),
+                            ModifiedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8698),
                             Name = "SLS HARI PERAYAAN TRADISIONAL MALAYSIA 1/2OZ 999.0 SILVER COIN",
                             Price = 86.670000000000002,
                             ProductTag = "SilverCoin",
@@ -722,9 +723,9 @@ namespace NubexGold.Client.Data.Migrations
                             ProductId = 31,
                             Certificate = "No",
                             Color = "Silver",
-                            Condition = "A",
+                            ConditionId = 1,
                             CreatedBy = "Administrators",
-                            CreatedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1748),
+                            CreatedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8706),
                             Description = "Specializes in producing a unique fine silver bullion products, Scottsdale Mint is widely known as a manufacturer that produces a wide range of notable and unique product designs and gives excitement to the buyers to collect their valuable bullions, which includes their hot items such as Tombstone Silver Nuggets and old-fashioned Bisbee Silver Bars. Minted in USA, this highly recognized Prey silver bar is made from 5 oz of 999.0 fine silver bar.The brand new design which accentuates the Scottsdale Lion portrays an avant - garde interpretation of the classic hunter vs.prey analogy.Produced with unique rough cut edges and sides, this bar is definitely the fierce looking bar on the bullion market today.",
                             Detail = "Specializes in producing a unique fine silver bullion products, Scottsdale Mint is widely known as a manufacturer that produces a wide range of notable and unique product designs and gives excitement to the buyers to collect their valuable bullions, which includes their hot items such as Tombstone Silver Nuggets and old-fashioned Bisbee Silver Bars. Minted in USA, this highly recognized Prey silver bar is made from 5 oz of 999.0 fine silver bar.The brand new design which accentuates the Scottsdale Lion portrays an avant - garde interpretation of the classic hunter vs.prey analogy.Produced with unique rough cut edges and sides, this bar is definitely the fierce looking bar on the bullion market today.",
                             Featured = "No",
@@ -737,7 +738,7 @@ namespace NubexGold.Client.Data.Migrations
                             MetalBrand = "N/A",
                             MetalWeight = 155.50999999999999,
                             ModifiedBy = "",
-                            ModifiedOn = new DateTime(2022, 3, 23, 13, 23, 21, 907, DateTimeKind.Local).AddTicks(1749),
+                            ModifiedOn = new DateTime(2022, 4, 1, 18, 45, 42, 385, DateTimeKind.Local).AddTicks(8706),
                             Name = "SCOTTSDALE \"PREY\" 5 OZ SILVER 999.0",
                             Price = 770.39999999999998,
                             ProductTag = "SilverBar",
@@ -867,6 +868,17 @@ namespace NubexGold.Client.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("NubexGold.Shared.Product", b =>
+                {
+                    b.HasOne("NubexGold.Shared.Condition", "Condition")
+                        .WithMany()
+                        .HasForeignKey("ConditionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Condition");
                 });
 
             modelBuilder.Entity("NubexGold.Shared.Seller", b =>
