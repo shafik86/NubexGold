@@ -74,19 +74,19 @@ namespace NubexGold.Client.Controller
             try
             {
                 if (product.ProductId == 0)
-                    return BadRequest("Employee ID mismatch");
+                    return BadRequest("Product ID mismatch");
 
                 var productToUpdate = await productRepository.GetProduct(product.ProductId);
 
                 if (productToUpdate == null)
-                    return NotFound($"Employee with Id = {product.ProductId} not found");
+                    return NotFound($"Product with Id = {product.ProductId} not found");
 
                 return await productRepository.UpdateProduct(product);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error updating data");
+                    "Error updating data" + e.ToString());
             }
         }
 
@@ -105,10 +105,11 @@ namespace NubexGold.Client.Controller
                 return CreatedAtAction(nameof(GetProduct),
                     new { id = createdProduct.ProductId }, createdProduct);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error creating new employee record");
+                    "Error creating new product record");
+                
             }
         }
 

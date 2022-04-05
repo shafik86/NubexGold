@@ -71,10 +71,10 @@ namespace NubexGold.Client.Models.Repository
             if (metal is not null)
             {
                 query = query.Where(e => e.Metal == metal);
-            }
-            if (type is not null)
-            {
-                query = query.Where(e => e.Type == type);
+                if (type is not null)
+                {
+                    query = query.Where(e => e.Type == type);
+                }
             }
 
             return await query.ToListAsync();
