@@ -20,7 +20,13 @@ namespace NubexGold.Client.Services
              await httpClient.PostAsJsonAsync("api/products", NewProduct);
             
         }
+        public async Task UpdateProduct(Product UpdateProduct)
+        {
+            await httpClient.PutAsJsonAsync("api/products", UpdateProduct);
 
+
+
+        }
         public async Task DeleteProduct(int id)
         {
             var result = await httpClient.DeleteAsync($"api/products/{id}");
@@ -50,15 +56,9 @@ namespace NubexGold.Client.Services
                 return Enumerable.Empty<Product>();
             }
         }
+       
 
 
 
-        public async Task UpdateProduct(Product UpdateProduct)
-        {
-              await httpClient.PostAsJsonAsync("api/products", UpdateProduct);
-            
-            
-
-        }
     }
 }

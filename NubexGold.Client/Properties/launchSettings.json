@@ -13,7 +13,8 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
 
-      "applicationUrl": "https://localhost:44351;http://localhost",
+      "applicationUrl": "https://localhost:58666;http://localhost",
+      "websocket": "https://localhost:58636",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -8,10 +8,10 @@
 
 <MudContainer class="container-fluid d-flex justify-content-center mb-3">
     <MudGrid>
-        <MudItem xs="12" md="6">
+        <MudItem xs="12" sm="6" md="4">
             <h2 class="justify-content-center">@PageHeader</h2>
         </MudItem>
-        <MudItem xs="12" sm="12">
+        <MudItem xs="12" sm="12" md="6" >
             <MudPaper Elevation="2" Outlined="true" Class="pa-16 ma-2" >
                 <MudGrid>
            
@@ -50,10 +50,6 @@
                             {
                                 <MudSelectItem Value="@item.ConditionId" >@item.ConditionName</MudSelectItem>
                             }
-                            @*<MudSelectItem T="Condition" Value="Condition.CastBar" />
-                            <MudSelectItem T="Condition" Value="Condition.Coin" />
-                            <MudSelectItem T="Condition" Value="Condition.Jewelry" />
-                            <MudSelectItem T="Condition" Value="Condition.MintedBar" />*@
                         </MudSelect>
                     </MudItem>
                     <MudItem xs="12" sm="6">
