@@ -6,10 +6,14 @@ namespace NubexGold.Client.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+
         }
+
+
         public DbSet<Product> Products { get; set; }
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<Condition> Conditions { get; set; }
