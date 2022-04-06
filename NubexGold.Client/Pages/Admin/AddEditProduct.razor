@@ -6,163 +6,220 @@
 
 
 
-<MudContainer class="container-fluid d-flex justify-content-center mb-3">
+<MudContainer class="container-fluid d-flex justify-content-center my-3">
+        <EditForm Model="@ProductModel" OnValidSubmit="OnValidSubmit">
     <MudGrid>
-        <MudItem xs="12" md="6">
-            <h2 class="justify-content-center">@PageHeader</h2>
-        </MudItem>
-        <MudItem xs="12" sm="12">
-            <MudPaper Elevation="2" Outlined="true" Class="pa-16 ma-2" >
-                <MudGrid>
-           
-                    <MudItem xs="12" md="6">
-                        <MudTextField @bind-Value="ProductModel.Name"  Label="Name" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
-                    </MudItem>
-                    <MudItem xs="12" md="6">
-                        <MudTextField @bind-Value="ProductModel.SKU"  Label="SKU" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
-                    </MudItem>
-                    <MudItem xs="12" md="6">
-                        <MudTextField @bind-Value="ProductModel.Description"  Label="Description" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
-                    </MudItem>
-                    <MudItem xs="12" md="6">
-                        <MudTextField @bind-Value="ProductModel.Detail"  Label="Detail" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudSelect T="Metal"  Label="Metal" @bind-Value="ProductModel.Metal" Variant="Variant.Filled" AnchorOrigin="Origin.BottomCenter">
-                   
-                            <MudSelectItem T="Metal" Value="Metal.Gold" />
-                            <MudSelectItem T="Metal" Value="Metal.Jewel" />
-                            <MudSelectItem T="Metal" Value="Metal.Silver" />
-                        </MudSelect>
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudSelect T="Types"  Label="Type" @bind-Value="ProductModel.Type" Variant="Variant.Filled" AnchorOrigin="Origin.BottomCenter">
-                            <MudSelectItem T="Types" Value="Types.Bar" />
-                            <MudSelectItem T="Types" Value="Types.CastBar" />
-                            <MudSelectItem T="Types" Value="Types.Coin" />
-                            <MudSelectItem T="Types" Value="Types.Jewelry" />
-                            <MudSelectItem T="Types" Value="Types.MintedBar" />
-                        </MudSelect>
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudSelect   Label="Condition" @bind-Value="ProductModel.ConditionId"  Variant="Variant.Filled" AnchorOrigin="Origin.BottomCenter">
-                            @foreach (var item in Conditions)
-                            {
-                                <MudSelectItem Value="@item.ConditionId" >@item.ConditionName</MudSelectItem>
-                            }
-                            @*<MudSelectItem T="Condition" Value="Condition.CastBar" />
-                            <MudSelectItem T="Condition" Value="Condition.Coin" />
-                            <MudSelectItem T="Condition" Value="Condition.Jewelry" />
-                            <MudSelectItem T="Condition" Value="Condition.MintedBar" />*@
-                        </MudSelect>
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudTextField @bind-Value="ProductModel.Purify"  Label="Purify" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudTextField @bind-Value="ProductModel.MetalWeight"  Label="Metal Weight (Total Weight)" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudTextField @bind-Value="ProductModel.MetalBrand"  Label="Brand" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudTextField @bind-Value="ProductModel.Weight"  Label="Weight in Gram(g)" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudTextField @bind-Value="ProductModel.Manufacture"  Label="Manufacture" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudTextField @bind-Value="ProductModel.Certificate"  Label="Certificate" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
-                    </MudItem>
-                    <MudItem xs="12" sm="4" >
-                       <MudSwitch @bind-Checked="customstr" Color="Color.Error" Converter="@(new CustomStringToBoolConverter())"> "@(customstr)"</MudSwitch>
-                    </MudItem>
-                   @* <MudItem xs="12" sm="4" >
-                        <MudTextField Label="Switch state" Variant="Variant.Outlined" Converter="@converter" @bind-Value="@tax" Immediate="true"/>
-                    </MudItem>*@
-                    <MudItem xs="12" sm="6">
-                        <MudTextField @bind-Value="ProductModel.Price"  Label="Base Price" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudTextField @bind-Value="ProductModel.Featured"  Label="Featured" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudTextField @bind-Value="ProductModel.Color"  Label="Color" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudTextField @bind-Value="ProductModel.Size"  Label="Size" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudTextField @bind-Value="ProductModel.ProductTag"  Label="Tagging" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
-                    </MudItem>
-                      <MudItem xs="12" sm="12">
-                        <MudGrid>
-                            <MudItem xs="12" sm="6">
-                                <InputFile id="fileInput" OnChange="UploadFilesAsync"  hidden multiple />
-                                    <MudIconButton HtmlTag="label"
-                                       Color="Color.Info"
-                                       Icon="@Icons.Filled.CloudUpload"
-                                       Variant="Variant.Outlined"
-                                       Size="Size.Medium" 
-                                       Style="height:50px; width:50px; border:dotted"
-                                       for="fileInput"
-                                       disabled="@(MyCondition ? true : false)">
-                                    </MudIconButton>
-                    
-           
-           
-                                @if (files != null)
-                                {
-                                    <MudItem xs="12" sm="3" md="2">
-                                        <MudText Typo="@Typo.h6">@files.Count() File@(files.Count() == 1 && files.Count() < 4 ? "" : "s"):</MudText>
-                                    </MudItem>
-                            
-                                
-                                        @foreach (var file in filebase64)
-                                        {
-
-                                         <MudItem xs="6" sm="2">
-                                             <MudChip Icon="@Icons.Filled.AttachFile" Variant="Variant.Text" @key="@file">@file.fileName</MudChip>
-                                             <MudImage Src="@("data:"+@file.contentType+";base64,"+@file.base64data)" Style="border:groove; backdrop-filter:grayscale(); width:100px; height:100px"></MudImage>
-                                         </MudItem>
-                                 
-                                         @*<MudListItem Icon="@Icons.Filled.AttachFile" @key="@file">
-                                             @file.fileName
-                                         </MudListItem>
-                                         <MudListItem>
-                                             <MudImage Src="@("data:"+@file.contentType+";base64,"+@file.base64data)" Style="border:groove; backdrop-filter:grayscale(); width:200px; height:200px"></MudImage>
-                                         </MudListItem>*@
-                                        }
-                            
-                            
-                                }
-                                </MudItem>
-                        </MudGrid>
-                    </MudItem>
-   
-                     @if(ProductModel.ProductId != 0)
-                    {
-                        <MudItem xs="12" sm="12" md="6">
+        <MudPaper Class="pt-6 ma-2 " Width="100%" Elevation="3" >
+            
+                <MudItem xs="12" sm="10" md="8">
+                    <MudText Class="ml-2" Typo="Typo.h3" Align="Align.Start">@PageHeader</MudText>
+                </MudItem>
+            
+        </MudPaper>
+            <MudItem xs="12" sm="12" md="12" >
+                <MudPaper Elevation="2" Outlined="true" Class="pa-16 ma-2" >
+                    <MudGrid>
                             <MudGrid>
-                                <MudItem xs="12" sm="3">
-                                    <MudImage Src="@ProductModel.Image1" Style="border:groove; backdrop-filter:grayscale(); width:100px; height:100px"></MudImage>
-                                    <MudImage Src="@ProductModel.Image2" Style="border:groove; backdrop-filter:grayscale(); width:100px; height:100px"></MudImage>
-                                    <MudImage Src="@ProductModel.Image3" Style="border:groove; backdrop-filter:grayscale(); width:100px; height:100px"></MudImage>
+                        
+                        <MudItem xs="12" sm="10">
+                                        <InputFile id="fileInput" OnChange="UploadFilesAsync"  hidden  />
+                                            <MudIconButton HtmlTag="label"
+                                               Color="Color.Info"
+                                               Icon="@Icons.Filled.CloudUpload"
+                                               Variant="Variant.Outlined"
+                                               Size="Size.Medium" 
+                                               Style="height:30px; width:30px; border:groove; animation-fill-mode:forwards; animation-duration:10;"
+                                               for="fileInput"
+                                               disabled="@(MyCondition ? true : false)">
+                                            </MudIconButton>
                                 </MudItem>
+                                <MudItem xs="12" sm="6" md="2">
+                                    <MudButton ButtonType=ButtonType.Button OnClick="selet"></MudButton>
+                                </MudItem>
+                        @if (ProductModel.Image1 != null)
+                        {
+                            <MudItem xs="12" sm="6" md="4" Class="thumbnail">
+                                <MudImage Src="@ProductModel.Image1" Class="d-flex pa-5" Height="200" Width="200" Elevation="3" onchange="@(() => Snackbar.Add("dah",Severity.Error))"></MudImage>
+                                <MudText Typo="Typo.subtitle2" Class="" Align="Align.Justify" GutterBottom="false">Image 1 (Face)</MudText>
+                                <MudIconButton Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" OnClick="@(() => DelClick("1"))" Size="Size.Medium"/>
+                            </MudItem>
+                        }
+                 
+                        @if (ProductModel.Image2 != null)
+                        {
+                            <MudItem xs="12" sm="6" md="4" Class="" >
+                                <MudImage Src="@ProductModel.Image2" Class="d-flex pa-5"  Height="200" Width="200" Elevation="3"></MudImage>
+                                <MudText Typo="Typo.subtitle2" Class="" Align="Align.Justify" GutterBottom="false">Image 2 (Cert)</MudText>
+                                <MudIconButton Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" OnClick="@(() => DelClick("2"))" Size="Size.Medium"/>
+                            </MudItem>
+                        }
+                  
+                        @if (ProductModel.Image3 != null)
+                        {
+                            <MudItem xs="12" sm="6" md="4" Class="">
+                                <MudImage Src="@ProductModel.Image3" Class="d-flex pa-5"  Height="200" Width="200" Elevation="3"></MudImage>
+                                <MudText Typo="Typo.subtitle2" Class="" Align="Align.Justify" GutterBottom="false">Image 3 (Back)</MudText>
+                                <MudIconButton Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" OnClick="@(() => DelClick("3"))" Size="Size.Medium"/>
+                            </MudItem>
+                        }
+                   
+                        @*else
+                        {
+                            <MudItem xs="12" sm="4" md="4" Class="">
+                                <MudImage Src="@ProductModel.Image3" Class="d-flex pa-5"  Height="200" Width="200" Elevation="3"></MudImage>
+                            </MudItem>
+                            @foreach (var file in base64image)
+                            {
+                                <MudItem xs="12" sm="4" md="4" Class="">
+                                     <MudListItem Icon="@Icons.Filled.AttachFile" @key="@file">
+                                         @file.contentType <code>@file.Size bytes</code>
+                                    </MudListItem>
+                                    
+                            
+                                        <MudImage id="@file.First()" Src="@file" Style="border:groove; backdrop-filter:grayscale(); width:200px; height:200px"></MudImage>
+                                        <MudIconButton Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" OnClick="@(() => DelClick(file.Count().ToString()))" Size="Size.Medium"/>
+                            
+                                        <MudFab Color="Color.Secondary" OnClick="EditClick" StartIcon="@Icons.Material.Filled.Edit" Size="Size.Small" />
+                                    
+                               </MudItem>
+                            }   
+                        }*@
+
+                          
+                           
+
+                        
+                       </MudGrid>
+                        
+                        
+                 
+                        <MudItem xs="12" md="6">
+                            <MudTextField @bind-Value="ProductModel.Name"  Label="Name" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                        </MudItem>
+                        <MudItem xs="12" md="6">
+                            <MudTextField @bind-Value="ProductModel.SKU"  Label="SKU" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                        </MudItem>
+                        <MudItem xs="12" md="6">
+                            <MudTextField @bind-Value="ProductModel.Description" Lines="7"  Label="Description" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                        </MudItem>
+                        <MudItem xs="12" md="6">
+                            <MudTextField @bind-Value="ProductModel.Detail" Lines="7"  Label="Detail" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                        </MudItem>
+                        <MudItem xs="12" sm="6" md="3">
+                            <MudSelect T="Metal"  Label="Metal" @bind-Value="ProductModel.Metal" Variant="Variant.Filled" Margin="Margin.Normal" AnchorOrigin="Origin.BottomCenter">
+                   
+                                <MudSelectItem T="Metal" Value="Metal.Gold" />
+                                <MudSelectItem T="Metal" Value="Metal.Jewel" />
+                                <MudSelectItem T="Metal" Value="Metal.Silver" />
+                            </MudSelect>
+                        </MudItem>
+                        <MudItem xs="12" sm="6" md="3">
+                            <MudSelect T="Types"  Label="Type" @bind-Value="ProductModel.Type" Variant="Variant.Filled" Margin="Margin.Normal" AnchorOrigin="Origin.BottomCenter">
+                                <MudSelectItem T="Types" Value="Types.Bar" />
+                                <MudSelectItem T="Types" Value="Types.CastBar" />
+                                <MudSelectItem T="Types" Value="Types.Coin" />
+                                <MudSelectItem T="Types" Value="Types.Jewelry" />
+                                <MudSelectItem T="Types" Value="Types.MintedBar" />
+                            </MudSelect>
+                        </MudItem>
+                        <MudItem xs="12" sm="6" md="3">
+                            <MudSelect   Label="Condition" @bind-Value="ProductModel.ConditionId"  Variant="Variant.Filled" Margin="Margin.Normal" AnchorOrigin="Origin.BottomCenter">
+                                @foreach (var item in Conditions)
+                                {
+                                    <MudSelectItem Value="@item.ConditionId" >@item.ConditionName</MudSelectItem>
+                                }
+                            </MudSelect>
+                        </MudItem>
+                        <MudItem xs="12" sm="6" md="3">
+                            <MudTextField @bind-Value="ProductModel.Purify"  Label="Purify" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                        </MudItem>
+                        <MudItem xs="12" sm="6" md="3">
+                            <MudTextField @bind-Value="ProductModel.Weight" HelperText="Net Weight"  Label="Weight in Gram(g)" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                        </MudItem>
+                        <MudItem xs="12" sm="6" md="3">
+                            <MudTextField @bind-Value="ProductModel.MetalWeight"  Label="Metal Weight (Total Weight)" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                        </MudItem>
+                        <MudItem xs="12" sm="6" md="3">
+                            <MudTextField @bind-Value="ProductModel.MetalBrand"  Label="Brand" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                        </MudItem>
+                        <MudItem xs="12" sm="6" md="3">
+                            <MudTextField @bind-Value="ProductModel.Manufacture"  Label="Manufacture" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                        </MudItem>
+                        <MudItem xs="12" sm="4" md="2">
+                            <MudSelect T="string"  Label="Certificate" @bind-Value="ProductModel.Certificate" Variant="Variant.Filled" Margin="Margin.Normal" AnchorOrigin="Origin.BottomCenter">
+                                <MudSelectItem Value="@("Yes")">Yes</MudSelectItem>
+                                <MudSelectItem Value="@("No")">No</MudSelectItem>
+                                </MudSelect>
+                        </MudItem>
+                       @* <MudItem xs="12" sm="4" >
+                            <MudTextField Label="Switch state" Variant="Variant.Outlined" Converter="@converter" @bind-Value="@tax" Immediate="true"/>
+                        </MudItem>*@
+                        @if (ProductModel.Type == Types.Jewelry)
+                        {
+                            <MudItem xs="12" sm="4" md="2">
+                                <MudTextField @bind-Value="ProductModel.Color"  Label="Color" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                            </MudItem>
+                            
+                        }
+                        <MudItem xs="12" sm="4" md="2">
+                            <MudTextField @bind-Value="ProductModel.Size"  Label="Size" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                        </MudItem>
+                        <MudItem xs="12" sm="4" md="2">
+                            <MudTextField @bind-Value="ProductModel.ProductTag"  Label="Tagging" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                        </MudItem>
+                        <MudItem xs="12" sm="4" md="2">
+                            <MudTextField @bind-Value="ProductModel.Price"  Label="Base Price" Variant="Variant.Filled" Margin="Margin.Normal"></MudTextField> 
+                        </MudItem>
+                        <MudItem xs="12" sm="4" md="2">
+                            <MudSelect T="string"  Label="Featured" @bind-Value="ProductModel.Featured" Variant="Variant.Filled" Margin="Margin.Normal" AnchorOrigin="Origin.BottomCenter">
+                                <MudSelectItem Value="@("Yes")">Yes</MudSelectItem>
+                                <MudSelectItem Value="@("No")">No</MudSelectItem>
+                                </MudSelect>
+                        </MudItem>
+                        <MudItem xs="12" sm="4" md="2" >
+                            <MudInputLabel>Tax :</MudInputLabel>
+                            <MudRadioGroup onmouseover="addEventListener(KeyboardEvent = enter)" id="istax" @bind-SelectedOption="ProductModel.IsTax"  onchange="selet" >
+                                <MudRadio Option="true" Color="Color.Primary">Yes</MudRadio>
+                                <MudRadio Option="false" Color="Color.Secondary">No</MudRadio>
+                            </MudRadioGroup>
+                            @*<MudSwitch @bind-Checked="customstr" Color="Color.Error" Converter="@(new CustomStringToBoolConverter())"> "@(customstr)"</MudSwitch>*@
+                        </MudItem>
+                          <MudItem xs="12" sm="12">
+                            <MudGrid>
+                                
                             </MudGrid>
                         </MudItem>
-                    }
+   
+                         @*@if(ProductModel.ProductId != 0)
+                        {
+                            <MudItem xs="12" sm="12" md="6">
+                                <MudGrid>
+                                    <MudItem xs="12" sm="3">
+                                        <MudImage Src="@ProductModel.Image1" Style="border:groove; backdrop-filter:grayscale(); width:100px; height:100px"></MudImage>
+                                        <MudImage Src="@ProductModel.Image2" Style="border:groove; backdrop-filter:grayscale(); width:100px; height:100px"></MudImage>
+                                        <MudImage Src="@ProductModel.Image3" Style="border:groove; backdrop-filter:grayscale(); width:100px; height:100px"></MudImage>
+                                    </MudItem>
+                                </MudGrid>
+                            </MudItem>
+                        }*@
             
-                </MudGrid>
-            </MudPaper>
-        </MudItem>
-         <MudItem xs="12" sm="12">
-        <MudPaper Elevation="2" Class="pa-16" Square="true">
-                <MudItem xs="12" sm="6">
-                        <MudButton Variant="Variant.Filled" OnClick="HandleValidSubmit" Color="Color.Primary">Save</MudButton>
-                    </MudItem>
-            </MudPaper>
-        </MudItem>
+                    </MudGrid>
+                </MudPaper>
+            </MudItem>
+             
+            
     </MudGrid>
+                <MudPaper Elevation="2" Class="pt-6 mb-3" Width="100%">
+            <MudGrid Class="ml-4">
+                   <MudItem xs="12" sm="10" >
+                   </MudItem>
+                   <MudItem xs="12" sm="2"  >
+                                <MudButton IconClass="@Icons.Material.Filled.Save" Variant="Variant.Filled" ButtonType="ButtonType.Submit" Color="Color.Primary">Save</MudButton>
+                                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Reset" Color="Color.Primary" OnClick="@(() => navigation.NavigateTo("/product"))">Reset</MudButton>
+                   </MudItem>
+                    
+            </MudGrid>
+                </MudPaper>
+        </EditForm>
 </MudContainer>
 

@@ -16,69 +16,136 @@ namespace NubexGold.Client.Pages.Admin
         public IMapper Mapper { get; set; }
         [Inject]
         public NavigationManager navigation { get; set; }
+        [Inject]
+        public ISnackbar Snackbar{ get; set; }
         public Product product { get; set; } = new Product();
         public IEnumerable<Condition> Conditions { get; set; } = new List<Condition>();
         public string Pagetitle { get; set; } = string.Empty;
         public string PageHeader { get; set; } = string.Empty;
-        [Inject]
-        public ISnackbar Snackbar{ get; set; }
 
         public AddEditModel ProductModel { get; set; } = new AddEditModel();
         [Parameter]
         public string Id { get; set; }
         IList<IBrowserFile> files = new List<IBrowserFile>();
         List<ImageFile> filebase64 = new List<ImageFile>();
+        public IList<ImageFile> Filebase64set = new List<ImageFile>();
         public List<string> base64image { get; set; } = new List<string>();
         public string dis { get; set; } = "";
         public bool tax { get; set; } = false;
         public string customstr { get; set; } = "NO";
         public bool MyCondition { get; set; } = false;
         public string message { get; set; } = string.Empty;
+        public int counting { get; set; }=0;
         private async Task UploadFilesAsync(InputFileChangeEventArgs e)
         {
+            counting += e.FileCount;
+            
             foreach (var file in e.GetMultipleFiles())
             {
-                if(files.Count() >= 3)
-                {
-                    MyCondition = true;
-                    return;
-                }
-                else
-                {
+               
+                
                     files.Add(file);
-                    var resizedFile = await file.RequestImageFileAsync(file.ContentType, 640, 480);
+                    var resizedFile = await file.RequestImageFileAsync(file.ContentType, 500,300);
                     var buf = new byte[resizedFile.Size];
                     using (var stream = resizedFile.OpenReadStream())
                     {
-                        await stream.ReadAsync(buf);
+                    
+                        var result = await stream.ReadAsync(buf);
+                        await Task.Delay(1000);
+
+                        var i = Task.Run(() =>
+                        {
+
+                            filebase64.Add(new ImageFile
+                            {
+                                ImageId = counting,
+                                base64data = Convert.ToBase64String(buf),
+                                contentType = file.ContentType,
+                                fileName = file.Name,
+                                Size = file.Size.ToString()
+
+                            });
+                        Snackbar.Add("siap image " + counting, Severity.Success);
+                        });
                     }
-                    filebase64.Add(new ImageFile
-                    {
-                        base64data = Convert.ToBase64String(buf),
-                        contentType = file.ContentType,
-                        fileName = file.Name
-                    });
-                    if(files.Count() == 3)
-                        MyCondition = true;
-                }
-            }
+                
             if (filebase64 != null)
             {
-                
-                foreach (var file in filebase64)
+                foreach (var ifile in filebase64)
                 {
 
                     //base64image = "data:" + file.contentType + ";base64," + @file.base64data;
-                    base64image.Add("data:" + file.contentType + ";base64," + @file.base64data);
+                    base64image.Add("data:" + ifile.contentType + ";base64," + ifile.base64data);
+                    if (ifile.ImageId == 1)
+                    {
+                        ProductModel.Image1 = ("data:" + ifile.contentType + ";base64," + ifile.base64data);
+                            StateHasChanged();
+                        }
+                    if (ifile.ImageId == 2)
+                    {
+                        ProductModel.Image2 = ("data:" + ifile.contentType + ";base64," + ifile.base64data);
+                            StateHasChanged();
+                        }
+                    if (ifile.ImageId == 3)
+                    {
+                        ProductModel.Image3 = ("data:" + ifile.contentType + ";base64," + ifile.base64data);
+                            StateHasChanged();
+                        }
                     StateHasChanged();
                 }
             }
+                    StateHasChanged();
+            }
             //TODO upload the files to the server
+            if (counting == 3)
+            {
+                MyCondition = true;
+                return;
+            }
+            StateHasChanged();
         }
-
-
+        void DelClick(string name)
+        {
+            int.TryParse(name, out int c);
+            
+            var result = filebase64.FirstOrDefault(e => e.ImageId == c);
+            //if (result != null)
+            //    filebase64.Remove(result);
+            switch (c)
+            {
+                case 1: ProductModel.Image1 = null;
+                    StateHasChanged();
+                    break; 
+                case 2: ProductModel.Image2 = null;
+                    StateHasChanged();
+                    break;
+                case 3: ProductModel.Image3 = null;
+                    StateHasChanged();
+                    break;
+                default: break;
+            }
+            StateHasChanged();
+            MyCondition = false;
+            if (counting >= 1)
+            {
+                //files.RemoveAt(counting);
+                counting -= 1;
+            }
+            else
+            {
+                counting = 0;
+            }
+            //filebase64.Clear();
+            //base64image = "";
+        }
+ 
         protected override async Task OnInitializedAsync()
         {
+
+            if (counting == 3)
+            {
+                MyCondition = true;
+            }
             int.TryParse(Id, out int ProductId);
             if (ProductId != 0 )
             {
@@ -114,8 +181,13 @@ namespace NubexGold.Client.Pages.Admin
             Conditions = await conditionService.GetConditions();
             Mapper.Map( product, ProductModel);
         }
-
-        public async void  HandleValidSubmit()
+        void selet()
+        {
+            var m = ProductModel.Image2;
+            Snackbar.Add(m, Severity.Success);
+            StateHasChanged();
+        }
+        public async void OnValidSubmit()
         {
             product = new Product();
                 Mapper.Map(ProductModel, product);
