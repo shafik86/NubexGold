@@ -36,12 +36,12 @@
                 <MudNavLink Href="/shoppingcart" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCart" Disabled="false">Cart</MudNavLink>*@
                 @*<MudNavLink Href="/Seller" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storefront" Disabled="false">Seller</MudNavLink>*@
                 <MudNavGroup Title="Admin" Expanded="false">
-                    <MudNavLink Href="Product">Add Product</MudNavLink>
-                    <MudNavLink Href="productList">Product List</MudNavLink>
-                    <MudNavLink Href="#">Seller List</MudNavLink>
+                    <MudNavLink Href="Product" Match="NavLinkMatch.Prefix">Add Product</MudNavLink>
+                    <MudNavLink Href="productList" Match="NavLinkMatch.Prefix">Product List</MudNavLink>
+                    <MudNavLink Href="SellerList" Match="NavLinkMatch.Prefix">Seller List</MudNavLink>
                 </MudNavGroup>
                 <MudNavGroup Title="Settings" Expanded="false">
-                    <MudNavLink Href="authentication/profile">Users</MudNavLink>
+                    <MudNavLink Href="identity/account/profile">Users</MudNavLink>
                     <MudNavLink Href="/security">Security</MudNavLink>
                 </MudNavGroup>
                 <MudNavLink Href="/about" Icon="@Icons.Filled.Diamond">About</MudNavLink>

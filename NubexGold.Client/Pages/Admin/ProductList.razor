@@ -3,13 +3,16 @@
 @using System.Net.Http.Json
 
 @inject HttpClient httpClient
-
+@if (Products.Count() <=0 )
+{
+    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-7" />
+}
 
 <PageTitle>@Pagetitle</PageTitle>
         @*<EditForm Model="@ProductModel" OnValidSubmit="OnValidSubmit">
 
                 </EditForm>*@
-    <MudTable Items="@Elements" Dense="@dense" Hover="@hover" ReadOnly="@ronly" CanCancelEdit="@canCancelEdit" Filter="new Func<Product,bool>(FilterFunc)"
+    <MudTable Items="@Products" Dense="@dense" Hover="@hover" ReadOnly="@ronly" CanCancelEdit="@canCancelEdit" Filter="new Func<Product,bool>(FilterFunc)"
               @bind-SelectedItem="selectedItem1" SortLabel="Sort By" CommitEditTooltip="Commit Edit"
               OnCommitEditClick="@(() => Snackbar.Add("Commit Edit Handler Invoked"))" RowEditPreview="BackupItem" RowEditCancel="ResetItemToOriginalValues"
               RowEditCommit="ItemHasBeenCommitted" IsEditRowSwitchingBlocked="@blockSwitch">
@@ -19,12 +22,12 @@
             <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
         </ToolBarContent>
         <ColGroup>
-            <col style="width:50px;" />
-            <col style="width:80px;" />
+           @* <col style="width:190px;" />
+            <col style="width:50%;" />
             <col style="width:20%;" />
             <col />
             <col />
-            <col style="width:20%;" />
+            <col style="width:20%;" />*@
         </ColGroup>
         <HeaderContent>
             <MudTh><MudTableSortLabel SortBy="new Func<Product, object>(x=>x.SKU)">SKU</MudTableSortLabel></MudTh>
@@ -34,24 +37,28 @@
             <MudTh><MudTableSortLabel SortBy="new Func<Product, object>(x=>x.Price)">From (MYR)</MudTableSortLabel></MudTh>
         </HeaderContent>
         <RowTemplate>
-            <MudTd DataLabel="Nr">@context.SKU</MudTd>
+            <MudTd DataLabel="SKU">@context.SKU</MudTd>
             <MudTd DataLabel="Name">@context.Name</MudTd>
-            <MudTd DataLabel="Sign">@context.Metal</MudTd>
-            <MudTd DataLabel="Position">@context.Weight</MudTd>
-            <MudTd DataLabel="Molar mass">@context.Price</MudTd>
+            <MudTd DataLabel="Metal">@context.Metal</MudTd>
+            <MudTd DataLabel="Weight">@context.Weight</MudTd>
+            <MudTd DataLabel="Price">@context.Price</MudTd>
         </RowTemplate>
         <RowEditingTemplate>
-            <MudTd DataLabel="Nr">@context.SKU</MudTd>
+            <MudTd DataLabel="SKU">@context.SKU</MudTd>
             <MudTd DataLabel="Name">
                 <MudTextField @bind-Value="@context.Name" Required />
             </MudTd>
-            <MudTd DataLabel="Sign">
-                <MudTextField @bind-Value="@context.Metal" Required />
+            <MudTd DataLabel="Metal">
+                <MudSelect T="Metal"  Label="Metal" @bind-Value="@context.Metal" Variant="Variant.Text" Margin="Margin.Normal" AnchorOrigin="Origin.BottomCenter" Required>
+                    <MudSelectItem T="Metal" Value="Metal.Gold" />
+                    <MudSelectItem T="Metal" Value="Metal.Jewel" />
+                    <MudSelectItem T="Metal" Value="Metal.Silver" />
+                </MudSelect>
             </MudTd>
-            <MudTd DataLabel="Position">
+            <MudTd DataLabel="Weight">
                 <MudNumericField @bind-Value="@context.Weight" Required Min="1" />
             </MudTd>
-            <MudTd DataLabel="Molar mass">
+            <MudTd DataLabel="Price">
                 <MudTextField @bind-Value="@context.Price" Required />
             </MudTd>
         </RowEditingTemplate>
