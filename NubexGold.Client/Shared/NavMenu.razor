@@ -36,16 +36,29 @@
                     <MudNavLink Href="/products/Gold" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">GOLD DINAR</MudNavLink>
                 </MudNavGroup>
                 </MudNavGroup>
-                <MudNavGroup Title="ADMIN" Icon="@Icons.Filled.AdminPanelSettings" Expanded="false">
-                    <MudNavLink Href="Product" Icon="@Icons.Filled.AddShoppingCart">ADD PRODUCT</MudNavLink>
-                    <MudNavLink Href="productList" Icon="@Icons.Filled.ProductionQuantityLimits">PRODUCT LIST</MudNavLink>
-                    <MudNavLink Href="#" Icon="@Icons.Filled.Sell">SELLER LIST</MudNavLink>
+                @*<MudNavLink Href="/dashboard" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">DASHBOARD</MudNavLink>
+                <MudNavLink Href="/Checkout" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCartCheckout">CHECKOUT</MudNavLink>
+                <MudNavLink Href="/shoppingcart" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCart" Disabled="false">CART</MudNavLink>*@
+                @*<MudNavLink Href="/Seller" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storefront" Disabled="false">SELLER</MudNavLink>*@
+                
+               @* <MudNavLink Href="/Checkout" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCartCheckout">Checkout</MudNavLink>
+                <MudNavLink Href="/shoppingcart" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCart" Disabled="false">Cart</MudNavLink>*@
+                @*<MudNavLink Href="/Seller" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storefront" Disabled="false">Seller</MudNavLink>*@
+                <MudNavGroup Title="Admin" Expanded="false">
+                    <MudNavLink Href="Product" Match="NavLinkMatch.Prefix">Add Product</MudNavLink>
+                    <MudNavLink Href="productList" Match="NavLinkMatch.Prefix">Product List</MudNavLink>
+                    <MudNavLink Href="SellerList" Match="NavLinkMatch.Prefix">Seller List</MudNavLink>
                 </MudNavGroup>
-                <MudNavGroup Title="SETTINGS" Icon="@Icons.Filled.Settings" Expanded="false">
-                    <MudNavLink Href="authentication/profile" Icon="@Icons.Filled.VerifiedUser">USERS</MudNavLink>
-                    <MudNavLink Href="/security" Icon="@Icons.Filled.Security">SECURITY</MudNavLink>
+                <MudNavGroup Title="Settings" Expanded="false">
+                    <MudNavLink Href="identity/account/profile">Users</MudNavLink>
+                    <MudNavLink Href="/security">Security</MudNavLink>
                 </MudNavGroup>
                 <MudNavLink Href="/about" Icon="@Icons.Filled.Diamond">ABOUT</MudNavLink>
+                <MudNavGroup Title="SHOPPING" Expanded="false">
+                    <MudNavLink Href="/cart">CART</MudNavLink>
+                    <MudNavLink Href="/shoppingcart">SHOPPING CART</MudNavLink>
+                    <MudNavLink Href="/checkout">CHECKOUT</MudNavLink>
+                </MudNavGroup>
             </Authorized>
             <NotAuthorized>
                     <MudNavLink Href="/" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">HOME</MudNavLink>

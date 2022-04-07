@@ -5,39 +5,42 @@
     
     <MudGrid Spacing="12" Class="mt-2">
         <MudItem xs="12">
-            <MudText Typo="Typo.h5" GutterBottom="true">Items</MudText>
-            <MudPaper Class="d-flex flex-column" Style="height:100%;" Outlined="true">
+            <MudText Typo="Typo.h5" GutterBottom="true" Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Order Summary</MudText>
+            <MudPaper Class="d-flex flex-column" Style="height:100%; background-color:#F5F5F5" Outlined="false">
                 <MudList Clickable="true">
                     <MudListItem Icon="@Icons.Material.Filled.CurrencyBitcoin">
                         <div class="d-flex">
                             <MudText>@PampLady</MudText>
-                            <MudText Inline="true" Class="ml-auto">MYR @PampLadyPrice</MudText>
+                            <MudText Inline="true" Class="ml-auto" Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">MYR @PampLadyPrice</MudText>
                         </div>
                     </MudListItem>
+                    <br />
                     <MudListItem Icon="Image/e.jpeg">
                         <div class="d-flex">
                             <MudText>@PampCast</MudText>
-                            <MudText Class="ml-auto">MYR @PampCastPrice</MudText>
+                            <MudText Class="ml-auto" Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">MYR @PampCastPrice</MudText>
                         </div>
                     </MudListItem>
+                    <br />
                     <MudListItem Icon="@Icons.Material.Filled.CurrencyBitcoin">
                         <div class="d-flex">
                             <MudText>@KelantanGold</MudText>
-                            <MudText Class="ml-auto">MYR @KelantanGoldPrice</MudText>
+                            <MudText Class="ml-auto" Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">MYR @KelantanGoldPrice</MudText>
                         </div>
                     </MudListItem>
+                    <br />
                     <MudListItem Icon="@Icons.Material.Filled.CurrencyBitcoin">
                         <div class="d-flex">
                             <MudText>@NubexGold</MudText>
-                            <MudText Class="ml-auto">MYR @NubexGoldPrice</MudText>
-                        </div>
+                            <MudText Class="ml-auto" Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">MYR @NubexGoldPrice </MudText>
+>                        </div>
                     </MudListItem>
                 </MudList>
                 <div class="mt-auto">
                     <MudDivider />
                     <div class="d-flex pa-4">
-                        <MudText>Total:</MudText>
-                        <MudText Class="ml-auto"><b>MYR @Total</b></MudText>
+                        <MudText Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Total:</MudText>
+                        <MudText Class="ml-auto"><b Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">MYR @Total</b></MudText>
                     </div>
                 </div>                
             </MudPaper>
