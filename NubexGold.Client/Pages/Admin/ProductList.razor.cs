@@ -34,11 +34,11 @@ namespace NubexGold.Client.Pages.Admin
         private Product elementBeforeEdit;
         private HashSet<Product> selectedItems1 = new HashSet<Product>();
 
-        private IEnumerable<Product> Elements = new List<Product>();
+        //private IEnumerable<Product> Elements = new List<Product>();
 
         protected override async Task OnInitializedAsync()
         {
-            Elements = await productService.GetProducts();
+            Products = await productService.GetProducts();
         }
 
         private void ClearEventLog()
