@@ -9,7 +9,7 @@
         @*<EditForm Model="@ProductModel" OnValidSubmit="OnValidSubmit">
 
                 </EditForm>*@
-    <MudTable Items="@Elements" Dense="@dense" Hover="@hover" ReadOnly="@ronly" CanCancelEdit="@canCancelEdit" Filter="new Func<Product,bool>(FilterFunc)"
+    <MudTable Items="@Products" Dense="@dense" Hover="@hover" ReadOnly="@ronly" CanCancelEdit="@canCancelEdit" Filter="new Func<Product,bool>(FilterFunc)"
               @bind-SelectedItem="selectedItem1" SortLabel="Sort By" CommitEditTooltip="Commit Edit"
               OnCommitEditClick="@(() => Snackbar.Add("Commit Edit Handler Invoked"))" RowEditPreview="BackupItem" RowEditCancel="ResetItemToOriginalValues"
               RowEditCommit="ItemHasBeenCommitted" IsEditRowSwitchingBlocked="@blockSwitch">
