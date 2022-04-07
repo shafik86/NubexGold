@@ -21,7 +21,7 @@ namespace NubexGold.Shared
         public string AccNumber { get; set; }
         public string BankName { get; set; }
         public string BankHolder { get; set; }
-        public Product Product { get; set; }
+        public int ProductId { get; set; }
         public double Quantity { get; set; }
 
     }
