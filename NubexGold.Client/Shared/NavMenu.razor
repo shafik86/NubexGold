@@ -8,9 +8,18 @@
             <Authorized>
                 @*<MudNavLink Href="/dashboard" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">Dashboard</MudNavLink>*@
                 <MudNavLink Href="/" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Home">HOME</MudNavLink>
-                <MudNavLink Href="/News" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Newspaper">NEWS</MudNavLink>
                 <MudNavLink Href="#" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.BusinessCenter">SELLER CENTER</MudNavLink>
                 <MudNavLink Href="/Auction" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Sell">AUCTION</MudNavLink>
+                <MudNavGroup Title="NEWS" Icon="@Icons.Filled.Newspaper" Expanded="false">
+                    <MudNavLink Href="/Articles" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storage">ARTICLES</MudNavLink>
+                    <MudNavLink Href="/Events" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">EVENTS</MudNavLink>
+                    <MudNavLink Href="/FeaturedWriters" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">FEATURED WRITERS</MudNavLink>
+                    <MudNavLink Href="/Lifestyle" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">LIFESTYLE</MudNavLink>
+                    <MudNavLink Href="/Media" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">MEDIA</MudNavLink>
+                    <MudNavLink Href="/MintageGuide" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">MINTAGE GUIDE</MudNavLink>
+                    <MudNavLink Href="/News" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">NEWS</MudNavLink>
+                    <MudNavLink Href="/WorthlessPaper" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">WORTHLESS PAPER</MudNavLink>
+                </MudNavGroup>
                 <MudNavGroup Title="PRODUCTS" Icon="@Icons.Filled.Storage" Expanded="false">
                 <MudNavLink Href="/products" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storage">ALL PRODUCTS</MudNavLink>
                 <MudNavGroup Title="SILVER" Icon="@Icons.Filled.DarkMode" Expanded="false">
@@ -27,24 +36,16 @@
                     <MudNavLink Href="/products/Gold" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">GOLD DINAR</MudNavLink>
                 </MudNavGroup>
                 </MudNavGroup>
-                @*<MudNavLink Href="/dashboard" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">DASHBOARD</MudNavLink>
-                <MudNavLink Href="/Checkout" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCartCheckout">CHECKOUT</MudNavLink>
-                <MudNavLink Href="/shoppingcart" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCart" Disabled="false">CART</MudNavLink>*@
-                @*<MudNavLink Href="/Seller" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storefront" Disabled="false">SELLER</MudNavLink>*@
-                
-               @* <MudNavLink Href="/Checkout" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCartCheckout">Checkout</MudNavLink>
-                <MudNavLink Href="/shoppingcart" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCart" Disabled="false">Cart</MudNavLink>*@
-                @*<MudNavLink Href="/Seller" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storefront" Disabled="false">Seller</MudNavLink>*@
-                <MudNavGroup Title="Admin" Expanded="false">
-                    <MudNavLink Href="Product">Add Product</MudNavLink>
-                    <MudNavLink Href="productList">Product List</MudNavLink>
-                    <MudNavLink Href="#">Seller List</MudNavLink>
+                <MudNavGroup Title="ADMIN" Icon="@Icons.Filled.AdminPanelSettings" Expanded="false">
+                    <MudNavLink Href="Product" Icon="@Icons.Filled.AddShoppingCart">ADD PRODUCT</MudNavLink>
+                    <MudNavLink Href="productList" Icon="@Icons.Filled.ProductionQuantityLimits">PRODUCT LIST</MudNavLink>
+                    <MudNavLink Href="#" Icon="@Icons.Filled.Sell">SELLER LIST</MudNavLink>
                 </MudNavGroup>
-                <MudNavGroup Title="Settings" Expanded="false">
-                    <MudNavLink Href="authentication/profile">Users</MudNavLink>
-                    <MudNavLink Href="/security">Security</MudNavLink>
+                <MudNavGroup Title="SETTINGS" Icon="@Icons.Filled.Settings" Expanded="false">
+                    <MudNavLink Href="authentication/profile" Icon="@Icons.Filled.VerifiedUser">USERS</MudNavLink>
+                    <MudNavLink Href="/security" Icon="@Icons.Filled.Security">SECURITY</MudNavLink>
                 </MudNavGroup>
-                <MudNavLink Href="/about" Icon="@Icons.Filled.Diamond">About</MudNavLink>
+                <MudNavLink Href="/about" Icon="@Icons.Filled.Diamond">ABOUT</MudNavLink>
             </Authorized>
             <NotAuthorized>
                     <MudNavLink Href="/" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">HOME</MudNavLink>
@@ -88,13 +89,22 @@
     </nav>
 </div>
 
+                <MudNavLink Href="/dashboard" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">DASHBOARD</MudNavLink>
+                <MudNavLink Href="/Checkout" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCartCheckout">CHECKOUT</MudNavLink>
+                <MudNavLink Href="/shoppingcart" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCart" Disabled="false">CART</MudNavLink>
+                <MudNavLink Href="/Seller" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storefront" Disabled="false">SELLER</MudNavLink>
+                
+                <MudNavLink Href="/Checkout" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCartCheckout">Checkout</MudNavLink>
+                <MudNavLink Href="/shoppingcart" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCart" Disabled="false">Cart</MudNavLink>
+                <MudNavLink Href="/Seller" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storefront" Disabled="false">Seller</MudNavLink>*@
+
 @code {
-    private bool collapseNavMenu = true;
+    //private bool collapseNavMenu = true;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    //private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}*@
+    //private void ToggleNavMenu()
+    //{
+    //    collapseNavMenu = !collapseNavMenu;
+    //}
+}
