@@ -2,6 +2,7 @@ global using NubexGold.Client.Data;
 global using NubexGold.Client.Models.Repository;
 global using NubexGold.Client.Services;
 global using NubexGold.Shared;
+global using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -33,7 +34,7 @@ builder.Services.AddSingleton(new HttpClient
 }
 );
 builder.Services.AddScoped<IProductService, ProductService>();
-
+builder.Services.AddScoped<ISellerService, SellerService >();
 builder.Services.AddScoped<IConditionService, ConditionService>();
 builder.Services.AddAutoMapper(typeof(ProductProfile));
 
@@ -50,6 +51,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ISellerRepository, SellerRepository>();
 builder.Services.AddScoped<IConditionRepository, ConditionRepository>();
 //builder.Services.AddScoped<IProductService, ProductService>();
 //builder.Services.AddScoped<IConditionService, IConditionService>();
@@ -60,7 +62,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
     app.UseSwagger();
-    //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NubexGold.Client v1"));
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NubexGold.Client v1"));
 }
 else
 {

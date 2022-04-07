@@ -16,11 +16,11 @@ else
         <MudGrid Spacing="6" Class="mt-16" >
             <MudItem xs="7">
                 <MudText  Typo="Typo.h5">
-                    @product.Name.ToString() @product.Purify.ToString() <br/> 
+                    @product.ProductName.ToString() @product.Purify.ToString() <br/> 
                     
                     Cond : @Conds | Weight : @Weight.ToString()g | Seller : @From
                 </MudText>
-                <MudText Typo="Typo.subtitle2">#SKU : @product.SKU.ToString()</MudText>
+                <MudText Typo="Typo.subtitle2">#SKU : @product.ProductSKU.ToString()</MudText>
             
             <MudGrid>
                 <MudItem xs="12">
