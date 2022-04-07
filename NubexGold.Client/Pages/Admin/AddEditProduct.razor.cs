@@ -16,12 +16,12 @@ namespace NubexGold.Client.Pages.Admin
         public IMapper Mapper { get; set; }
         [Inject]
         public NavigationManager navigation { get; set; }
+        [Inject]
+        public ISnackbar Snackbar{ get; set; }
         public Product product { get; set; } = new Product();
         public IEnumerable<Condition> Conditions { get; set; } = new List<Condition>();
         public string Pagetitle { get; set; } = string.Empty;
         public string PageHeader { get; set; } = string.Empty;
-        [Inject]
-        public ISnackbar Snackbar{ get; set; }
 
         public AddEditModel ProductModel { get; set; } = new AddEditModel();
         [Parameter]
