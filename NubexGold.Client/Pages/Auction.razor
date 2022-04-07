@@ -1,6 +1,8 @@
 ﻿@page "/Auction"
 
-<hr style="width:0%;text-align:left;margin-left:0">
+<MudImage Fluid="true" Src="image/auctioncomingsoon.jpg"/>
+
+@*<hr style="width:0%;text-align:left;margin-left:0">
 <MudContainer Class="mt-16" MaxWidth="MaxWidth.Medium">
     <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Auction</MudText>
     <MudGrid Spacing="6" Class="mt-16">
@@ -38,7 +40,7 @@
                     <MudListItem Class="ms-1">
                         <div class="d-flex">
                             <MudText>Royal Canadian Mint of Maple Leaf (2013) 1oz Gold 999.9 - Cond: A</MudText>
-                            @*<MudText Inline="true" Class="ml-auto">$5</MudText>*@
+                            <MudText Inline="true" Class="ml-auto">$5</MudText>
                         </div>
                     </MudListItem>
                     <MudListItem Class="ms-1">
@@ -72,22 +74,22 @@
             </MudPaper>
         </MudItem>
     </MudGrid>
-</MudContainer>
+</MudContainer>*@
 
 @code {
-    public string TimeRemaining { get; set; } = "12h 10m 59s";
-    public int spacing { get; set; } = 2;
-    public string TextValue { get; set; }
-    public double currentprice { get; set; } = 2000;
-    public double BidTotal { get; set; } = 0;
-    public double grandtotal { get; set; } = 0;
-    public double userbid { get; set; }
+    //public string TimeRemaining { get; set; } = "12h 10m 59s";
+    //public int spacing { get; set; } = 2;
+    //public string TextValue { get; set; }
+    //public double currentprice { get; set; } = 2000;
+    //public double BidTotal { get; set; } = 0;
+    //public double grandtotal { get; set; } = 0;
+    //public double userbid { get; set; }
 
-    void Bid()
-    {
-        BidTotal = BidTotal + userbid;
-        grandtotal = BidTotal + currentprice;
-        userbid = 0;
+    //void Bid()
+    //{
+    //    BidTotal = BidTotal + userbid;
+    //    grandtotal = BidTotal + currentprice;
+    //    userbid = 0;
 
-    }
+    //}
 }
