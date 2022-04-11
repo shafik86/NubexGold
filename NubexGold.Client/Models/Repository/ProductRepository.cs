@@ -9,7 +9,7 @@ namespace NubexGold.Client.Models.Repository
     public class ProductRepository : IProductRepository
     {
         private readonly ApplicationDbContext appDbContext;
-        public IEnumerable<Product> Product { get; set; } = new List<Product>();
+        public IEnumerable<Product> Products { get; set; } = new List<Product>();
         [Inject]
         public Mapper mapper { get; set; }
         public ProductRepository(ApplicationDbContext applicationDbContext)
@@ -44,11 +44,11 @@ namespace NubexGold.Client.Models.Repository
             var result = await appDbContext.Products
                  .Include(e => e.Condition)
                  //.Include(e => e.Metal)
+                
                  .FirstOrDefaultAsync(e => e.ProductId == productId);
-            if (result != null || result.ProductId != 0)
-                return result;
+            
 
-            return null;
+            return result;
         }
 
 
@@ -82,7 +82,9 @@ namespace NubexGold.Client.Models.Repository
 
         public async Task<Product> UpdateProduct(Product product)
         {
-            var result = await appDbContext.Products.FirstOrDefaultAsync(e => e.ProductId == product.ProductId);
+            var result = await appDbContext.Products
+                .Include(c => c.Condition)
+                .FirstOrDefaultAsync(e =>e.ProductId == product.ProductId);
 
             if(result != null)
             {
@@ -95,7 +97,7 @@ namespace NubexGold.Client.Models.Repository
                 result.MetalWeight = product.MetalWeight;
                 result.MetalBrand = product.MetalBrand;
                 result.Weight = product.Weight;
-                result.Condition = product.Condition;
+                //result.Condition = product.Condition;
                 result.ConditionId = product.ConditionId;
                 result.Purify = product.Purify;
                 result.Manufacture = product.Manufacture;

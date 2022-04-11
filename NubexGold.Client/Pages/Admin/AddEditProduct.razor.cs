@@ -36,6 +36,7 @@ namespace NubexGold.Client.Pages.Admin
         public bool MyCondition { get; set; } = false;
         public string message { get; set; } = string.Empty;
         public int counting { get; set; }=0;
+        public string btnSubmit { get; set; } = "Create";
         private async Task UploadFilesAsync(InputFileChangeEventArgs e)
         {
             counting += e.FileCount;
@@ -151,6 +152,7 @@ namespace NubexGold.Client.Pages.Admin
             {
                 PageHeader = "Edit Product";
                 Pagetitle = "Product Edit";
+                btnSubmit = "Update";
                 try
                 {
                     product = await productService.GetProduct(int.Parse(Id));
@@ -170,6 +172,7 @@ namespace NubexGold.Client.Pages.Admin
             {
                 PageHeader = "Add Product";
                 Pagetitle = "Product Create";
+                btnSubmit = "Create";
                 ProductModel = new AddEditModel
                 {
                     ProductId = 0,
@@ -194,20 +197,22 @@ namespace NubexGold.Client.Pages.Admin
             Product result = product;
             if (product.ProductId != 0)
             {
+                //btnSubmit = "Update";
                  await productService.UpdateProduct(product);
                 message = $"Product {product.ProductName} Updated";
                 navigation.NavigateTo($"/product/{product.ProductId}");
                 
-                Snackbar.Add(message, Severity.Info);
-                return;
+                //Snackbar.Add(message, Severity.Info);
+                //return;
             }
             else
             {
-                 await productService.CreateProduct(product);
+                //btnSubmit = "Create";
+                await productService.CreateProduct(product);
                 message = $"Product {product.ProductName} Added";
-                //navigation.NavigateTo($"/itemdetail/{product.ProductId}");
                 Snackbar.Add(message, Severity.Info);
-                return;
+                navigation.NavigateTo($"/product/{product.ProductId}");
+                //return;
             }
             //message = "Product with Id : " + Id + " Is updated";
             //Snackbar.Add(message,Severity.Normal);

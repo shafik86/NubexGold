@@ -19,6 +19,7 @@ namespace NubexGold.Client.Data
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<Condition> Conditions { get; set; }
         public DbSet<CourierServ> CourierServ { get; set; }
+        public DbSet<User> Users { get; set; }
         //public DbSet<Order_Details> Order_Details { get; set; }
         //public DbSet<Orders> Orders { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
@@ -44,7 +45,7 @@ namespace NubexGold.Client.Data
             #region many to many orders
 
 
-            #region
+            #endregion
 
             #region Conditions
             //Seed Data Conditions

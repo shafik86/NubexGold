@@ -1,5 +1,5 @@
 ﻿@page "/SellerList"
-<MudContainer>
+
     <MudGrid Class="mb-4">
         <MudItem xs="12" sm="12">
             <MudPaper >
@@ -34,27 +34,57 @@
                         <MudTh><MudTableSortLabel SortBy="new Func<Seller, object>(x=>x.SellerEmail)">Email</MudTableSortLabel></MudTh>
                         <MudTh><MudTableSortLabel SortBy="new Func<Seller, object>(x=>x.SellerContact)">Phone</MudTableSortLabel></MudTh>
                         <MudTh><MudTableSortLabel SortBy="new Func<Seller, object>(x=>x.SellerAddress)">Address</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="new Func<Seller, object>(x=>x.ComsType)">Commisyen</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="new Func<Seller, object>(x=>x.ComsFix)">Fixed</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="new Func<Seller, object>(x=>x.ComsPercent)">Percent</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="new Func<Seller, object>(x=>x.ComsFixPer)">Fixed&Percent</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="new Func<Seller, object>(x=>x.BankName)">Fixed&BankName</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="new Func<Seller, object>(x=>x.BankHolder)">BankHolder</MudTableSortLabel></MudTh>
                     </HeaderContent>
                     <RowTemplate>
-                        <MudTd DataLabel="Nr">@context.SellerCompany</MudTd>
+                        <MudTd DataLabel="Company">@context.SellerCompany</MudTd>
                         <MudTd DataLabel="Name">@context.SellerName</MudTd>
-                        <MudTd DataLabel="Sign">@context.SellerEmail</MudTd>
-                        <MudTd DataLabel="Position">@context.SellerContact</MudTd>
-                        <MudTd DataLabel="Molar mass">@context.SellerAddress</MudTd>
+                        <MudTd DataLabel="Email">@context.SellerEmail</MudTd>
+                        <MudTd DataLabel="Phone">@context.SellerContact</MudTd>
+                        <MudTd DataLabel="Address">@context.SellerAddress</MudTd>
+                        <MudTd DataLabel="Commisyen">@context.ComsType</MudTd>
+                        <MudTd DataLabel="Fixed">@context.ComsFix</MudTd>
+                        <MudTd DataLabel="Percent">@context.ComsPercent</MudTd>
+                        <MudTd DataLabel="Fixed&Percent">@context.ComsFixPer</MudTd>
+                        <MudTd DataLabel="BankName">@context.BankName</MudTd>
+                        <MudTd DataLabel="BankHolder">@context.BankHolder</MudTd>
                     </RowTemplate>
                     <RowEditingTemplate>
-                        <MudTd DataLabel="Nr">@context.SellerCompany</MudTd>
+                        <MudTd DataLabel="Company">@context.SellerCompany</MudTd>
                         <MudTd DataLabel="Name">
                             <MudTextField @bind-Value="@context.SellerName" Required />
                         </MudTd>
-                        <MudTd DataLabel="Sign">
+                        <MudTd DataLabel="Email">
                             <MudTextField @bind-Value="@context.SellerEmail" Required />
                         </MudTd>
-                        <MudTd DataLabel="Position">
+                        <MudTd DataLabel="Phone">
                             <MudTextField @bind-Value="@context.SellerContact" Required  />
                         </MudTd>
-                        <MudTd DataLabel="Molar mass">
+                        <MudTd DataLabel="Address">
                             <MudTextField @bind-Value="@context.SellerAddress" Required />
+                        </MudTd>
+                        <MudTd DataLabel="ComsType">
+                            <MudTextField @bind-Value="@context.ComsType" Required />
+                        </MudTd>
+                        <MudTd DataLabel="Fixed">
+                            <MudTextField @bind-Value="@context.ComsFix" Required />
+                        </MudTd>
+                        <MudTd DataLabel="Percent">
+                            <MudTextField @bind-Value="@context.ComsPercent" Required />
+                        </MudTd>
+                        <MudTd DataLabel="Fixed&Percent">
+                            <MudTextField @bind-Value="@context.ComsFixPer" Required />
+                        </MudTd>
+                        <MudTd DataLabel="BankName">
+                            <MudTextField @bind-Value="@context.BankName" Required />
+                        </MudTd>
+                        <MudTd DataLabel="BankHolder">
+                            <MudTextField @bind-Value="@context.BankHolder" Required />
                         </MudTd>
                     </RowEditingTemplate>
                     <PagerContent>
@@ -87,4 +117,3 @@
                 </MudExpansionPanels>
           </MudItem>
     </MudGrid>
-</MudContainer>
