@@ -89,12 +89,17 @@ namespace NubexGold.Client.Models.Repository
                 result.PostalCode = upSeller.PostalCode;
                 result.Country = upSeller.Country;
                 result.SellerCompany = upSeller.SellerCompany;
-                result.License = upSeller.License;
+                result.CompanyLicense = upSeller.CompanyLicense;
+                result.SellerWallet = upSeller.SellerWallet;
+                result.ComsType = upSeller.ComsType;
+                result.ComsPercent = upSeller.ComsPercent;
+                result.ComsFix = upSeller.ComsFix;
+                result.ComsFixPer = upSeller.ComsFixPer;
                 result.AccNumber = upSeller.AccNumber;
                 result.BankName = upSeller.BankName;
                 result.BankHolder = upSeller.BankHolder;
-                result.ProductId = upSeller.ProductId;
-                result.Quantity = upSeller.Quantity;
+                result.ModifiedBy = upSeller.ModifiedBy;
+                result.ModifiedOn = DateTime.Now;
 
                 await appDbContext.SaveChangesAsync();
                 return result;

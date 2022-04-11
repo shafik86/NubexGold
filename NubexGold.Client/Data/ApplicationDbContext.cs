@@ -10,18 +10,41 @@ namespace NubexGold.Client.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-
+           
         }
 
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductInHand> ProductInHands { get; set; }
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<Condition> Conditions { get; set; }
-
+        public DbSet<CourierServ> CourierServ { get; set; }
+        //public DbSet<Order_Details> Order_Details { get; set; }
+        //public DbSet<Orders> Orders { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
 
+            //batch 1 many to many 
+            #region many to many product in hands
+            base.OnModelCreating(builder);
+            builder.Entity<ProductInHand>()
+                .HasOne(p => p.Seller)
+                .WithMany(pa => pa.productInHands)
+                .HasForeignKey(p => p.SellerId);
+
+            base.OnModelCreating(builder);
+            builder.Entity<ProductInHand>()
+                .HasOne(p => p.Product)
+                .WithMany(pa => pa.productInHands)
+                .HasForeignKey(p => p.ProductId);
+
+            #endregion
+
+            //batch 2 many to many orders
+            #region many to many orders
+
+
+            #region
 
             #region Conditions
             //Seed Data Conditions
@@ -51,8 +74,8 @@ namespace NubexGold.Client.Data
                 new Product()
                 {
                     ProductId = 1,
-                    SKU = "GC9999-1d-YRSGS-N2013-A-1",
-                    Name = "YESRUFUS GOLDSMITH 1 DINAR",
+                    ProductSKU = "GC9999-1d-YRSGS-N2013-A-1",
+                    ProductName = "YESRUFUS GOLDSMITH 1 DINAR",
                     Description = "Onwards to success with this 1 Dinar coin by YesRufus Goldsmith. Minted from 24k gold, the coin serves as a perfect medium to preserve your hard earned wealth. It can also be used to pay for one's Zakat or Mahr.\n\n The obverse features an intricate Keris design at its centre, Onwards to success with this 1 Dinar coin by YesRufus Goldsmith.Minted from 24k gold, the coin serves as a perfect medium to preserve your hard earned wealth.It can also be used to pay for one's Zakat or Mahr. The obverse features an intricate Keris design at its centre, accompanied by the coin's tech specs. The reverse features a stunning Kufi inscription for 'Hayya Alal Falah / Hayya Alal Solah', roughly translated to English as the Islamic call to success/call to prayer respectively.accompanied by the coin's tech specs. The reverse features a stunning Kufi inscription for 'Hayya Alal Falah / Hayya Alal Solah', roughly translated to English as the Islamic call to success/call to prayer respectively.",
                     Detail = "",
                     Type = Types.Coin,
@@ -83,8 +106,8 @@ namespace NubexGold.Client.Data
                 new Product()
                 {
                     ProductId = 2,
-                    SKU = "GC999-1D-ONGD-V3-A",
-                    Name = "ONE NABAWI GOLD DINAR V3 4.5G GOLD COIN .999",
+                    ProductSKU = "GC999-1D-ONGD-V3-A",
+                    ProductName = "ONE NABAWI GOLD DINAR V3 4.5G GOLD COIN .999",
                     Description = "ONE NABAWI GOLD DINAR V3 The One Nabawi Gold Dinar is minted by 24 Qirats according to the standard weight and purity of the Byzantine Gold Solidus circulating in Makkah and Madinah during the lifetime of Prophet Muhammad (pbuh). It is also a favourite among couples who use it as their Mahar and for collectors who treasure the beauty of Arabic calligraphy in Thuluth script. Product Specifications Weight: 4.5 grams Purity: .999 fine gold (made from 99.99% pure PAMP Suisse / Perth Mint gold) Diameter: 22mm The One Nabawi Gold Dinar comes complete in a scratch-proof clear acrylic capsule with a Certificate of Authenticity in its own hard card box. Inscribed Message on Obverse of Dinar: Muhammad Rahmatal lil ‘alamiin “Muhammad, Mercy to the Worlds” (Surah al-Anbiya 21:107) Inscribed Message on Reverse of Dinar: Allahu wahdahu la sharikalah, Muhammad ‘abduhu warasuluh “Allah is One, without partner, Muhammad is His Servant and Messenger” (Declaration of Faith)",
                     Detail = "ONE NABAWI GOLD DINAR V3 The One Nabawi Gold Dinar is minted by 24 Qirats according to the standard weight and purity of the Byzantine Gold Solidus circulating in Makkah and Madinah during the lifetime of Prophet Muhammad (pbuh). It is also a favourite among couples who use it as their Mahar and for collectors who treasure the beauty of Arabic calligraphy in Thuluth script. Product Specifications Weight: 4.5 grams Purity: .999 fine gold (made from 99.99% pure PAMP Suisse / Perth Mint gold) Diameter: 22mm The One Nabawi Gold Dinar comes complete in a scratch-proof clear acrylic capsule with a Certificate of Authenticity in its own hard card box. Inscribed Message on Obverse of Dinar: Muhammad Rahmatal lil ‘alamiin “Muhammad, Mercy to the Worlds” (Surah al-Anbiya 21:107) Inscribed Message on Reverse of Dinar: Allahu wahdahu la sharikalah, Muhammad ‘abduhu warasuluh “Allah is One, without partner, Muhammad is His Servant and Messenger” (Declaration of Faith)",
                     Type = Types.Coin,
@@ -115,8 +138,8 @@ namespace NubexGold.Client.Data
                 new Product()
                 {
                     ProductId = 3,
-                    SKU = "GC999-1D-ONGD-V3-A",
-                    Name = "1 DINAR KHALIFAH (2020) 4.44G GOLD 999.0",
+                    ProductSKU = "GC999-1D-ONGD-V3-A",
+                    ProductName = "1 DINAR KHALIFAH (2020) 4.44G GOLD 999.0",
                     Description = "REPLIKA SYILING DINAR-KHALIFAH 4.44g\n\n\nMuka replika syiling tersebut menyerupai motif yang telah direka dan dicetak pada waktu EMPAYAR KHALIFAH UTHMANIAH(Nota 1)(abad 1900an) dengan sedikit pengubah suaian.\n\nReplika syiling seberat 4.44gram(Nota 2),\n\nini merupakan versi yang berkadar dengan berat syiling KUPANG(Nota 2) di antara 0.55 ~0.60 gram.(Nota 2)\n\nReplika syiling DINAR - KHALIFAH adalah keluaran edisi yang istimewa disulami dengan SIJIL PENGESAHAN(Nota 3) speksifikasi yang dikhususkan oleh Pengeluar dan dijamin oleh KL ASSAY OFFICE(M) SDN BHD dan disahkan oleh En.Abdul Shukor Anuar sebagai ASSAYER(Nota 4). \n\nKAD PENGESAHAN yang tercetak nombor siri yang sama seperti cetakan pada replika syiling DINAR - KHALIFAH.Kad pengesahan tersebut mengilustrasikan sebuah tema yang menyilangkan PEDANG TURKI KILIJ dan PEDANG MELAYU MAKARA untuk memperlihatkan kesenambungan Surah Al Hadid(Nota 5)(Surah Zat Besi)  Teknologi Besi yang telah dikuasai oleh Alam Melayu sejak 500BC\n\nNota 1 Chisholm,\n\nHugh,ed. (1911),\nThe Encyclopædia Britannica,7,\nConstantinople,\n\nthe capital of the Turkish Empire \n\nNota 2 Unit Muzium Matawang dan Arkib 2003,\nBNM \n\nNota 3.Hallmarking No  HN B 9237   Cert No. 3041 \n\nNota 4  http://klassay.com/home \n\nNota 5 Muhammmad bin Abd Razak,KEDAH Tua Tamadun Terawal Asia Tenggara 2021",
                     Detail = "",
                     Type = Types.Coin,
@@ -147,8 +170,8 @@ namespace NubexGold.Client.Data
                 new Product()
                 {
                     ProductId = 4,
-                    SKU = "GC9999-1g-HMG-29SG-A",
-                    Name = "HARIMAU MINT GOLD KUALA LUMPUR 2017 29TH SEA GAMES 1 GRAM 999.9 GOLD COIN",
+                    ProductSKU = "GC9999-1g-HMG-29SG-A",
+                    ProductName = "HARIMAU MINT GOLD KUALA LUMPUR 2017 29TH SEA GAMES 1 GRAM 999.9 GOLD COIN",
                     Description = "Onwards to success with this 1 Dinar coin by YesRufus Goldsmith. Minted from 24k gold, the coin serves as a perfect medium to preserve your hard earned wealth. It can also be used to pay for one's Zakat or Mahr.\n\n The obverse features an intricate Keris design at its centre, Onwards to success with this 1 Dinar coin by YesRufus Goldsmith.Minted from 24k gold, the coin serves as a perfect medium to preserve your hard earned wealth.It can also be used to pay for one's Zakat or Mahr. The obverse features an intricate Keris design at its centre, accompanied by the coin's tech specs. The reverse features a stunning Kufi inscription for 'Hayya Alal Falah / Hayya Alal Solah', roughly translated to English as the Islamic call to success/call to prayer respectively.accompanied by the coin's tech specs. The reverse features a stunning Kufi inscription for 'Hayya Alal Falah / Hayya Alal Solah', roughly translated to English as the Islamic call to success/call to prayer respectively.",
                     Detail = "",
                     Type = Types.Coin,
@@ -179,8 +202,8 @@ namespace NubexGold.Client.Data
                 new Product()
                 {
                     ProductId = 5,
-                    SKU = "GC9999-1/2g-PM-AMK2014-AA",
-                    Name = "AUSTRALIAN MINI KOOKABURRA (2014) 0.5G GOLD COIN 999.9",
+                    ProductSKU = "GC9999-1/2g-PM-AMK2014-AA",
+                    ProductName = "AUSTRALIAN MINI KOOKABURRA (2014) 0.5G GOLD COIN 999.9",
                     Description = "This button-sized gold coin, which is the iconic Australian gold coin issued by the Australian government. The 2014 Mini Kook coin is housed in a protective acrylic capsule and presented in a colourful wallet-sized card. ",
                     Detail = "",
                     Type = Types.Coin,
@@ -211,8 +234,8 @@ namespace NubexGold.Client.Data
                 new Product()
                 {
                     ProductId = 6,
-                    SKU = "GC917-18.66g-BNM-TAR-A",
-                    Name = "1971 TUNKU ABDUL RAHMAN GOLD COIN BY BANK NEGARA MALAYSIA",
+                    ProductSKU = "GC917-18.66g-BNM-TAR-A",
+                    ProductName = "1971 TUNKU ABDUL RAHMAN GOLD COIN BY BANK NEGARA MALAYSIA",
                     Description = "The first $100 gold coin of Malaysia was issued on 30th August 1971 by Bank Negara Malaysia to commemorate the 13 years in office of Prime Minister Tunku Abdul Rahman Putra Al-Haj.",
                     Detail = "The first $100 gold coin of Malaysia was issued on 30th August 1971 by Bank Negara Malaysia to commemorate the 13 years in office of Prime Minister Tunku Abdul Rahman Putra Al-Haj. \n\nThe obverse of this coin has a portrait of Tunku,\nthe words \"TUNKU ABDUL RAHMAN PUTRA AL-HAJ BAPA MALAYSIA\" and the year 1971.\n\nThe reverse shows the Parliament House building,\nthe crescent and star,\n\nand the denomination of 100 Ringgit.\n\nIt was minted at the Perth Mint Australia.",
                     Type = Types.Coin,
@@ -245,8 +268,8 @@ namespace NubexGold.Client.Data
                new Product()
                {
                    ProductId = 11,
-                   SKU = "GB9999-5g-PS-LN-2022-TGR-AA",
-                   Name = "PAMP SUISSE LUNAR 2022 YEAR OF THE TIGER 5G GOLD 999.9",
+                   ProductSKU = "GB9999-5g-PS-LN-2022-TGR-AA",
+                   ProductName = "PAMP SUISSE LUNAR 2022 YEAR OF THE TIGER 5G GOLD 999.9",
                    Description = "The third year in the Lunar Calendar Series at PAMP Suisse features the image of the powerful tiger. The tiger is the worlds largest living wild cat and has a long, muscular frame with shorter legs than other members of the Panthera genus. Today, 5 Gram PAMP Suisse Lunar Tiger Gold Bars are available to you online at Nubex.",
                    Detail = "",
                    Type = Types.MintedBar,
@@ -277,8 +300,8 @@ namespace NubexGold.Client.Data
                 new Product()
                 {
                     ProductId = 12,
-                    SKU = "GB9999-10G-PS-LF-V2-A",
-                    Name = "PAMP SUISSE OF LADY FORTUNA- VERISCAN 10G GOLD 999.9",
+                    ProductSKU = "GB9999-10G-PS-LF-V2-A",
+                    ProductName = "PAMP SUISSE OF LADY FORTUNA- VERISCAN 10G GOLD 999.9",
                     Description = "This renowned brand offers an astounding range of purity, shapes and designs of multiple precious metals (gold, silver, platinum and palladium) to match the requirements of the industry.This Swiss-made PAMP gold bar is made from 10 grams of 999.9 fine gold and is shipped with an assay certificate signed by a certified assayer. ",
                     Detail = "",
                     Type = Types.MintedBar,
@@ -309,8 +332,8 @@ namespace NubexGold.Client.Data
                 new Product()
                 {
                     ProductId = 13,
-                    SKU = "GB9999-50g-PS-CB_NC-AA",
-                    Name = "PAMP SUISSE CAST BAR 50G GOLD 999.9",
+                    ProductSKU = "GB9999-50g-PS-CB_NC-AA",
+                    ProductName = "PAMP SUISSE CAST BAR 50G GOLD 999.9",
                     Description = "Perfect for a medium and large scale investor, this brand new 50g of 999.9 gold cast bar is refined to perfection by PAMP. it is shipped with an assay certificate signed by a certified assayer. ",
                     Detail = "",
                     Type = Types.CastBar,
@@ -345,8 +368,8 @@ namespace NubexGold.Client.Data
                 new Product()
                 {
                     ProductId = 21,
-                    SKU = "SC9999-1/2oz-SLS-HPTM-B",
-                    Name = "SLS HARI PERAYAAN TRADISIONAL MALAYSIA 1/2OZ 999.0 SILVER COIN",
+                    ProductSKU = "SC9999-1/2oz-SLS-HPTM-B",
+                    ProductName = "SLS HARI PERAYAAN TRADISIONAL MALAYSIA 1/2OZ 999.0 SILVER COIN",
                     Description = "SLS Hari Perayaan Traditional Malaysia 1/2oz 999.9 Silver Coin \n\n Silver Lot Shop has minted this silver coin to celebrate all the major traditional celebration days in Malaysia. \n\nthis coin displays the company logo,\nthe company name,the serial number of the coin and the company website address.The reverse face displays the words “HARI PERAYAAN TRADISIONAL MALAYSIA ANNIVERSARY 2011” with drawings of an exposed kerosene lamp representing Hari Raya Celebration,a paper lantern representing Chinese New Year Celebration and betel leaves representing Deepavali Celebration. \n\nThis 1 / 2oz silver coin is placed in a beautiful maroon red presentation box with writings and design compositions in silver.Included in the box is the specification of the coin on a signed card by the CEO of the company.\n\nEach box is very suitable to be given as a gift for Hari Raya or Chinese New Year or Deepavali celebrations.",
                     Detail = "Features: \nName:-HARI PERAYAAN TRADISIONAL MALAYSIA ANNIVERSARY 2011 \nMinter:-SILVER LOT SHOP(M) SDN.BHD. \nMetal:-Silver. \nType:-Coin. \nPurity:-999.9 \nDiameter:-36.02mm. \nThickness:-2mm. \nWeight:-15.55g.",
                     Type = Types.Coin,
@@ -354,7 +377,7 @@ namespace NubexGold.Client.Data
                     MetalWeight = 15.5500,
                     MetalBrand = "",
                     Weight = 15.55,
-                    ConditionId = 2,
+                    ConditionId = 1,
                     Purify = 0.999,
                     Manufacture = "Silver Lot Shop (M) Sdn.Bhd",
                     Certificate = "No",
@@ -377,8 +400,8 @@ namespace NubexGold.Client.Data
                 new Product()
                 {
                     ProductId = 22,
-                    SKU = "SC9999-1/2oz-SLS-HPTM-B",
-                    Name = "SLS HARI PERAYAAN TRADISIONAL MALAYSIA 1/2OZ 999.0 SILVER COIN",
+                    ProductSKU = "SC9999-1/2oz-SLS-HPTM-B",
+                    ProductName = "SLS HARI PERAYAAN TRADISIONAL MALAYSIA 1/2OZ 999.0 SILVER COIN",
                     Description = "SLS Hari Perayaan Traditional Malaysia 1/2oz 999.9 Silver Coin \n\n Silver Lot Shop has minted this silver coin to celebrate all the major traditional celebration days in Malaysia. \n\nthis coin displays the company logo,\nthe company name,the serial number of the coin and the company website address.The reverse face displays the words “HARI PERAYAAN TRADISIONAL MALAYSIA ANNIVERSARY 2011” with drawings of an exposed kerosene lamp representing Hari Raya Celebration,a paper lantern representing Chinese New Year Celebration and betel leaves representing Deepavali Celebration. \n\nThis 1 / 2oz silver coin is placed in a beautiful maroon red presentation box with writings and design compositions in silver.Included in the box is the specification of the coin on a signed card by the CEO of the company.\n\nEach box is very suitable to be given as a gift for Hari Raya or Chinese New Year or Deepavali celebrations.",
                     Detail = "Features: \nName:-HARI PERAYAAN TRADISIONAL MALAYSIA ANNIVERSARY 2011 \nMinter:-SILVER LOT SHOP(M) SDN.BHD. \nMetal:-Silver. \nType:-Coin. \nPurity:-999.9 \nDiameter:-36.02mm. \nThickness:-2mm. \nWeight:-15.55g.",
                     Type = Types.Coin,
@@ -412,8 +435,8 @@ namespace NubexGold.Client.Data
                 new Product()
                 {
                     ProductId = 31,
-                    SKU = "SB999-5oz-SD-P-A",
-                    Name = "SCOTTSDALE \"PREY\" 5 OZ SILVER 999.0",
+                    ProductSKU = "SB999-5oz-SD-P-A",
+                    ProductName = "SCOTTSDALE \"PREY\" 5 OZ SILVER 999.0",
                     Description = "Specializes in producing a unique fine silver bullion products, Scottsdale Mint is widely known as a manufacturer that produces a wide range of notable and unique product designs and gives excitement to the buyers to collect their valuable bullions, which includes their hot items such as Tombstone Silver Nuggets and old-fashioned Bisbee Silver Bars. Minted in USA, this highly recognized Prey silver bar is made from 5 oz of 999.0 fine silver bar.The brand new design which accentuates the Scottsdale Lion portrays an avant - garde interpretation of the classic hunter vs.prey analogy.Produced with unique rough cut edges and sides, this bar is definitely the fierce looking bar on the bullion market today.",
                     Detail = "Specializes in producing a unique fine silver bullion products, Scottsdale Mint is widely known as a manufacturer that produces a wide range of notable and unique product designs and gives excitement to the buyers to collect their valuable bullions, which includes their hot items such as Tombstone Silver Nuggets and old-fashioned Bisbee Silver Bars. Minted in USA, this highly recognized Prey silver bar is made from 5 oz of 999.0 fine silver bar.The brand new design which accentuates the Scottsdale Lion portrays an avant - garde interpretation of the classic hunter vs.prey analogy.Produced with unique rough cut edges and sides, this bar is definitely the fierce looking bar on the bullion market today.",
                     Type = Types.Bar,

@@ -14,13 +14,13 @@ namespace NubexGold.Client.Pages.Admin
         //[Inject]
         //public IConditionService conditionService { get; set; }
         [Inject]
-        public ISellerService sellerService { get; set; }
+        public ISellerService? sellerService { get; set; }
 
         public IEnumerable<Seller> Sellers { get; set; }
         [Inject]
-        public IMapper Mapper { get; set; }
+        public IMapper? Mapper { get; set; }
         [Inject]
-        public NavigationManager navigation { get; set; }
+        public NavigationManager? navigation { get; set; }
         private List<string> editEvents = new();
         private bool dense = false;
         private bool hover = true;
@@ -29,7 +29,7 @@ namespace NubexGold.Client.Pages.Admin
         private bool blockSwitch = false;
         private string searchString = "";
         private Seller selectedItem1 = null;
-        private Seller elementBeforeEdit;
+        private Seller? elementBeforeEdit;
         private HashSet<Seller> selectedItems1 = new HashSet<Seller>();
 
         //private IEnumerable<Element> Elements = new List<Element>();
