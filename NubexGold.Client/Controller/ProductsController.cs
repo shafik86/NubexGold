@@ -68,7 +68,7 @@ namespace NubexGold.Client.Controller
 
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut]
+        [HttpPost]
         [Route("Edit")]
         public async Task<ActionResult<Product>> UpdateProduct(Product product)
         {

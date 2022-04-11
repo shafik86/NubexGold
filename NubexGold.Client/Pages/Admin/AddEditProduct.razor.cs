@@ -36,6 +36,7 @@ namespace NubexGold.Client.Pages.Admin
         public bool MyCondition { get; set; } = false;
         public string message { get; set; } = string.Empty;
         public int counting { get; set; }=0;
+        public string btnSubmit { get; set; } = "Create";
         private async Task UploadFilesAsync(InputFileChangeEventArgs e)
         {
             counting += e.FileCount;
@@ -109,8 +110,6 @@ namespace NubexGold.Client.Pages.Admin
             int.TryParse(name, out int c);
             
             var result = filebase64.FirstOrDefault(e => e.ImageId == c);
-            //if (result != null)
-            //    filebase64.Remove(result);
             switch (c)
             {
                 case 1: ProductModel.Image1 = null;
@@ -128,20 +127,16 @@ namespace NubexGold.Client.Pages.Admin
             MyCondition = false;
             if (counting >= 1)
             {
-                //files.RemoveAt(counting);
                 counting -= 1;
             }
             else
             {
                 counting = 0;
             }
-            //filebase64.Clear();
-            //base64image = "";
         }
  
         protected override async Task OnInitializedAsync()
         {
-
             if (counting == 3)
             {
                 MyCondition = true;
@@ -151,8 +146,10 @@ namespace NubexGold.Client.Pages.Admin
             {
                 PageHeader = "Edit Product";
                 Pagetitle = "Product Edit";
+                btnSubmit = "Update";
                 try
                 {
+
                     product = await productService.GetProduct(int.Parse(Id));
                     if (product == null)
                     {
@@ -170,6 +167,7 @@ namespace NubexGold.Client.Pages.Admin
             {
                 PageHeader = "Add Product";
                 Pagetitle = "Product Create";
+                btnSubmit = "Create";
                 ProductModel = new AddEditModel
                 {
                     ProductId = 0,
@@ -178,8 +176,9 @@ namespace NubexGold.Client.Pages.Admin
                 };
              
             }
-            Conditions = await conditionService.GetConditions();
+            Conditions = (await conditionService.GetConditions()).ToList();
             Mapper.Map( product, ProductModel);
+            StateHasChanged();
         }
         void selet()
         {
@@ -194,25 +193,25 @@ namespace NubexGold.Client.Pages.Admin
             Product result = product;
             if (product.ProductId != 0)
             {
+                //btnSubmit = "Update";
+                string id = product.ProductId.ToString();
                  await productService.UpdateProduct(product);
-                message = $"Product {product.ProductName} Updated";
-                navigation.NavigateTo($"/product/{product.ProductId}");
-                
+                message = $"Product {product.ProductName} Updated to DB";
                 Snackbar.Add(message, Severity.Info);
-                return;
+                navigation.NavigateTo("/productList");
+                
+                //return;
             }
             else
             {
-                 await productService.CreateProduct(product);
-                message = $"Product {product.ProductName} Added";
-                //navigation.NavigateTo($"/itemdetail/{product.ProductId}");
+                //btnSubmit = "Create";
+                await productService.CreateProduct(product);
+                message = $"Product {product.ProductName} Added to DB";
                 Snackbar.Add(message, Severity.Info);
-                return;
+                navigation.NavigateTo("/productList");
+                
             }
-            //message = "Product with Id : " + Id + " Is updated";
-            //Snackbar.Add(message,Severity.Normal);
             StateHasChanged();
-            //return Task.CompletedTask;
         }
 
     }

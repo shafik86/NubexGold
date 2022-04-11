@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace NubexGold.Shared
 {
@@ -35,10 +36,10 @@ namespace NubexGold.Shared
         public string CreatedBy { get; set; } = "Administrators";
         public DateTime ModifiedOn { get; set; }
         public string ModifiedBy { get; set; } = "Admin";
-
+ 
         //Navigation Properties
 
-        public List<ProductInHand> productInHands { get; set; }
+        public List<ProductInHand>? productInHands { get; set; }
         public Condition? Condition { get; set; }
         public int ConditionId { get; set; }
     }
