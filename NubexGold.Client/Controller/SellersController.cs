@@ -135,11 +135,11 @@ namespace NubexGold.Client.Controller
             }
         }
 
-        private bool SellerExists(int id)
-        {
-            //return  SellerRepository.GetSellerById.Any(id);
-            return ApplicationDbContext.ReferenceEquals(null, id);
-        }
+        //private bool SellerExists(int id)
+        //{
+        //    //return  SellerRepository.GetSellerById.Any(id);
+        //    return ApplicationDbContext.ReferenceEquals(null, id);
+        //}
 
     }
 }

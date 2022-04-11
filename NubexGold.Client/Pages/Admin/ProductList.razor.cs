@@ -56,36 +56,36 @@ namespace NubexGold.Client.Pages.Admin
         {
             elementBeforeEdit = new()
             {
-                SKU = ((Product)element).SKU,
-                Name = ((Product)element).Name,
+                ProductSKU = ((Product)element).ProductSKU,
+                ProductName = ((Product)element).ProductName,
                 Detail = ((Product)element).Detail,
                 Weight = ((Product)element).Weight,
                 MetalWeight = ((Product)element).MetalWeight
             };
-            AddEditionEvent($"RowEditPreview event: made a backup of Element {((Product)element).Name}");
+            AddEditionEvent($"RowEditPreview event: made a backup of Element {((Product)element).ProductName}");
         }
 
         private void ItemHasBeenCommitted(object element)
         {
-            AddEditionEvent($"RowEditCommit event: Changes to Element {((Product)element).Name} committed");
+            AddEditionEvent($"RowEditCommit event: Changes to Element {((Product)element).ProductName} committed");
         }
 
         private void ResetItemToOriginalValues(object element)
         {
-            ((Product)element).SKU = elementBeforeEdit.SKU;
-            ((Product)element).Name = elementBeforeEdit.Name;
+            ((Product)element).ProductSKU = elementBeforeEdit.ProductSKU;
+            ((Product)element).ProductName = elementBeforeEdit.ProductName;
             ((Product)element).Detail = elementBeforeEdit.Detail;
             ((Product)element).Weight = elementBeforeEdit.Weight;
-            AddEditionEvent($"RowEditCancel event: Editing of Element {((Product)element).Name} cancelled");
+            AddEditionEvent($"RowEditCancel event: Editing of Element {((Product)element).ProductName} cancelled");
         }
 
         private bool FilterFunc(Product element)
         {
             if (string.IsNullOrWhiteSpace(searchString))
                 return true;
-            if (element.SKU.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            if (element.ProductSKU.Contains(searchString, StringComparison.OrdinalIgnoreCase))
                 return true;
-            if (element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            if (element.ProductName.Contains(searchString, StringComparison.OrdinalIgnoreCase))
                 return true;
             if ($"{element.Detail} {element.Metal} {element.Type}".Contains(searchString))
                 return true;

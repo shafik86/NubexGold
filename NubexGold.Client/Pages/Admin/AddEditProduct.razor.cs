@@ -15,10 +15,10 @@ namespace NubexGold.Client.Pages.Admin
         [Inject]
         public IMapper Mapper { get; set; }
         [Inject]
-        public NavigationManager navigation { get; set; }
+        public NavigationManager? navigation { get; set; }
         [Inject]
-        public ISnackbar Snackbar{ get; set; }
-        public Product product { get; set; } = new Product();
+        public ISnackbar? Snackbar{ get; set; }
+        public Product? product { get; set; } = new Product();
         public IEnumerable<Condition> Conditions { get; set; } = new List<Condition>();
         public string Pagetitle { get; set; } = string.Empty;
         public string PageHeader { get; set; } = string.Empty;
@@ -195,7 +195,7 @@ namespace NubexGold.Client.Pages.Admin
             if (product.ProductId != 0)
             {
                  await productService.UpdateProduct(product);
-                message = $"Product {product.Name} Updated";
+                message = $"Product {product.ProductName} Updated";
                 navigation.NavigateTo($"/product/{product.ProductId}");
                 
                 Snackbar.Add(message, Severity.Info);
@@ -204,7 +204,7 @@ namespace NubexGold.Client.Pages.Admin
             else
             {
                  await productService.CreateProduct(product);
-                message = $"Product {product.Name} Added";
+                message = $"Product {product.ProductName} Added";
                 //navigation.NavigateTo($"/itemdetail/{product.ProductId}");
                 Snackbar.Add(message, Severity.Info);
                 return;

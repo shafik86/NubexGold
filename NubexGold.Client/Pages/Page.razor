@@ -1,0 +1,17 @@
+﻿@page "/dialog"
+
+@inject IDialogService DialogService
+
+<MudButton OnClick="@((e) => OpenDialog(maxWidth))" Class="offset-2" Variant="Variant.Text">
+    <img src="Image/e.jpeg" style="height:400px; width:350px">
+</MudButton>
+
+@code {
+    DialogOptions maxWidth = new DialogOptions() { MaxWidth = MaxWidth.Medium, FullWidth = true };
+
+    private void OpenDialog(DialogOptions options)
+    {
+        DialogService.Show<Modal>("", options);
+        //Dialog.Show<Dialog>("Custom Options Dialog", options); 
+    }
+}

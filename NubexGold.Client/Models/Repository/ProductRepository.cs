@@ -55,7 +55,7 @@ namespace NubexGold.Client.Models.Repository
         public async Task<Product> GetProductByName(string name)
         {
             return await appDbContext.Products
-                .FirstOrDefaultAsync(e => e.Name.Contains(name));
+                .FirstOrDefaultAsync(e => e.ProductName.Contains(name));
         }
 
         public async Task<IEnumerable<Product>> GetProducts()
@@ -86,8 +86,8 @@ namespace NubexGold.Client.Models.Repository
 
             if(result != null)
             {
-                result.SKU = product.SKU;
-                result.Name = product.Name;
+                result.ProductSKU = product.ProductSKU;
+                result.ProductName = product.ProductName;
                 result.Description = product.Description;
                 result.Detail = product.Detail;
                 result.Type = product.Type;
@@ -108,6 +108,9 @@ namespace NubexGold.Client.Models.Repository
                 result.Image1 = product.Image1;
                 result.Image2 = product.Image2;
                 result.Image3 = product.Image3;
+                result.remark_1 = product.remark_1;
+                result.remark_2 = product.remark_2;
+                result.remark_3 = product.remark_3;
                 result.ModifiedBy = product.ModifiedBy;
                 result.ModifiedOn = product.ModifiedOn;
 
