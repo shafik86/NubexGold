@@ -18,8 +18,14 @@ namespace NubexGold.Client.Data
         public DbSet<ProductInHand> ProductInHands { get; set; }
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<Condition> Conditions { get; set; }
-        public DbSet<CourierServ> CourierServ { get; set; }
+        public DbSet<Shipping> CourierServ { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<ItemCart> itemCarts { get; set; }
+        //public DbSet<UserCart> UserCarts { get; set; }
+
+
+        public DbSet<RoleResponse> RoleResponse { get; set; }
+
         //public DbSet<Order_Details> Order_Details { get; set; }
         //public DbSet<Orders> Orders { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
@@ -33,16 +39,34 @@ namespace NubexGold.Client.Data
                 .WithMany(pa => pa.productInHands)
                 .HasForeignKey(p => p.SellerId);
 
+
             base.OnModelCreating(builder);
             builder.Entity<ProductInHand>()
                 .HasOne(p => p.Product)
                 .WithMany(pa => pa.productInHands)
                 .HasForeignKey(p => p.ProductId);
+            
+            
+            base.OnModelCreating(builder);
+            builder.Entity<ItemCart>()
+                .HasOne(e => e.User)
+                .WithMany(e => e.itemCart)
+                .HasForeignKey(e => e.UserId);
+            base.OnModelCreating(builder);
+            builder.Entity<ItemCart>()
+                .HasOne(e => e.productInHand)
+                .WithMany(e => e.itemCarts)
+                .HasForeignKey(e => e.Id);
 
             #endregion
 
-            //batch 2 many to many orders
-            #region many to many orders
+            //batch 2 many to many Cart
+            #region many to many Carts
+            //builder.Entity<User>()
+            //    .HasOne(p => p.Item)
+            //    .WithMany(pa => pa.Users)
+            //    .HasForeignKey(p => p.ItemCartId);
+
 
             #endregion
 

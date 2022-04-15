@@ -1,0 +1,66 @@
+﻿@page "/admin/Users"
+
+<style>
+    .selected {
+        background-color: #1E88E5 !important;
+    }
+
+        .selected > td {
+            color: white !important;
+        }
+
+            .selected > td .mud-input {
+                color: white !important;
+            }
+</style>
+<MudContainer Fixed >
+<div class="d-flex my-2 align-items-md-center">
+<MudGrid>
+    <MudItem xs="12" md="12">
+        <h3 class="flex-md-row my-md-3">User Managements</h3>
+    </MudItem>
+    <MudItem xs="12" md="12">
+
+        <MudPaper Elevation="2" Class="my-md-2" MinHeight="400" Outlined="true">
+        <MudTable Items="@users.Take(4)" Hover="true" Breakpoint="Breakpoint.Sm" @ref="mudTable" RowClassFunc="@SelectedRowClassFunc" OnRowClick="RowClickEvent" T="User">
+            <ToolBarContent>
+                <MudButton @onclick="OpenDialog" ButtonType="ButtonType.Button" Class="btn btn-primary my-2" Size="Size.Medium" >Add New User</MudButton>
+                <MudSpacer/>
+                <MudTextField @bind-Value="searchString1" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+            </ToolBarContent>
+            <HeaderContent>
+                <MudTh>Name</MudTh>
+                <MudTh>UserName</MudTh>
+                <MudTh>City</MudTh>
+                <MudTh>Phone</MudTh>
+                <MudTh>Region </MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Nr">@context.Name</MudTd>
+                <MudTd DataLabel="Sign">@context.UserName</MudTd>
+                <MudTd DataLabel="Name">@context.City</MudTd>
+                <MudTd DataLabel="Position">@context.Phone</MudTd>
+                <MudTd DataLabel="Molar mass">@context.Region</MudTd>
+            </RowTemplate>
+        </MudTable>
+        <MudExpansionPanels Style="flex: 1;">
+            <MudExpansionPanel Text="Show inline-clicked event log">
+                @foreach (var message in clickedEvents)
+                {
+                    <MudText>@message</MudText>
+                }
+                @if(clickedEvents.Count > 0) {
+                    <div class="d-flex">
+                        <MudSpacer/>
+                        <MudButton Class="mt-3" ButtonType="ButtonType.Button" Variant="Variant.Filled" OnClick="@(() => clickedEvents.Clear())">Clear events</MudButton>
+                    </div>
+                }
+            </MudExpansionPanel>
+        </MudExpansionPanels>
+
+
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+</div>
+</MudContainer>

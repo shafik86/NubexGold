@@ -29,6 +29,8 @@ namespace NubexGold.Client.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        public User newUser { get; set; }
+        public HttpClient httpClient { get; set; }
         //private readonly IRoleClaimStore<IdentityUser> _roleClaimStore;
 
         public RegisterModel(
@@ -75,6 +77,7 @@ namespace NubexGold.Client.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            public string Name { get; set; }
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -129,6 +132,7 @@ namespace NubexGold.Client.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
                     //_roleClaimStore.CreateAsync(user, "User");
                     var userId = await _userManager.GetUserIdAsync(user);
+
 //#####################################################################################################################################
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -151,6 +155,20 @@ namespace NubexGold.Client.Areas.Identity.Pages.Account
                         return LocalRedirect(returnUrl);
                     }
                 }
+//#####################################################################################################################################
+                //            Store userID in User
+                // we need to store user info to user table
+
+
+                //newUser.UserName = user.UserName;
+                //newUser.Password = user.PasswordHash;
+                //newUser.Email = user.Email;
+                //newUser.UserName = user.Email;
+                //newUser.Name = Input.Name;
+                //newUser.UserId = userId;
+
+                //await httpClient.PostAsJsonAsync("api/user", newUser);
+//#####################################################################################################################################
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);

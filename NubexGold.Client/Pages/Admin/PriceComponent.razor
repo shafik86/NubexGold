@@ -1,0 +1,120 @@
+﻿@page "/prices"
+@using System.Xml.Serialization;
+@using System.Security.Policy
+
+<h3>PriceComponent</h3>
+
+@if (!IsRunning)
+{
+    <MudAlert Severity="Severity.Warning" Variant="Variant.Filled">@message</MudAlert>
+}
+
+    <MudChip Class="btn btn-primary mb-3" Icon="@Icons.Material.Outlined.AppRegistration" Color="Color.Secondary"  >Get prices</MudChip>
+<MudContainer>
+        <MudPaper Class="pa-16 mb-3 my-3" Elevation="3" Style="width:fit-content" >
+            @if (myrPrice !=null )
+            {
+                @if (prices.goldPrice_Myr == 0)
+                {
+                    <p>Nothing to display</p>
+                }
+                else
+                {
+                    <br />
+                        <p>Gold : MYR  @prices.goldPrice_Myr.ToString("0.0000") perGRAM </p>
+                        <br />
+                        <p>Silver  : MYR  @prices.silverPrice_Myr.ToString("0.0000") perGRAM </p>
+
+                        <p>Counter :  @Errormessage</p>
+
+                        <p>Api Called : @Apis</p>
+
+                        
+                
+                }
+                @if (message != string.Empty)
+                {
+                    <p>Message : @message</p>
+                }
+        
+            }
+   
+        </MudPaper>
+</MudContainer>
+@code {
+    public string message { get; set; } = string.Empty;
+    [Inject]
+    public ISnackbar snackbar { get; set; }
+
+    [Inject]
+    public IPriceService priceService { get; set; }
+
+    public Prices prices { get; set; }
+    public int Apis { get; set; } = 0;
+    public int counter { get; set; } = 0;
+
+    public golds myrPrice { get; set; } = new golds();
+    public string Errormessage { get; set; }
+    public bool IsRunning { get; set; } = true;
+    public string ReturnUrl { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        prices = new Prices();
+        //CheckData();
+        myrPrice = await priceService.getAllPrice();
+        SimpanData();
+
+        StateHasChanged();
+    }
+
+    async void SimpanData()
+    {
+        var apiCalled = 0;
+        while(IsRunning)
+        {
+            try
+            {
+                myrPrice = await priceService.getAllPrice();
+                prices.goldPrice_Myr = myrPrice.gold.price / (decimal)31.1035;
+                prices.silverPrice_Myr = myrPrice.silver.price / (decimal)31.1035;
+                StateHasChanged();
+                var x = 3500;
+                counter += x;
+                apiCalled += 1;
+                Errormessage = counter.ToString();
+                Apis = apiCalled;
+                StateHasChanged();
+                CheckTime();
+                await Task.Delay(x);
+                StateHasChanged();
+            }
+            catch(Exception e)
+            {
+                message = "Price Unable to update at times " + Apis.ToString();
+                snackbar.Add(message, Severity.Error);
+                Errormessage = message;
+                StateHasChanged();
+                await Task.Delay(30000);
+                counter += 30000;
+                prices.goldPrice_Myr = 0;
+                prices.silverPrice_Myr = 0;
+                snackbar.Add("Restarting updating Price !", Severity.Info);
+            }
+        }
+        snackbar.Add("Dah Stop!!!", Severity.Error);
+        //message = string.Empty;
+
+    }
+    void CheckTime()
+    {
+        if (counter >= 600000)
+         {
+             IsRunning = false;
+                message = "Page is idle for 10 Minutes. Please refresh to get current Price";
+                
+                StateHasChanged();
+         }
+    }
+    
+}

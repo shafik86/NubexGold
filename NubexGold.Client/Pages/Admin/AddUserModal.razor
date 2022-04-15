@@ -1,0 +1,59 @@
+﻿@using NubexGold.Client.Models.User
+<EditForm Model="@addEditUser">
+    <MudDialog>
+        <TitleContent>
+            <MudText Typo="Typo.h6">
+                <MudIcon Icon="@Icons.Material.Filled.PersonAdd" />
+                Add User
+            </MudText>
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => addEditUser.Name)" @bind-Value="addEditUser.Name" Label="Name"/>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => addEditUser.Name)" @bind-Value="addEditUser.Name" Label="Name"/>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => addEditUser.Name)" @bind-Value="addEditUser.Name" Label="Name"/>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => addEditUser.Name)" @bind-Value="addEditUser.Name" Label="Name"/>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => addEditUser.Name)" @bind-Value="addEditUser.Name" Label="Name"/>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => addEditUser.Name)" @bind-Value="addEditUser.Name" Label="Name"/>
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton OnClick="Cancel">Cancel</MudButton>
+            <MudButton Color="Color.Primary" OnClick="Submit">@btnSubmit</MudButton>
+        </DialogActions>
+    </MudDialog>
+</EditForm>
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    public string btnSubmit { get; set; } = "Create";
+    public User users { get; set; }
+    [Parameter] public AddEditUser addEditUser { get; set; } = new AddEditUser();
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+    protected override Task OnInitializedAsync()
+    {
+        if (addEditUser.UserId != 0)
+        {
+            btnSubmit = "Save";
+        }
+        else
+        {
+            btnSubmit = "Create";
+        }
+
+        return base.OnInitializedAsync();
+    }
+}

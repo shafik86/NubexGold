@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NubexGold.Shared
+﻿namespace NubexGold.Client.Models.User
 {
-    public class User
+    public class AddEditUser
     {
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         [Required]
         public string UserName { get; set; }
         public string Name { get; set; }
@@ -25,12 +18,5 @@ namespace NubexGold.Shared
         public string? Region { get; set; }
         public string? Country { get; set; }
         public string? PostalCode { get; set; }
-        public List<ItemCart> itemCart { get; set; }
-        public int ItemCartId { get; set; }
-        
-
-
-
-
     }
 }

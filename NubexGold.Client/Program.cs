@@ -6,12 +6,13 @@ global using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
-
+using MudBlazor;
 using Microsoft.AspNetCore.Hosting;
 using MudBlazor.Services;
 using NubexGold.Client.Areas.Identity;
 using NubexGold.Client.Models.Profiles;
 using Microsoft.Extensions.DependencyInjection;
+using NubexGold.Client.Services.UserCartServices;
 
 
 
@@ -24,12 +25,6 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-//builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt => opt.SignIn.RequireConfirmedEmail = false)
-    //.AddRoles<IdentityRole>()
-    //.AddRoleManager<IdentityRole>()
-    //.AddRoleStore<IdentityRole>()
-    //.AddRoles<IdentityRole>()
-    //.AddEntityFrameworkStores<ApplicationDbContext>(); 
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
@@ -43,8 +38,10 @@ builder.Services.AddSingleton(new HttpClient
 }
 );
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IPriceService, PriceService>();
 builder.Services.AddScoped<ISellerService, SellerService >();
 builder.Services.AddScoped<IConditionService, ConditionService>();
+builder.Services.AddScoped<IUserCartService,UserCartService>();
 builder.Services.AddAutoMapper(typeof(ProductProfile));
 
 
@@ -71,7 +68,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger.json", "NubexGold.Client v1"));
+    //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger.json", "NubexGold.Client v1"));
     //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NubexGold.Client v1"));
 }
 else

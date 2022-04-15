@@ -37,7 +37,7 @@ namespace NubexGold.Shared
         public string ModifiedBy { get; set; }
 
 
-        public CourierServ Courier { get; set; }
+        public Shipping Courier { get; set; }
         public List<ProductInHand> productInHands { get; set; }
 
     }

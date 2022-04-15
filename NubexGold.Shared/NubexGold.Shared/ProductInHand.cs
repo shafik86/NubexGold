@@ -15,13 +15,15 @@ namespace NubexGold.Shared
 
 
         //Navigation
-        public int ProductId { get; set; }
-        public Product Product { get; set; }
-
         public int SellerId { get; set; }
         public Seller Seller { get; set; }
 
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
+
         public double? QtyInHand { get; set; }
-        
+        public List<ItemCart> itemCarts { get; set; }
+
+
     }
 }
