@@ -1,6 +1,5 @@
 ﻿@page "/checkout"
 
-<div class="column">
 <MudContainer Class="d-flex mt-12">
     <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true" Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Checkout</MudText>
     <MudGrid Spacing="6" Class="mt-16">
@@ -36,6 +35,7 @@
                 </MudItem>
             </MudGrid>
         </MudItem>
+        
 
         <MudItem xs="6">
             <MudText Typo="Typo.h5" GutterBottom="true" Color="Color.Warning" Align="Align.End" Inline="false" Class="float-end" >@minutes.ToString()m @Timer.ToString()s remaining</MudText>
@@ -46,12 +46,10 @@
                
            
         </MudItem>
-                   
             
     </MudGrid>
 </MudContainer>
 <br />
-</div>
 
 
 @code{
