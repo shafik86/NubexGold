@@ -15,6 +15,7 @@ else
         <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Gold Detail</MudText>
         <MudGrid Spacing="6" Class="mt-16" >
             <MudItem xs="7">
+                
                 <MudText  Typo="Typo.h5">
                     @product.ProductName.ToString() @product.Purify.ToString() <br/> 
                     
@@ -57,6 +58,7 @@ else
                 </MudItem>
                 <MudItem xs="8" sm="4" Class="m-3">
                     <MudText>Price From </MudText><MudText Typo="Typo.h4">MYR @product.Price</MudText>
+                    <MudLink Href=@($"product/{@product.ProductId}") Class="link link-danger">Edit (Admin)</MudLink>
                     <MudPaper Class="d-flex flex-column md-2" Style="height:100%; width:max-content;" Elevation="0" >
                                 <MudText Class="ml-auto" Typo="Typo.body1"></MudText>
                                 <MudDivider/>
@@ -140,7 +142,9 @@ else
                     </MudItem>*@
             <hr style="width:0%;text-align:left;margin-left:0">
             <hr style="width:0%;text-align:left;margin-left:0">
-            <MudExpansionPanels MultiExpansion="true" Class="mb-3">
+        @*</MudGrid>
+        <MudGrid>*@
+            <MudExpansionPanels MultiExpansion="true" Style="width:100%" Class="mb-4 mt-4">
                 <MudExpansionPanel Text="Details">
                     <MudText GutterBottom="true">
                         @product.Description
@@ -157,7 +161,6 @@ else
                     </MudList>
                 </MudExpansionPanel>
             </MudExpansionPanels>
-        </MudGrid>
-
+       </MudGrid>
 }
     </MudContainer>

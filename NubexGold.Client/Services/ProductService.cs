@@ -22,7 +22,7 @@ namespace NubexGold.Client.Services
         }
         public async Task UpdateProduct(Product UpdateProduct)
         {
-            await httpClient.PutAsJsonAsync("api/products", UpdateProduct);
+            await httpClient.PostAsJsonAsync("api/products/Edit", UpdateProduct);
 
 
 
