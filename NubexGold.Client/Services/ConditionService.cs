@@ -15,7 +15,7 @@
 
         public async Task<IEnumerable<Condition>> GetConditions()
         {
-            var result = await httpClient.GetFromJsonAsync<Condition[]>("api/Conditions");
+            var result = await httpClient.GetFromJsonAsync<IEnumerable<Condition>>("api/Conditions");
             return result;
         }
     }
