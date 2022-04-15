@@ -15,13 +15,16 @@ namespace NubexGold.Shared
         public int SellerId { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime PostDate { get; set; }
-        public int CourierId { get; set; }
         //public int CourierId { get; set; }
         public string ShipName { get; set; }
         public string ShipCity { get; set; }
         public string ShipRegion { get; set; }
         public string ShipPostalCode { get; set; }
         public string ShipCountry { get; set; }
+
+        //Navigation Properties
+        public CourierServ courier { get; set; }
+        public int CourierId { get; set; }
 
 
     }
