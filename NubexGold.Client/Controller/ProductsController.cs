@@ -34,11 +34,11 @@ namespace NubexGold.Client.Controller
         }
         //Search Product by Name, Metal
         [HttpGet("{search}")]
-        public async Task<ActionResult<IEnumerable<Product>>> Search(Metal? metal, Types type)
+        public async Task<ActionResult<IEnumerable<Product>>> Search(Metal? metal)
         {
             try
             {
-                var result = await productRepository.SearchProduct(metal, type);
+                var result = await productRepository.SearchProduct(metal);
                 if (result.Any())
                 {
                     return Ok(result);
@@ -57,10 +57,20 @@ namespace NubexGold.Client.Controller
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts(int skip = 0, int take = 5)
         {
-            var result = await productRepository.GetProducts();
-            return Ok(result);
+            try
+            {
+               return Ok( await productRepository.GetProducts( skip, take));
+              
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, 
+                    "Error Retrieving data from server");
+            }
+            
         }
 
 

@@ -24,12 +24,6 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-//builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt => opt.SignIn.RequireConfirmedEmail = false)
-    //.AddRoles<IdentityRole>()
-    //.AddRoleManager<IdentityRole>()
-    //.AddRoleStore<IdentityRole>()
-    //.AddRoles<IdentityRole>()
-    //.AddEntityFrameworkStores<ApplicationDbContext>(); 
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
@@ -71,7 +65,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger.json", "NubexGold.Client v1"));
+    //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger.json", "NubexGold.Client v1"));
     //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NubexGold.Client v1"));
 }
 else

@@ -6,7 +6,7 @@ namespace NubexGold.Client.Services
     {
         IEnumerable<Product> products { get; set; }
         //Task<IEnumerable<Product>> GetProductsMetal(Metal? metal);
-        Task<IEnumerable<Product>> GetProducts();
+        Task<ProductDataResult> GetProducts();
         Task CreateProduct(Product NewProduct);
         Task UpdateProduct(Product UpdateProduct);
         Task<IEnumerable<Product>> SearcProduct(string? metal);

@@ -58,12 +58,19 @@ namespace NubexGold.Client.Models.Repository
                 .FirstOrDefaultAsync(e => e.ProductName.Contains(name));
         }
 
-        public async Task<IEnumerable<Product>> GetProducts()
+        public async Task<ProductDataResult> GetProducts(int skip = 0, int take = 5)
         {
-            return await appDbContext.Products.ToListAsync();
+            ProductDataResult result = new ProductDataResult()
+            {
+                //Products = await appDbContext.Products.Skip(skip).Take(take),
+                //Count = appDbContext.Products.Count()
+                Products = appDbContext.Products.Skip(skip).Take(take),
+                Count = await appDbContext.Products.CountAsync()
+            };
+            return result;
         }
 
-        public async Task<IEnumerable<Product>> SearchProduct(Metal? metal, Types? type)
+        public async Task<IEnumerable<Product>> SearchProduct(Metal? metal)
         {
             //var 
             IQueryable<Product> query = appDbContext.Products;
@@ -71,10 +78,6 @@ namespace NubexGold.Client.Models.Repository
             if (metal is not null)
             {
                 query = query.Where(e => e.Metal == metal);
-                if (type is not null)
-                {
-                    query = query.Where(e => e.Type == type);
-                }
             }
 
             return await query.ToListAsync();
