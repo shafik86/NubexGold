@@ -29,7 +29,7 @@ namespace NubexGold.Client.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private readonly IRoleClaimStore<IdentityUser> _roleClaimStore;
+        //private readonly IRoleClaimStore<IdentityUser> _roleClaimStore;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,

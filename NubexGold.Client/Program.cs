@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using MudBlazor.Services;
 using NubexGold.Client.Areas.Identity;
 using NubexGold.Client.Models.Profiles;
+using Microsoft.Extensions.DependencyInjection;
 
 
 
@@ -23,15 +24,16 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt => opt.SignIn.RequireConfirmedEmail = false)
+//builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt => opt.SignIn.RequireConfirmedEmail = false)
     //.AddRoles<IdentityRole>()
     //.AddRoleManager<IdentityRole>()
     //.AddRoleStore<IdentityRole>()
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>(); 
+    //.AddRoles<IdentityRole>()
+    //.AddEntityFrameworkStores<ApplicationDbContext>(); 
 
-//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-//    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 baseAddress = builder.Configuration.GetValue<string>("BaseUrl");
 //baseAddress = 
