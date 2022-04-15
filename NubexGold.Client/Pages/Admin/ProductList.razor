@@ -7,17 +7,16 @@
 {
     <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-7" />
 }
-
+<div style="background:https://images.rawpixel.com/image_1000/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjU0NmJhdGNoMy1teW50LTMxLWJhZGdld2F0ZXJjb2xvcl8xLmpwZw.jpg?s=EsuWYOEiv-r4B3AFYwNuDkF34q5Zl1d46sJxNTLDOec; backface-visibility:inherit;">
 <PageTitle>@Pagetitle</PageTitle>
-        @*<EditForm Model="@ProductModel" OnValidSubmit="OnValidSubmit">
-
-                </EditForm>*@
+<MudPaper Elevation="3" Class="pa-12 ma-2 mb-3" Outlined="false" role="banner" >
+<MudButton ButtonType="ButtonType.Button"  Class="btn btn-primary mb-3" Size="Size.Medium"  OnClick="@(() => navigation.NavigateTo("/product"))">Add Item</MudButton>
     <MudTable Items="@Products" Dense="@dense" Hover="@hover" ReadOnly="@ronly" CanCancelEdit="@canCancelEdit" Filter="new Func<Product,bool>(FilterFunc)"
               @bind-SelectedItem="selectedItem1" SortLabel="Sort By" CommitEditTooltip="Commit Edit"
               OnCommitEditClick="@(() => Snackbar.Add("Commit Edit Handler Invoked"))" RowEditPreview="BackupItem" RowEditCancel="ResetItemToOriginalValues"
               RowEditCommit="ItemHasBeenCommitted" IsEditRowSwitchingBlocked="@blockSwitch">
         <ToolBarContent>
-            <MudText Typo="Typo.h4">All List Product</MudText>
+            <MudText Typo="Typo.h4">@Title</MudText>
             <MudSpacer />
             <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
         </ToolBarContent>
@@ -30,6 +29,7 @@
             <col style="width:20%;" />*@
         </ColGroup>
         <HeaderContent>
+            <MudTh>Picture</MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Product, object>(x=>x.ProductSKU)">SKU</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Product, object>(x=>x.ProductName)">Name</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<Product, object>(x=>x.Metal)">Metal</MudTableSortLabel></MudTh>
@@ -37,13 +37,18 @@
             <MudTh><MudTableSortLabel SortBy="new Func<Product, object>(x=>x.Price)">From (MYR)</MudTableSortLabel></MudTh>
         </HeaderContent>
         <RowTemplate>
+            <MudTd DataLabel="Picture"><MudImage Src="@context.Image1" Class="bordered" Height="50" Width="50" ObjectFit="ObjectFit.Fill"></MudImage></MudTd>
             <MudTd DataLabel="SKU">@context.ProductSKU</MudTd>
             <MudTd DataLabel="Name">@context.ProductName</MudTd>
             <MudTd DataLabel="Metal">@context.Metal</MudTd>
             <MudTd DataLabel="Weight">@context.Weight</MudTd>
             <MudTd DataLabel="Price">@context.Price</MudTd>
+            <MudTd>
+                <MudChip Color="Color.Tertiary" Icon="@Icons.Material.Outlined.EditNote" @onmouseover="EventCallback<MouseEventArgs>.Empty" OnClick="@(() => navigation.NavigateTo($"/product/{context.ProductId}"))"></MudChip>
+            </MudTd>
         </RowTemplate>
         <RowEditingTemplate>
+            @*<MudTd DataLabel="SKU">@context.Image1</MudTd>*@
             <MudTd DataLabel="SKU">@context.ProductSKU</MudTd>
             <MudTd DataLabel="Name">
                 <MudTextField @bind-Value="@context.ProductName" Required />
@@ -74,7 +79,7 @@
     <MudSwitch @bind-Checked="@blockSwitch" Color="Color.Success">Block Edit Row Switching</MudSwitch>
     <MudText Inline="true">Item: @selectedItem1?.ProductName</MudText>
 
-    <MudExpansionPanels Style="flex: 1;">
+    @*<MudExpansionPanels Style="flex: 1;">
         <MudExpansionPanel Text="Show inline-edit event log">
             @foreach (var message in editEvents)
             {
@@ -86,7 +91,7 @@
         <MudButton Class="mt-3" ButtonType="ButtonType.Button" Variant="Variant.Filled" OnClick="ClearEventLog">Clear event log</MudButton>
     </div>}
         </MudExpansionPanel>
-    </MudExpansionPanels>
+    </MudExpansionPanels>*@
 
-
-
+</MudPaper>        
+</div>

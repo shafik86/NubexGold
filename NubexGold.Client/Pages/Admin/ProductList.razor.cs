@@ -8,8 +8,8 @@ namespace NubexGold.Client.Pages.Admin
 {
     public partial class ProductList : ComponentBase
     {
-        public string Pagetitle { get; set; }
-        public string Title { get; set; }
+        public string Pagetitle { get; set; } = "List Of Product";
+        public string Title { get; set; } = "All List Product";
         [Inject]
         public IConditionService conditionService { get; set; }
         [Inject]

@@ -36,7 +36,7 @@ namespace NubexGold.Shared
         public string CreatedBy { get; set; } = "Administrators";
         public DateTime ModifiedOn { get; set; }
         public string ModifiedBy { get; set; } = "Admin";
-        [JsonIgnore]
+ 
         //Navigation Properties
 
         public List<ProductInHand>? productInHands { get; set; }

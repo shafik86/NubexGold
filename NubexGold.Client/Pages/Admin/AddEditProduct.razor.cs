@@ -110,8 +110,6 @@ namespace NubexGold.Client.Pages.Admin
             int.TryParse(name, out int c);
             
             var result = filebase64.FirstOrDefault(e => e.ImageId == c);
-            //if (result != null)
-            //    filebase64.Remove(result);
             switch (c)
             {
                 case 1: ProductModel.Image1 = null;
@@ -129,20 +127,16 @@ namespace NubexGold.Client.Pages.Admin
             MyCondition = false;
             if (counting >= 1)
             {
-                //files.RemoveAt(counting);
                 counting -= 1;
             }
             else
             {
                 counting = 0;
             }
-            //filebase64.Clear();
-            //base64image = "";
         }
  
         protected override async Task OnInitializedAsync()
         {
-
             if (counting == 3)
             {
                 MyCondition = true;
@@ -155,6 +149,7 @@ namespace NubexGold.Client.Pages.Admin
                 btnSubmit = "Update";
                 try
                 {
+
                     product = await productService.GetProduct(int.Parse(Id));
                     if (product == null)
                     {
@@ -181,8 +176,9 @@ namespace NubexGold.Client.Pages.Admin
                 };
              
             }
-            Conditions = await conditionService.GetConditions();
+            Conditions = (await conditionService.GetConditions()).ToList();
             Mapper.Map( product, ProductModel);
+            StateHasChanged();
         }
         void selet()
         {
@@ -198,26 +194,24 @@ namespace NubexGold.Client.Pages.Admin
             if (product.ProductId != 0)
             {
                 //btnSubmit = "Update";
+                string id = product.ProductId.ToString();
                  await productService.UpdateProduct(product);
-                message = $"Product {product.ProductName} Updated";
-                navigation.NavigateTo($"/product/{product.ProductId}");
+                message = $"Product {product.ProductName} Updated to DB";
+                Snackbar.Add(message, Severity.Info);
+                navigation.NavigateTo("/productList");
                 
-                //Snackbar.Add(message, Severity.Info);
-                //return;
+                Snackbar.Add(message, Severity.Info);
+                return;
             }
             else
             {
-                //btnSubmit = "Create";
-                await productService.CreateProduct(product);
+                 await productService.CreateProduct(product);
                 message = $"Product {product.ProductName} Added";
+                //navigation.NavigateTo($"/itemdetail/{product.ProductId}");
                 Snackbar.Add(message, Severity.Info);
-                navigation.NavigateTo($"/product/{product.ProductId}");
-                //return;
+                return;
             }
-            //message = "Product with Id : " + Id + " Is updated";
-            //Snackbar.Add(message,Severity.Normal);
             StateHasChanged();
-            //return Task.CompletedTask;
         }
 
     }

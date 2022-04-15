@@ -44,9 +44,12 @@ namespace NubexGold.Client.Data
             //batch 2 many to many orders
             #region many to many orders
 
-
             #endregion
 
+            //seed data
+            #region roles&Permission
+            //builder.Entity
+            #endregion
             #region Conditions
             //Seed Data Conditions
             builder.Entity<Condition>().HasData(
