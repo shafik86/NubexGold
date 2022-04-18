@@ -1,10 +1,10 @@
 ﻿@page "/checkout"
 
-<MudContainer Class="mt-12">
-    <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Checkout</MudText>
+<MudContainer Class="d-flex mt-12">
+    <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true" Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Checkout</MudText>
     <MudGrid Spacing="6" Class="mt-16">
         <MudItem xs="6">
-            <MudText Typo="Typo.h5" GutterBottom="true">Billing address</MudText>
+            <MudText Typo="Typo.h5" GutterBottom="true" Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Billing address</MudText>
             <MudGrid>
                 <MudItem xs="12">
                     <MudTextField T="string" Label="Email" />
@@ -31,22 +31,25 @@
                     <MudTextField T="string" Label="Postal Area" />
                 </MudItem>
                 <MudItem xs="12" Class="d-flex justify-center">
-                    <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8">Continue to Payment</MudButton>
+                    <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Dark" Size="Size.Large" Class="mt-8">Continue to Payment</MudButton>
                 </MudItem>
             </MudGrid>
         </MudItem>
+        
 
         <MudItem xs="6">
             <MudText Typo="Typo.h5" GutterBottom="true" Color="Color.Warning" Align="Align.End" Inline="false" Class="float-end" >@minutes.ToString()m @Timer.ToString()s remaining</MudText>
             
                <Cart/>
+               <br />
+               <br />
                
            
         </MudItem>
-                   
             
     </MudGrid>
 </MudContainer>
+<br />
 
 
 @code{
