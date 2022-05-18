@@ -55,13 +55,14 @@ namespace NubexGold.Client.Controller
             }
         }
 
-        // GET: api/Products
+         //GET: api/Products
+         //int skip = 0, int take = 5
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts(int skip = 0, int take = 5)
+        public async Task<ActionResult<IEnumerable<Product>>> GetAllProducts()
         {
             try
             {
-               return Ok( await productRepository.GetProducts( skip, take));
+               return Ok( await productRepository.GetAllProducts());
               
             }
             catch (Exception)
@@ -73,6 +74,14 @@ namespace NubexGold.Client.Controller
             
         }
 
+        // GET: api/Products with pagination
+        // int skip = 0, int take = 5
+        [HttpGet("page/{page}")]
+        public async Task<ActionResult<ProductDataResult>> GetProducts(int page)
+        {
+            var result = await productRepository.GetProducts(page);
+            return Ok(result);
+        }
 
 
 

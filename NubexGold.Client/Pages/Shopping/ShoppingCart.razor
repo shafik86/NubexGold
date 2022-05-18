@@ -1,20 +1,23 @@
 ﻿@page "/shoppingcart"
 @inject NavigationManager Navigation
-
-<MudGrid>
-    <MudItem xs="12" md="12">
-        <Cart/>
-    </MudItem>
+<MudContainer>
+        <MudPaper Elevation="2" Class="my-4 ">
+    <MudGrid>
+            <MudItem xs="12" md="12">
+                <div class="d-flex">
+                <Cart/>
+                </div>
+            </MudItem>
     
-    <MudItem xs="12" Class="mt-3 offset-2">
-        @*<MudPaper Class="mt-2" Height="50px" Width="15%">*@
-                <MudButton Class="my-md-2 ml-2" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.ShoppingCartCheckout" OnClick="@(() => Navigation.NavigateTo("/checkout"))" Color="Color.Dark">Continue Checkout</MudButton>
-            @*</MudPaper>*@
-    </MudItem>
-    <br />
-            
+            <MudItem xs="12" md="6">
+                        <div class="d-flex mt-3 pt-3 ml-2">
+                        <MudButton Class="inline" Size="Size.Medium" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.ShoppingCartCheckout" OnClick="@(() => Navigation.NavigateTo("/checkout"))" Color="Color.Warning">Continue Checkout</MudButton>
+                        <MudButton Class="inline ml-2" Size="Size.Medium" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.ShoppingBag" OnClick="@(() => Navigation.NavigateTo("/products"))" Color="Color.Success">Continue Shopping</MudButton>
+                        </div>
+            </MudItem>
 </MudGrid>
-    
+        </MudPaper>            
+</MudContainer>
 @code {
  
 

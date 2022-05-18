@@ -38,10 +38,10 @@ namespace NubexGold.Client.Pages.Admin
 
         protected override async Task OnInitializedAsync()
         {
-            var result = await productService.GetProducts();
+            var result = await productService.GetAllProducts();
             if (result != null)
             {
-                Products = result.Products;
+                Products = result;
             }
         }
 

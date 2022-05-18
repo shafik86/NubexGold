@@ -58,16 +58,16 @@ namespace NubexGold.Client.Models.Repository
                 .FirstOrDefaultAsync(e => e.ProductName.Contains(name));
         }
 
-        public async Task<ProductDataResult> GetProducts(int skip = 0, int take = 5)
+        public async Task<IEnumerable<Product>> GetAllProducts()
         {
-            ProductDataResult result = new ProductDataResult()
-            {
-                //Products = await appDbContext.Products.Skip(skip).Take(take),
-                //Count = appDbContext.Products.Count()
-                Products = appDbContext.Products.Skip(skip).Take(take),
-                Count = await appDbContext.Products.CountAsync()
-            };
-            return result;
+            //ProductDataResult result = new ProductDataResult()
+            //{
+            //    //Products = await appDbContext.Products.Skip(skip).Take(take),
+            //    //Count = appDbContext.Products.Count()
+            //    Products = appDbContext.Products.Skip(skip).Take(take),
+            //    Count = await appDbContext.Products.CountAsync()
+            //};
+            return await appDbContext.Products.ToListAsync();
         }
 
         public async Task<IEnumerable<Product>> SearchProduct(Metal? metal)
@@ -123,6 +123,38 @@ namespace NubexGold.Client.Models.Repository
                 return result;
             }
             return null;
+        }
+
+        public async Task<ProductDataResult> GetProducts(int page)
+        {
+            //ProductDataResult result = new ProductDataResult()
+            //{
+            //    Products = appDbContext.Products.Skip(skip).Take(take),
+            //    Count = await appDbContext.Products.CountAsync()
+            //};
+            //return result;
+            if (appDbContext.Products == null)
+            {
+                return null;
+            }
+
+            var pageResults = 8f;
+            var pageCount = Math.Ceiling(appDbContext.Products.Count() / pageResults);
+
+            var Products = await appDbContext.Products
+                .Skip((page - 1) * (int)pageResults)
+                .Take((int)pageResults)
+                .ToListAsync();
+            var response = new ProductDataResult
+            {
+                Products = Products,
+                CurrentPage = page,
+                Pages = (int)pageCount,
+                Count = (int)pageCount,
+                
+            };
+
+            return response;
         }
 
         //async Task<IEnumerable<Product>> IProductRepository.GetProductByMetal(string metal)

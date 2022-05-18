@@ -6,12 +6,13 @@ global using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
-
+using MudBlazor;
 using Microsoft.AspNetCore.Hosting;
 using MudBlazor.Services;
 using NubexGold.Client.Areas.Identity;
 using NubexGold.Client.Models.Profiles;
 using Microsoft.Extensions.DependencyInjection;
+using NubexGold.Client.Services.UserCartServices;
 
 
 
@@ -37,8 +38,10 @@ builder.Services.AddSingleton(new HttpClient
 }
 );
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IPriceService, PriceService>();
 builder.Services.AddScoped<ISellerService, SellerService >();
 builder.Services.AddScoped<IConditionService, ConditionService>();
+builder.Services.AddScoped<IUserCartService,UserCartService>();
 builder.Services.AddAutoMapper(typeof(ProductProfile));
 
 

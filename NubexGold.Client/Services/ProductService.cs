@@ -44,21 +44,23 @@ namespace NubexGold.Client.Services
             return result;
         }
 
-        public async Task<ProductDataResult> GetProducts()
+        public async Task<IEnumerable<Product>> GetAllProducts()
         {
-            var result = await httpClient.GetFromJsonAsync<ProductDataResult>("api/products");
+            products = await httpClient.GetFromJsonAsync<IEnumerable<Product>>("api/Products");
+            return products;
+        }
+           
+
+        public async Task<ProductDataResult> GetProducts(int page)
+        {
+            var result = await httpClient.GetFromJsonAsync <ProductDataResult> ($"api/products/page/{page}");
             if (result != null)
             {
-                return result;
+                products = result.Products.ToList();
+
+                
             }
-            else
-            {
-                return null;
-            }
+            return result;
         }
-       
-
-
-
     }
 }

@@ -4,13 +4,14 @@
 
 <MudPaper Width="250px" Elevation="0" Class="py-3" Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
     <MudNavMenu Color="Color.Dark">
-            <AuthorizeView>
+         <AuthorizeView>
             <Authorized>
                 @*<MudNavLink Href="/dashboard" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">Dashboard</MudNavLink>*@
                 <MudNavLink Href="/" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Home">HOME</MudNavLink>
+                
                 <MudNavLink Href="#" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.BusinessCenter">SELLER CENTER</MudNavLink>
-                <MudNavLink Href="/Auction" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Sell">AUCTION</MudNavLink>
-                <MudNavGroup Title="NEWS" Icon="@Icons.Filled.Newspaper" Expanded="false">
+                @*<MudNavLink Href="/Auction" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Sell">AUCTION</MudNavLink>*@
+                @*<MudNavGroup Title="NEWS" Icon="@Icons.Filled.Newspaper" Expanded="false">
                     <MudNavLink Href="/Articles" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storage">ARTICLES</MudNavLink>
                     <MudNavLink Href="/Events" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">EVENTS</MudNavLink>
                     <MudNavLink Href="/FeaturedWriters" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">FEATURED WRITERS</MudNavLink>
@@ -19,7 +20,7 @@
                     <MudNavLink Href="/MintageGuide" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">MINTAGE GUIDE</MudNavLink>
                     <MudNavLink Href="/News" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">NEWS</MudNavLink>
                     <MudNavLink Href="/WorthlessPaper" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">WORTHLESS PAPER</MudNavLink>
-                </MudNavGroup>
+                </MudNavGroup>*@
                 <MudNavGroup Title="PRODUCTS" Icon="@Icons.Filled.Storage" Expanded="false">
                 <MudNavLink Href="/products" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storage">ALL PRODUCTS</MudNavLink>
                 <MudNavGroup Title="SILVER" Icon="@Icons.Filled.DarkMode" Expanded="false">
@@ -49,9 +50,15 @@
                     <MudNavLink Href="productList" Match="NavLinkMatch.Prefix">Product List</MudNavLink>
                     <MudNavLink Href="SellerList" Match="NavLinkMatch.Prefix">Seller List</MudNavLink>
                 </MudNavGroup>
+                <MudNavGroup Title="Users" Icon="@Icons.Material.Filled.People" Expanded="false">
+                    <MudNavLink Href="identity/account/manage/index">Account Profile</MudNavLink>
+                    <MudNavLink Href="admin/users">User Management</MudNavLink>
+                    <MudNavLink Href="admin/Roles">Roles &amp; Permision</MudNavLink>
+                    <MudNavLink Href="Identity/account/logout" Class="link-warning">LOGOUT</MudNavLink>
+                </MudNavGroup>
                 <MudNavGroup Title="Settings" Expanded="false">
-                    <MudNavLink Href="identity/account/profile">Users</MudNavLink>
-                    <MudNavLink Href="/security">Security</MudNavLink>
+                    @*<MudNavLink Href="identity/account/manage">Users</MudNavLink>*@
+                    <MudNavLink Href="/Email" Class="link-primary">SMTP Settings</MudNavLink>
                 </MudNavGroup>
                 <MudNavLink Href="/about" Icon="@Icons.Filled.Diamond">ABOUT</MudNavLink>
                 <MudNavGroup Title="SHOPPING" Expanded="false">
@@ -64,6 +71,7 @@
                     <MudNavLink Href="/" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">HOME</MudNavLink>
                     <MudNavLink Href="/products" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storage">PRODUCTS</MudNavLink>
                     <MudNavLink Href="/about">ABOUT</MudNavLink>
+                    <MudNavLink Href="Identity/account/register">REGISTER</MudNavLink>
                     <MudNavLink Href="Identity/account/login">LOGIN</MudNavLink>
                     <MudNavLink Href="/swagger/index.html" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Outlined.LiveHelp" Target="_blank">SWAGGER</MudNavLink>
                 </NotAuthorized>
@@ -71,53 +79,3 @@
     </MudNavMenu>
 </MudPaper>
 
-
-@*<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">EcommerceWeb</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</div>
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div>
-     
-    </nav>
-</div>
-
-                <MudNavLink Href="/dashboard" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Dashboard">DASHBOARD</MudNavLink>
-                <MudNavLink Href="/Checkout" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCartCheckout">CHECKOUT</MudNavLink>
-                <MudNavLink Href="/shoppingcart" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCart" Disabled="false">CART</MudNavLink>
-                <MudNavLink Href="/Seller" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storefront" Disabled="false">SELLER</MudNavLink>
-                
-                <MudNavLink Href="/Checkout" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCartCheckout">Checkout</MudNavLink>
-                <MudNavLink Href="/shoppingcart" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ShoppingCart" Disabled="false">Cart</MudNavLink>
-                <MudNavLink Href="/Seller" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Storefront" Disabled="false">Seller</MudNavLink>*@
-
-@code {
-    //private bool collapseNavMenu = true;
-
-    //private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    //private void ToggleNavMenu()
-    //{
-    //    collapseNavMenu = !collapseNavMenu;
-    //}
-}

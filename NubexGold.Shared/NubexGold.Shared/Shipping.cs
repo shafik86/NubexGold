@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NubexGold.Shared
 {
-    public class CourierServ
+    public class Shipping
     {
         [Key]
         public int CourierId { get; set; }

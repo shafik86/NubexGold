@@ -1,40 +1,23 @@
 ﻿@page "/cart"
 
-<MudContainer>
+@*<MudContainer>*@
 @*<MudPaper Width="100%" Height="100%" Elevation="2" Class="py-6 my-2">*@
     
-    <MudGrid Spacing="12" Class="mt-2">
+    <MudGrid Spacing="12" >
         <MudItem xs="12">
-            <MudText Typo="Typo.h5" GutterBottom="true" Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Order Summary</MudText>
-            <MudPaper Class="d-flex flex-column" Style="height:100%; background-color:#F5F5F5" Outlined="false">
+            <div class="d-flex  ml-3 ">
+                <MudText Class="md-3" Align="Align.Center" Typo="Typo.h4">Cart Item</MudText>
+            </div>
+            <MudPaper Class="d-flex flex-column my-2" Style="height:100%;" Outlined="true">
                 <MudList Clickable="true">
-                    <MudListItem Icon="@Icons.Material.Filled.CurrencyBitcoin">
-                        <div class="d-flex">
-                            <MudText>@PampLady</MudText>
-                            <MudText Inline="true" Class="ml-auto" Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">MYR @PampLadyPrice</MudText>
-                        </div>
-                    </MudListItem>
-                    <br />
-                    <MudListItem Icon="Image/e.jpeg">
-                        <div class="d-flex">
-                            <MudText>@PampCast</MudText>
-                            <MudText Class="ml-auto" Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">MYR @PampCastPrice</MudText>
-                        </div>
-                    </MudListItem>
-                    <br />
-                    <MudListItem Icon="@Icons.Material.Filled.CurrencyBitcoin">
-                        <div class="d-flex">
-                            <MudText>@KelantanGold</MudText>
-                            <MudText Class="ml-auto" Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">MYR @KelantanGoldPrice</MudText>
-                        </div>
-                    </MudListItem>
-                    <br />
-                    <MudListItem Icon="@Icons.Material.Filled.CurrencyBitcoin">
-                        <div class="d-flex">
-                            <MudText>@NubexGold</MudText>
-                            <MudText Class="ml-auto" Style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">MYR @NubexGoldPrice </MudText>
->                        </div>
-                    </MudListItem>
+                    
+                        <MudListItem Icon="">
+                            <div class="d-flex">
+                                <MudText>@PampCast</MudText>
+                                <MudText Inline="true" Class="ml-auto">MYR @PampCastPrice</MudText>
+                            </div>
+                        </MudListItem>
+                    
                 </MudList>
                 <div class="mt-auto">
                     <MudDivider />
@@ -47,10 +30,9 @@
             
         </MudItem>
      </MudGrid>
+        <br />
 @*</MudPaper>*@
-</MudContainer>
-<br />
-<br />
+@*</MudContainer>*@
 
 @code {
     public string PampLady { get; set; } = "PAMP SUISSE OF LADY FORTUNA- VERISCAN 10G GOLD 999.9 - COND: A";

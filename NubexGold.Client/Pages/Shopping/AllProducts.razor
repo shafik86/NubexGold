@@ -1,4 +1,4 @@
-﻿@page "/products/{Metal}/{Id}"
+﻿
 @page "/products/{Metal}"
 @page "/products"
 
@@ -23,7 +23,7 @@ else
 {
     @if(Products == null)
                 {
-                     
+                    <SkeletonCard></SkeletonCard>
                     
                 }
                 else
@@ -49,11 +49,15 @@ else
                     }
                 }
 }
+
 </MudGrid>
 
     </MudContainer>
 </center>
 <hr style="width:0%;text-align:left;margin-left:0">
-<MudPagination Class="offset-2" Size="Size.Small" Variant="Variant.Filled" Color="Color.Dark" Count="6"/>
+<div class="d-flex flex-column align-center">
+    <MudPagination BoundaryCount="1" MiddleCount="1" Count="@PageCount" @bind-Selected="@_selected" />
+</div>
+<MudText Align="Align.Center">Selected page: @_selected</MudText>
 <hr style="width:0%;text-align:left;margin-left:0">
 @*<Grid />*@
